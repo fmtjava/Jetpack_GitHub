@@ -4,6 +4,6 @@
 # 项目截图
 ![启动页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1281564044992_.pic.jpg)
 ![登陆页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1301564044994_.pic.jpg)
-![启动页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1281564044992_.pic.jpg)
-![登陆页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1301564044994_.pic.jpg)
+![首页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1371564048402_.pic.jpg)
+
 
