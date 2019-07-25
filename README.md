@@ -3,9 +3,9 @@
 
 # 项目截图
 <div style="float:right">
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1281564044992_.pic.jpg" width="250"/>
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1301564044994_.pic.jpg" width="250"/>
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1371564048402_.pic.jpg" width="250"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1281564044992_.pic.jpg" width="270"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1301564044994_.pic.jpg" width="270"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1371564048402_.pic.jpg" width="270"/>
 </div>
 
 <div style="float:right">
