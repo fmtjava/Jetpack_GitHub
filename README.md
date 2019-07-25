@@ -4,7 +4,7 @@
 # 项目截图
 ![启动页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1281564044992_.pic.jpg)
 ![登陆页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1301564044994_.pic.jpg)
-![首页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1361564045000_.pic.jpg)
+![首页](https://github.com/fmtjava/OpenGitHub/blob/master/image/WechatIMG136.png)
 ![侧滑页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1351564044999_.pic.jpg)
 ![搜索页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1341564044998_.pic.jpg)
 ![详情页](https://github.com/fmtjava/OpenGitHub/blob/master/image/1291564044993_.pic.jpg)
