@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cardCornerRadius="3dp"
+		app:cardBackgroundColor="@android:color/white"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+		<de.hdodenhof.circleimageview.CircleImageView
+				android:id="@+id/iv_head"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginTop="10dp"
+				/>
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_marginLeft="8dp"
+				>
+
+			<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					>
+
+				<TextView
+						android:id="@+id/tv_repos_name"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:textSize="16sp"
+						android:textColor="@color/colorPrimaryDark"
+						android:singleLine="true"
+						android:ellipsize="end"
+						android:layout_marginRight="60dp"
+						/>
+
+				<View
+						android:id="@+id/view_language_bg"
+						android:layout_alignParentRight="true"
+						android:layout_marginRight="10dp"
+						android:layout_width="10dp"
+						android:layout_height="10dp"
+						android:layout_centerVertical="true"
+						/>
+
+				<TextView
+						android:id="@+id/tv_language"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:textSize="12sp"
+						android:textColor="@color/repos_common_text_color"
+						android:layout_toLeftOf="@id/view_language_bg"
+						android:layout_marginRight="3dp"
+						/>
+
+			</RelativeLayout>
+
+			<TextView
+					android:id="@+id/tv_repos_des"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textSize="14sp"
+					android:layout_marginTop="5dp"
+					android:textColor="@color/repos_common_text_color"
+					/>
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					android:layout_marginBottom="10dp"
+					android:orientation="horizontal"
+					>
+
+				<TextView
+						android:id="@+id/tv_start_num"
+						android:layout_width="0dp"
+						android:layout_weight="1"
+						android:layout_height="wrap_content"
+						android:textSize="12sp"
+						android:drawableLeft="@mipmap/icon_start"
+						android:drawablePadding="5dp"
+						android:textColor="@color/repos_common_text_color"
+						/>
+
+				<TextView
+						android:id="@+id/tv_fork_num"
+						android:layout_width="0dp"
+						android:layout_weight="1"
+						android:layout_height="wrap_content"
+						android:textSize="12sp"
+						android:textColor="@color/repos_common_text_color"
+						android:drawableLeft="@mipmap/icon_fork"
+						android:drawablePadding="5dp"
+						/>
+
+				<TextView
+						android:id="@+id/tv_author"
+						android:layout_width="0dp"
+						android:layout_weight="1"
+						android:layout_height="wrap_content"
+						android:textSize="12sp"
+						android:drawableLeft="@mipmap/icon_author"
+						android:drawablePadding="5dp"
+						android:textColor="@color/repos_common_text_color"
+						/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

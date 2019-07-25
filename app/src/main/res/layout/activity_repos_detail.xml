@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/mRootView"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@color/colorPrimary">
+
+		<ImageButton
+				android:id="@+id/mBackIB"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@mipmap/icon_back"
+				android:layout_centerVertical="true"
+				android:paddingLeft="15dp"
+				android:background="@null"
+				/>
+
+		<com.like.LikeButton
+				android:id="@+id/mFavorIb"
+				app:icon_type="heart"
+				app:icon_size="20dp"
+				app:unlike_drawable="@mipmap/icon_favorite_uncheck"
+				app:like_drawable="@mipmap/icon_favorite_check"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:visibility="gone"
+				/>
+
+		<TextView
+				android:id="@+id/mReposNameTv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@android:color/white"
+				android:layout_toRightOf="@id/mBackIB"
+				android:layout_toLeftOf="@id/mFavorIb"
+				android:singleLine="true"
+				android:ellipsize="start"
+				android:textSize="20sp"
+				android:gravity="center"
+				android:layout_centerInParent="true"
+				/>
+
+
+	</RelativeLayout>
+
+
+</LinearLayout>

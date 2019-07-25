@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true"
+		>
+
+	<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/app_bar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:fitsSystemWindows="true"
+			>
+
+		<com.google.android.material.appbar.CollapsingToolbarLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:layout_scrollFlags="scroll|exitUntilCollapsed"
+				app:contentScrim="@color/colorPrimary"
+				>
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:paddingTop="190dp"
+					android:paddingBottom="40dp"
+					android:layout_gravity="center|top"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp"
+					android:gravity="center">
+
+				<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="HI!"
+						android:textStyle="bold"
+						android:textColor="@android:color/white"
+						android:textSize="30dp"/>
+
+				<TextView
+						android:id="@+id/mIntroduceTv"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="16dp"
+						android:gravity="center"
+						android:textSize="16sp"
+						android:textColor="@android:color/white"/>
+
+			</LinearLayout>
+
+			<androidx.appcompat.widget.Toolbar
+					android:id="@+id/mToolbar"
+					android:layout_width="match_parent"
+					android:layout_height="?attr/actionBarSize"
+					app:navigationIcon="@mipmap/icon_back"
+					app:layout_collapseMode="pin"
+					/>
+
+		</com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+		<com.google.android.material.tabs.TabLayout
+				android:id="@+id/mTabLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:tabTextColor="@android:color/white"
+				app:tabIndicatorColor="@android:color/white"
+				app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+				/>
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<androidx.viewpager.widget.ViewPager
+			android:id="@+id/mViewPager"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layout_behavior="@string/appbar_scrolling_view_behavior"
+			/>
+
+	<de.hdodenhof.circleimageview.CircleImageView
+			android:id="@+id/mUserIconIv"
+			android:layout_width="120dp"
+			android:layout_height="120dp"
+			android:layout_gravity="center|top"
+			android:layout_marginTop="50dp"
+			android:elevation="10dp"
+			app:layout_behavior="@string/simple_view_behavior"
+			app:behavior_dependsOn="@+id/app_bar"
+			app:behavior_dependType="y"
+			app:behavior_dependTarget="-176dp"
+			app:behavior_targetX="50dp"
+			app:behavior_targetY="8dp"
+			app:behavior_targetWidth="40dp"
+			app:behavior_targetHeight="40dp"
+			android:transitionName="image"
+			/>
+
+	<TextView
+			android:id="@+id/mUserNameTv"
+			android:layout_width="wrap_content"
+			android:layout_height="?attr/actionBarSize"
+			android:text="Amornchai"
+			android:textSize="18dp"
+			android:elevation="10dp"
+			android:layout_marginLeft="96dp"
+			android:layout_marginTop="-100dp"
+			android:gravity="center_vertical"
+			android:textColor="@android:color/white"
+			android:alpha="0"
+			app:layout_behavior="@string/simple_view_behavior"
+			app:behavior_dependsOn="@+id/app_bar"
+			app:behavior_dependType="y"
+			app:behavior_dependTarget="-206dp"
+			app:behavior_targetY="0dp"
+			app:behavior_targetAlpha="1"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

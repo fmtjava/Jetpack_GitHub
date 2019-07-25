@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--android:checkableBehavior="single"设置菜单选择效果-->
+
+	<group android:checkableBehavior="single">
+		<item
+				android:id="@+id/item_user"
+				android:title="Profile"
+				android:icon="@mipmap/icon_user"
+				/>
+	</group>
+
+	<group android:checkableBehavior="single">
+		<item
+				android:id="@+id/item_copy_right"
+				android:title="CopyRight"
+				android:icon="@mipmap/icon_copy_right"
+				/>
+	</group>
+
+	<group android:checkableBehavior="single">
+		<item
+				android:id="@+id/item_about"
+				android:title="About"
+				android:icon="@mipmap/icon_about"
+				/>
+	</group>
+
+	<group android:checkableBehavior="single">
+		<item
+				android:id="@+id/item_logout"
+				android:title="Logout"
+				android:icon="@mipmap/icon_logout"
+				/>
+	</group>
+</menu>

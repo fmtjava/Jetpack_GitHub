@@ -1,0 +1,4 @@
+<resources>
+  <string name="simple_view_behavior">com.zoonref.viewbehavior.SimpleViewBehavior</string>
+  <string name="animation_view_behavior">com.zoonref.viewbehavior.AnimationViewBehavior</string>
+</resources>

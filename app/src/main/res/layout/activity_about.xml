@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_bg_color"
+		>
+
+	<androidx.appcompat.widget.Toolbar
+			android:id="@+id/mToolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			app:title="About"
+			app:titleTextColor="@android:color/white"
+			app:navigationIcon="@mipmap/icon_back"
+			android:background="@color/colorPrimary"
+			/>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_centerInParent="true"
+			android:gravity="center"
+			>
+
+		<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@mipmap/icon_launcher"
+				/>
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="30sp"
+				android:text="GitHub"
+				android:textColor="@color/colorPrimary"
+				android:textStyle="bold"
+				android:layout_marginTop="10dp"
+				/>
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="15sp"
+				android:text="By fmtjava"
+				android:textColor="@color/colorPrimary"
+				android:layout_marginTop="10dp"
+				/>
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="15sp"
+				android:text="Open Source Licenses"
+				android:textColor="@color/colorPrimary"
+				android:layout_marginTop="10dp"
+				/>
+
+	</LinearLayout>
+
+
+</RelativeLayout>

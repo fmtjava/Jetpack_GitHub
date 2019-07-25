@@ -1,0 +1,17 @@
+<resources>
+	<string name="app_name">GitHub</string>
+	<string-array name="Home_Tabs">
+		<item>Repos</item>
+		<item>Favor</item>
+	</string-array>
+	<string name="open">开启</string>
+	<string name="close">关闭</string>
+	<string name="go_to_login">Sign in</string>
+	<string name="please_enter_search_keywords">Please enter search keywords</string>
+	<string name="introduce">I am %s, welcome you to visit my Home Page! </string>
+	<string name="username_not_null">User name cannot be empty</string>
+	<string name="password_not_null">Password name cannot be empty</string>
+	<string name="stared">Stared</string>
+	<string name="un_stared">UnStared</string>
+
+</resources>
