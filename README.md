@@ -67,7 +67,6 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
   - [CircleImageView](https://github.com/hdodenhof/CircleImageView)
   - [LiveEventBus](https://github.com/JeremyLiao/LiveEventBus)
   - [simple-view-behavior](https://github.com/zoonooz/simple-view-behavior)
-  - [LiveEventBus](https://github.com/JeremyLiao/LiveEventBus)
   - [Okhttp](https://github.com/square/okhttp)
   - [Retrofit](https://github.com/square/retrofit)
   
