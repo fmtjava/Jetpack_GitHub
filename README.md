@@ -29,7 +29,7 @@
 
 # 核心技术栈
 ## Kotlin语言
-  听说Android开发与Kotlin更配哦！Kotlin语言100%兼容Java,并且具有数据类、空安全、延迟加载、属性代理、拓展方法、函数表达式、高级函数等攻击特性，极大
+  听说Android开发与Kotlin更配哦！Kotlin语言100%兼容Java,并且具有数据类、空安全、延迟加载、属性代理、拓展方法、函数表达式、高级函数等高级特性，极大
   的简化代码量，不需要在findViewById、不需要为空指针烦恼、不需要编写复杂的JavaBean,让你能够更专注与业务，kotlin是一门小清新的语言，只有你Java足够
   扎实，上手kotlin会很方便，kotlin会让你开发Android APP如沐春风，快点学习Kotlin吧!
     
