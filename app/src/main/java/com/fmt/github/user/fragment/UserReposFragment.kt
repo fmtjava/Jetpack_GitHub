@@ -76,7 +76,6 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), SwipeRefreshLayout.On
         arguments?.let {
             mUserName = it.getString(KEY)
             mIsFavor = it.getBoolean(IS_FAVOR)
-            mSwipeRefreshLayout.isRefreshing = true
             initReposViewModelAction()
             if (mIsFavor) initStarEvent()
         }
