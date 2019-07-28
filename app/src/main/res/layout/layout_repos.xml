@@ -6,10 +6,13 @@
 		android:layout_height="wrap_content"
 		app:cardCornerRadius="3dp"
 		app:cardBackgroundColor="@android:color/white"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
+		app:cardPreventCornerOverlap="false"
+		app:cardUseCompatPadding="true"
+		android:clickable="true"
+		android:foreground="?android:selectableItemBackground"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
 		android:layout_marginTop="5dp"
-		android:layout_marginBottom="5dp"
 		>
 
 	<LinearLayout
