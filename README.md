@@ -59,7 +59,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
  ### v1.0
        -初始化项目，完成Github App核心功能
 # Thanks
-  -[kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
+  - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
   - [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
   - [AgentWeb](https://github.com/Justson/AgentWeb)
   - [Glide](https://github.com/bumptech/glide)
