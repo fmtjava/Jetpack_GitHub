@@ -23,7 +23,7 @@
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1311564044995_.pic.jpg" width="270"/>
 </div>
 
-# 下载体验
+# 下载体验  [![Release Version](https://img.shields.io/badge/version-1.0-red.svg)](https://fir.im/8jw7)
    (下方二维码，每日上限100次，如达到上限，还是 clone 源码吧！✧(≖ ◡ ≖✿)）<br/>
    <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1564135578.png"/>
 
