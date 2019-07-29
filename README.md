@@ -39,10 +39,10 @@
 &#8195;
 Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面显示，不负责任何业务逻辑和数据处理。Model 指的是 Repository 包含的部分，主要负责数据获取，来组本地数据库或者远程服务器。ViewModel 指的是图中蓝色部分，主要负责业务逻辑和数据处理，本身不持有 View 层引用，通过 LiveData 向 View 层发送数据。Repository 统一了数据入口，不管来自数据库，还是服务器，统一打包给 ViewModel。
 ### 核心组件
-   - ViewModel：以注重生命周期的方式管理界面相关的数据；
-   - LiveData：在底层数据库更改时通知视图；
+   - Lifecycles：它持有关于组件（如 Activity 或 Fragment）生命周期状态的信息，并且允许其他对象观察此状态
+   - ViewModel：以注重生命周期的方式管理界面相关的数据,为Activity 、Fragment存储数据，直到完全销毁；
+   - LiveData：不用手动控制生命周期，不用担心内存泄露，数据变化时会收到通知，与ViewModel的组合使用可以说是双剑合璧，而Lifecycles贯穿其中；
    - Room：流畅地访问 SQLite 数据库；
-   - Lifecycles：管理您的 Activity 和 Fragment 生命周期；
    
 ## Retrofit + Okhttp + Coroutines(协程)打造强大的网络请求
    - Retrofit：Square出品的网络请求库，极大的减少了http请求的代码和步骤
