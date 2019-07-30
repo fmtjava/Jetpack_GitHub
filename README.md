@@ -1,4 +1,5 @@
 # OpenGitHub
+[![Platform](https://img.shields.io/badge/platform-Android-blue.svg)](https://github.com/fmtjava/OpenGitHub)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Release Version](https://img.shields.io/badge/version-1.0-red.svg)](https://fir.im/8jw7)
