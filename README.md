@@ -30,7 +30,8 @@
 </div>
 
 # 下载体验 
-   (下方二维码，每日上限100次，如达到上限，还是 clone 源码吧！✧(≖ ◡ ≖✿)）<br/>
+ - 点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://fir.im/8jw7) 下载
+ - 下方二维码下载(每日上限100次，如达到上限，还是 clone 源码吧！✧(≖ ◡ ≖✿))）<br/>
    <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1564135578.png"/>
 
 # 核心技术栈
