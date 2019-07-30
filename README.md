@@ -5,7 +5,7 @@
 [![Release Version](https://img.shields.io/badge/version-1.0-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
 [![](https://img.shields.io/badge/QQ-2694746499-orange.svg)](https://github.com/fmtjava)<br />
-一款基于Material Design + AndroidX + Kotlin + MVVM + ViewModel + LiveData  + Room + Retrofit + Okhttp + 协程 + LiveDataBus + Glide等架构实现Github客户端项目(持续更新中),欢迎start or fork！
+一款基于Material Design + AndroidX + Kotlin + MVVM + ViewModel + LiveData  + Room + Retrofit + Okhttp + 协程 + LiveDataBus + Glide等架构实现Github客户端项目(持续更新中),开源不易，如果喜欢的话希望给个 `Star` 或 `Fork` ^_^ ，谢谢！
 
 # 项目截图
 <div style="float:right">
@@ -79,6 +79,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
   - [Retrofit](https://github.com/square/retrofit)
   
  # 关于我
+  - QQ：2694746499
   - Email：2694746499@qq.com
   - Github：https://github.com/fmtjava
   
