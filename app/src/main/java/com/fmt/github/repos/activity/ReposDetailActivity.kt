@@ -1,8 +1,10 @@
 package com.fmt.github.repos.activity
 
+import android.graphics.Color
 import android.view.KeyEvent
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
@@ -44,7 +46,7 @@ class ReposDetailActivity : BaseVMActivity<ReposViewModel>() {
     private fun initAgentWeb() {
         mAgentWeb = AgentWeb.with(this)
             .setAgentWebParent(mRootView, LinearLayout.LayoutParams(-1, -1))
-            .useDefaultIndicator()
+            .useDefaultIndicator(ContextCompat.getColor(this, R.color.indicator_color))
             .createAgentWeb()
             .ready()
             .go(mWebUrl)
