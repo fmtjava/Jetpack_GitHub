@@ -56,8 +56,15 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
 ## Retrofit + Okhttp + Coroutines(协程)打造强大的网络请求
    - Retrofit：Square出品的网络请求库，极大的减少了http请求的代码和步骤
    - Okhttp： 同样Square出品，不多介绍，做Android都应该知道
-   - Coroutines(协程)：kotlin1.3版本发布，Coroutines稳定版也正式发布，Coroutines真是非常神奇，让你可以使用同步的方式写异步请求代码，增强代码的
-                      可读性、不在为回调而烦恼、优雅的进行线程切换操作，Coroutines的“黑魔法“特性会让你眼前一亮。
+   - Coroutines(协程)：kotlin1.3版本发布，Coroutines稳定版也正式发布，Coroutines真是非常神奇，让你可以使用同步的方式写异步请求代码，增强代码的可读性、不在为回调而烦恼、优雅的进行线程切换操作，Coroutines的“黑魔法“特性会让你眼前一亮。
+
+## Coroutines(协程)
+   还在为线程切换而烦恼吗? 还在深陷回调的噩梦吗? 还在为Thread初始化带来的性能损耗而烦恼? kotlin1.3协程稳定版来袭，专治上述的疑难杂症，Android开发使用协程具备以下优点：
+   - 协程依赖于线程，但是协程挂起时不需要阻塞线程，几乎是无代价的，协程是由开发者控制的。
+   - 异步编程时无需编写大量的回调接口，Coroutines的“黑魔法“特性让你用同步的方式编写代码，增强代码可读性
+   - 协程调度器代替Handler、AsyncTask、Rxjava更优雅的处理线程切换
+
+
 ## LiveEventBus
    LiveEventBus是一款Android消息总线，基于LiveData，具有生命周期感知能力，支持Sticky，支持AndroidX，支持跨进程，支持跨APP
    
