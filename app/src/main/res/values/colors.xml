@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#25292d</color>
-    <color name="colorPrimaryDark">#25292d</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="repos_common_background_color">#F1F3F4</color>
-    <color name="repos_common_text_color">#787878</color>
-    <color name="repos_search_text_color">#80ffffff</color>
-    <color name="user_info_common_text_color">#444444</color>
-    <color name="common_bg_color">#f9f9f9</color>
-    <color name="email_text_color">#00EE00</color>
-    <color name="indicator_color">#3473e0</color>
+	<color name="colorPrimary">#25292d</color>
+	<color name="colorPrimaryDark">#25292d</color>
+	<color name="colorAccent">#D81B60</color>
+	<color name="repos_common_background_color">#F1F3F4</color>
+	<color name="repos_common_text_color">#787878</color>
+	<color name="repos_search_text_color">#80ffffff</color>
+	<color name="user_info_common_text_color">#444444</color>
+	<color name="common_bg_color">#f9f9f9</color>
+	<color name="email_text_color">#00EE00</color>
+	<color name="indicator_color">#3473e0</color>
+
+	<integer-array name="github_glyph_colors">
+		<item>@color/colorPrimary</item>
+	</integer-array>
 </resources>

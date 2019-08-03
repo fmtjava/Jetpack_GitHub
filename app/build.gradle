@@ -61,7 +61,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
-
+    implementation 'com.jaredrummler:animated-svg-view:1.0.6'
     implementation 'com.jeremyliao:live-event-bus-x:1.4.4'
 
     //okhttp + retrofit
