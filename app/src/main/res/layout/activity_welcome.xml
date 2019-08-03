@@ -18,4 +18,5 @@
 			app:animatedSvgTraceTime="2000"
 			app:animatedSvgTraceTimePerGlyph="1000"/>
 
+
 </FrameLayout>
