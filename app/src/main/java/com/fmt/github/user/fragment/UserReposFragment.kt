@@ -2,31 +2,34 @@ package com.fmt.github.user.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.fmt.github.BR
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
 import com.fmt.github.constant.Constant
+import com.fmt.github.databinding.LayoutReposBinding
 import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.activity.ReposDetailActivity
-import com.fmt.github.repos.adapter.ReposAdapter
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.viewmodel.UserViewModel
+import com.fmt.github.util.of
+import com.github.nitrico.lastadapter.LastAdapter
+import com.github.nitrico.lastadapter.Type
 import com.jeremyliao.liveeventbus.LiveEventBus
-import kotlinx.android.synthetic.main.common_recyclerview.*
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
 
-class UserReposFragment : BaseVMFragment<UserViewModel>(), SwipeRefreshLayout.OnRefreshListener,
-    BaseQuickAdapter.RequestLoadMoreListener,
-    BaseQuickAdapter.OnItemClickListener {
+class UserReposFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadMoreListener {
 
-    override fun getLayoutRes(): Int = R.layout.common_recyclerview
+    override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
 
-    override fun initViewModel(): UserViewModel = get(UserViewModel::class.java)
+    override fun initViewModel(): UserViewModel = of(mActivity, UserViewModel::class.java)
 
-    private val mReposAdapter by lazy { ReposAdapter() }
+    private val mReposList = ObservableArrayList<ReposItemModel>()
 
     private var mPage = 1
 
@@ -47,29 +50,28 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), SwipeRefreshLayout.On
             reposFragment.arguments = arguments
             return reposFragment
         }
-
     }
 
     override fun initView() {
-        initSwipeRefreshLayout()
+        initRefreshLayout()
         initRecyclerView()
     }
 
-    private fun initSwipeRefreshLayout() {
-        mSwipeRefreshLayout.setOnRefreshListener(this)
+    private fun initRefreshLayout() {
+        mRefreshLayout.setOnRefreshListener(this)
+        mRefreshLayout.setOnLoadMoreListener(this)
     }
 
     private fun initRecyclerView() {
-        with(mReposAdapter) {
-            disableLoadMoreIfNotFullPage(mRecyclerView)
-            onItemClickListener = this@UserReposFragment
-            setOnLoadMoreListener(this@UserReposFragment, mRecyclerView)
-            openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM)
-            mRecyclerView
-        }.apply {
-            layoutManager = LinearLayoutManager(mActivity)
-            adapter = mReposAdapter.apply { setEmptyView(R.layout.layout_empty) }
-        }
+        val type = Type<LayoutReposBinding>(R.layout.layout_repos)
+            .onClick {
+                go2ReposDetailActivity(mReposList[it.adapterPosition])
+            }
+        LastAdapter(mReposList, BR.item)
+            .map<ReposItemModel>(type)
+            .into(mRecyclerView.apply {
+                layoutManager = LinearLayoutManager(mActivity)
+            })
     }
 
     override fun initData() {
@@ -81,18 +83,18 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), SwipeRefreshLayout.On
         }
     }
 
-    override fun onRefresh() {
+    override fun onRefresh(refreshLayout: RefreshLayout) {
         mPage = 1
         initReposViewModelAction()
     }
 
-    override fun onLoadMoreRequested() {
+    override fun onLoadMore(refreshLayout: RefreshLayout) {
         mPage++
         initReposViewModelAction()
     }
 
     private fun initReposViewModelAction() {
-        if (mPage == 1) mSwipeRefreshLayout.isRefreshing = true
+        if (mPage == 1) mRefreshLayout.autoRefreshAnimationOnly()
         if (mIsFavor) {
             mViewModel.getStarredRepos(mUserName, mPage).observe(this, mReposListObserver)
         } else {
@@ -102,23 +104,20 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), SwipeRefreshLayout.On
 
     private val mReposListObserver = Observer<List<ReposItemModel>> {
         if (mPage == 1) {
-            mSwipeRefreshLayout.isRefreshing = false
-            mReposAdapter.setNewData(it)
+            mReposList.clear()
+            mReposList.addAll(it)
+            mRefreshLayout.finishRefresh()
         } else {
-            mReposAdapter.addData(it)
-        }
-        if (it == null || it.isEmpty()) {
-            mReposAdapter.loadMoreEnd(true)
-        } else {
-            mReposAdapter.loadMoreComplete()
+            mReposList.addAll(it)
+            mRefreshLayout.finishLoadMore()
         }
     }
 
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+    private fun go2ReposDetailActivity(reposItemModel: ReposItemModel) {
         with(Intent(mActivity, ReposDetailActivity::class.java)) {
-            putExtra(ReposDetailActivity.WEB_URL, mReposAdapter.data[position].html_url)
-            putExtra(ReposDetailActivity.REPO, mReposAdapter.data[position].name)
-            putExtra(ReposDetailActivity.OWNER, mReposAdapter.data[position].owner.login)
+            putExtra(ReposDetailActivity.WEB_URL, reposItemModel.html_url)
+            putExtra(ReposDetailActivity.REPO, reposItemModel.name)
+            putExtra(ReposDetailActivity.OWNER, reposItemModel.owner.login)
         }.run {
             startActivity(this)
         }
@@ -129,11 +128,12 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), SwipeRefreshLayout.On
         LiveEventBus.get()
             .with(Constant.STAR_EVENT_KEY, ReposStarEvent::class.java)
             .observe(this, Observer {
-                onRefresh()
+                onRefresh(mRefreshLayout)
             })
     }
 
-    override fun handleError() {
-        mSwipeRefreshLayout.isRefreshing = false
+    override fun dismissLoading() {
+        mRefreshLayout.finishRefresh()
+        mRefreshLayout.finishLoadMore()
     }
 }

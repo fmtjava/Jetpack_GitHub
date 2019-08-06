@@ -1,194 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		android:id="@+id/mSwipeRefreshLayout"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<androidx.core.widget.NestedScrollView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:background="@color/common_bg_color">
+    <data>
+        <variable name="userViewModel" type="com.fmt.github.user.viewmodel.UserViewModel"/>
+    </data>
 
-		<androidx.cardview.widget.CardView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				app:cardCornerRadius="3dp"
-				app:cardBackgroundColor="@android:color/white"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:layout_marginTop="5dp">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/mSwipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-			<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="vertical"
-					>
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_bg_color">
 
-				<TextView
-						android:id="@+id/mUserNameTv"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textColor="@color/colorPrimary"
-						android:textSize="16sp"
-						android:layout_marginTop="20dp"
-						android:layout_marginLeft="15dp"
-						/>
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="3dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp">
 
-				<TextView
-						android:id="@+id/mDescTv"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:textColor="@color/repos_common_text_color"
-						android:textSize="14sp"
-						android:layout_marginTop="15dp"
-						android:layout_marginLeft="15dp"
-						android:layout_marginRight="15dp"
-						/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-				<TextView
-						android:id="@+id/mEmailTv"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textColor="@color/email_text_color"
-						android:textSize="14sp"
-						android:layout_marginTop="15dp"
-						android:layout_marginLeft="15dp"
-						android:drawableLeft="@mipmap/icon_email"
-						android:drawablePadding="15dp"
-						/>
+                    <TextView
+                            android:id="@+id/mUserNameTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="@{userViewModel.mUserInfoModel.login}"/>
 
-				<TextView
-						android:id="@+id/mBlogTv"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textColor="@color/email_text_color"
-						android:textSize="14sp"
-						android:layout_marginTop="20dp"
-						android:layout_marginLeft="13dp"
-						android:drawableLeft="@mipmap/icon_link"
-						android:drawablePadding="15dp"
-						/>
+                    <TextView
+                            android:id="@+id/mDescTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/repos_common_text_color"
+                            android:textSize="14sp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@{userViewModel.mUserInfoModel.bio}"/>
 
-				<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp"
-						android:layout_marginTop="20dp"
-						android:layout_marginBottom="20dp"
-						>
+                    <TextView
+                            android:id="@+id/mEmailTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/email_text_color"
+                            android:textSize="14sp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:drawableLeft="@mipmap/icon_email"
+                            android:drawablePadding="15dp"
+                            android:text="@{userViewModel.mUserInfoModel.email}"/>
 
-					<LinearLayout
-							android:layout_width="0dp"
-							android:layout_weight="1"
-							android:orientation="vertical"
-							android:layout_height="wrap_content"
-							android:gravity="center"
-							>
+                    <TextView
+                            android:id="@+id/mBlogTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/email_text_color"
+                            android:textSize="14sp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="13dp"
+                            android:drawableLeft="@mipmap/icon_link"
+                            android:drawablePadding="15dp"
+                            android:text="@{userViewModel.mUserInfoModel.blog}"/>
 
-						<TextView
-								android:id="@+id/mFollowersTv"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="16sp"
-								android:textColor="@color/user_info_common_text_color"
-								/>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp">
 
-						<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="12sp"
-								android:textColor="@color/user_info_common_text_color"
-								android:text="Followers"
-								/>
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
 
-					</LinearLayout>
+                            <TextView
+                                    android:id="@+id/mFollowersTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="@{String.valueOf(userViewModel.mUserInfoModel.followers)}"/>
 
-					<LinearLayout
-							android:layout_width="0dp"
-							android:layout_weight="1"
-							android:orientation="vertical"
-							android:layout_height="wrap_content"
-							android:gravity="center"
-							>
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="Followers"/>
 
-						<TextView
-								android:id="@+id/mFollowingTv"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="16sp"
-								android:textColor="@color/user_info_common_text_color"
-								/>
+                        </LinearLayout>
 
-						<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="12sp"
-								android:textColor="@color/user_info_common_text_color"
-								android:text="Following"
-								/>
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
 
-					</LinearLayout>
+                            <TextView
+                                    android:id="@+id/mFollowingTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="@{String.valueOf(userViewModel.mUserInfoModel.followers)}"/>
 
-					<LinearLayout
-							android:layout_width="0dp"
-							android:layout_weight="1"
-							android:orientation="vertical"
-							android:layout_height="wrap_content"
-							android:gravity="center"
-							>
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="Following"
+                            />
 
-						<TextView
-								android:id="@+id/mRepositoriesTv"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="16sp"
-								android:textColor="@color/user_info_common_text_color"
-								/>
+                        </LinearLayout>
 
-						<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="12sp"
-								android:textColor="@color/user_info_common_text_color"
-								android:text="Repositories"
-								/>
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
 
-					</LinearLayout>
+                            <TextView
+                                    android:id="@+id/mRepositoriesTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="@{String.valueOf(userViewModel.mUserInfoModel.public_repos)}"/>
 
-					<LinearLayout
-							android:layout_width="0dp"
-							android:layout_weight="1"
-							android:orientation="vertical"
-							android:layout_height="wrap_content"
-							android:gravity="center"
-							>
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="Repositories"/>
 
-						<TextView
-								android:id="@+id/mGistsTv"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="16sp"
-								android:textColor="@color/user_info_common_text_color"
-								/>
+                        </LinearLayout>
 
-						<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textSize="12sp"
-								android:textColor="@color/user_info_common_text_color"
-								android:text="Gists"
-								/>
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
 
-					</LinearLayout>
+                            <TextView
+                                    android:id="@+id/mGistsTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="@{String.valueOf(userViewModel.mUserInfoModel.public_gists)}"/>
 
-				</LinearLayout>
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/user_info_common_text_color"
+                                    android:text="Gists"/>
 
-			</LinearLayout>
+                        </LinearLayout>
 
-		</androidx.cardview.widget.CardView>
-	</androidx.core.widget.NestedScrollView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

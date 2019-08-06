@@ -14,6 +14,7 @@ import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.model.UserListModel
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.viewmodel.UserViewModel
+import com.fmt.github.util.of
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -25,7 +26,7 @@ class UserFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadM
 
     override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
 
-    override fun initViewModel(): UserViewModel = get(UserViewModel::class.java)
+    override fun initViewModel(): UserViewModel = of(mActivity,UserViewModel::class.java)
 
     private var mPage = 1
     var mSearchKey: String = ""
@@ -99,8 +100,9 @@ class UserFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadM
         }
     }
 
-    override fun handleError() {
+    override fun dismissLoading() {
         mRefreshLayout.finishRefresh()
         mRefreshLayout.finishLoadMore()
     }
+
 }

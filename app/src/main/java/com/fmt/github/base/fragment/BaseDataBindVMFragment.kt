@@ -1,27 +1,27 @@
 package com.fmt.github.base.fragment
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.fmt.github.App
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.base.viewmodel.StateAction
 import com.fmt.github.ext.errorToast
 
 /**
- * Fragment懒加载
+ * Fragment懒加载(DataBinding + ViewModel)
  */
-abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
+abstract class BaseDataBindVMFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
     private var mRootView: View? = null
+
+    lateinit var mDataBind: DB
 
     lateinit var mViewModel: VM
 
@@ -44,7 +44,10 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = View.inflate(container?.context, getLayoutRes(), null)
+            mDataBind = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
+            // 让xml内绑定的LiveData和Observer建立连接，让LiveData能感知Activity的生命周期
+            mDataBind.lifecycleOwner = this
+            mRootView = mDataBind.root
         }
         return mRootView
     }
@@ -76,6 +79,7 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
         }
     }
 
+    //初始化通用事件驱动(如：显示对话框、关闭对话框、统一错误提示)
     private fun initViewModelAction() {
         if (mViewModel is BaseViewModel) {
             mViewModel.mStateLiveData.observe(this, Observer {
@@ -114,4 +118,10 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
     open fun handleError(){
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mDataBind.unbind()
+    }
+
 }

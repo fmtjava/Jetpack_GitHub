@@ -3,6 +3,8 @@ package com.fmt.github.user.activity
 import androidx.fragment.app.Fragment
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseActivity
+import com.fmt.github.base.activity.BaseDataBindActivity
+import com.fmt.github.databinding.ActivityUserInfoBinding
 import com.fmt.github.ext.loadUrl
 import com.fmt.github.user.adapter.UserInfoPagerAdapter
 import com.fmt.github.user.fragment.UserInfoFragment
@@ -10,7 +12,7 @@ import com.fmt.github.user.fragment.UserReposFragment
 import com.fmt.github.user.model.UserModel
 import kotlinx.android.synthetic.main.activity_user_info.*
 
-class UserInfoActivity : BaseActivity() {
+class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
 
     lateinit var mUserModel: UserModel
 
@@ -28,9 +30,7 @@ class UserInfoActivity : BaseActivity() {
 
     private fun initUserInfo() {
         mUserModel = intent.getSerializableExtra(USER_INFO) as UserModel
-        mUserIconIv.loadUrl(mUserModel.avatar_url)
-        mUserNameTv.text = mUserModel.login
-        mIntroduceTv.text = String.format(getString(R.string.introduce), mUserModel.login)
+        mDataBind.userModel = mUserModel
     }
 
     private fun initToolbar() {
@@ -50,6 +50,6 @@ class UserInfoActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        supportFinishAfterTransition()
+        supportFinishAfterTransition()//共享元素共享动画
     }
 }

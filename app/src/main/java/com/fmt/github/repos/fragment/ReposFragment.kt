@@ -1,75 +1,75 @@
 package com.fmt.github.repos.fragment
 
 import android.content.Intent
-import android.view.View
+import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.fmt.github.BR
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
+import com.fmt.github.databinding.LayoutReposBinding
 import com.fmt.github.repos.activity.ReposDetailActivity
-import com.fmt.github.repos.adapter.ReposAdapter
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.repos.model.ReposListModel
 import com.fmt.github.repos.viewmodel.ReposViewModel
-import kotlinx.android.synthetic.main.common_recyclerview.*
+import com.fmt.github.util.of
+import com.github.nitrico.lastadapter.LastAdapter
+import com.github.nitrico.lastadapter.Type
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
 
-class ReposFragment : BaseVMFragment<ReposViewModel>(), SwipeRefreshLayout.OnRefreshListener,
-    BaseQuickAdapter.RequestLoadMoreListener,
-    BaseQuickAdapter.OnItemClickListener {
+class ReposFragment : BaseVMFragment<ReposViewModel>(), OnRefreshListener, OnLoadMoreListener {
 
-    override fun getLayoutRes(): Int = R.layout.common_recyclerview
+    override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
 
-    override fun initViewModel(): ReposViewModel = get(ReposViewModel::class.java)
+    override fun initViewModel(): ReposViewModel = of(mActivity,ReposViewModel::class.java)
 
-    private val mReposAdapter by lazy { ReposAdapter() }
+    private val mReposList = ObservableArrayList<ReposItemModel>()
 
     private var mPage = 1//页码
 
     private var mSearchKey: String = ""//搜索关键字
 
     override fun initView() {
-        initSwipeRefreshLayout()
+        initRefreshLayout()
         initRecyclerView()
     }
 
-    private fun initSwipeRefreshLayout() {
-        mSwipeRefreshLayout.setOnRefreshListener(this)
+    private fun initRefreshLayout() {
+        mRefreshLayout.setOnRefreshListener(this)
+        mRefreshLayout.setOnLoadMoreListener(this)
     }
 
     private fun initRecyclerView() {
-        with(mReposAdapter) {
-            disableLoadMoreIfNotFullPage(mRecyclerView)
-            onItemClickListener = this@ReposFragment
-            setOnLoadMoreListener(this@ReposFragment, mRecyclerView)
-            mRecyclerView
-        }.apply {
-            layoutManager = LinearLayoutManager(mActivity)
-            adapter = mReposAdapter.apply { setEmptyView(R.layout.layout_empty) }
-        }
+        val type = Type<LayoutReposBinding>(R.layout.layout_repos)
+            .onClick {
+                go2ReposDetailActivity(mReposList[it.adapterPosition])
+            }
+        LastAdapter(mReposList, BR.item)
+            .map<ReposItemModel>(type)
+            .into(mRecyclerView.apply {
+                layoutManager = LinearLayoutManager(mActivity)
+            })
     }
 
-    override fun onRefresh() {
+    override fun onRefresh(refreshLayout: RefreshLayout) {
         mPage = 1
         searchRepos()
     }
 
-    override fun onLoadMoreRequested() {
+    override fun onLoadMore(refreshLayout: RefreshLayout) {
         mPage++
         searchRepos()
     }
 
     fun searchReposByKey(searchKey: String = "") {//默认参数,兼容搜索操作
-        if (!searchKey.isNullOrEmpty()) {
-            mSearchKey = searchKey
-            mPage = 1
-        }
-        searchRepos()
+        mSearchKey = searchKey
+        mRefreshLayout.autoRefresh()
     }
 
     private fun searchRepos() {
-        if (mPage == 1) mSwipeRefreshLayout.isRefreshing = true
         mViewModel.searchRepos(mSearchKey, mPage).observe(this, mSearchReposListObserver)
     }
 
@@ -79,29 +79,28 @@ class ReposFragment : BaseVMFragment<ReposViewModel>(), SwipeRefreshLayout.OnRef
 
     private fun dealReposList(items: List<ReposItemModel>) {
         if (mPage == 1) {
-            mSwipeRefreshLayout.isRefreshing = false
-            mReposAdapter.setNewData(items)
+            mReposList.clear()
+            mReposList.addAll(items)
+            mRefreshLayout.finishRefresh()
         } else {
-            mReposAdapter.addData(items)
-        }
-        if (items == null || items.isEmpty()) {
-            mReposAdapter.loadMoreEnd(true)
-        } else {
-            mReposAdapter.loadMoreComplete()
+            mReposList.addAll(items)
+            mRefreshLayout.finishLoadMore()
         }
     }
 
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+    private fun go2ReposDetailActivity(reposItemModel: ReposItemModel) {
         with(Intent(mActivity, ReposDetailActivity::class.java)) {
-            putExtra(ReposDetailActivity.WEB_URL, mReposAdapter.data[position].html_url)
-            putExtra(ReposDetailActivity.REPO, mReposAdapter.data[position].name)
-            putExtra(ReposDetailActivity.OWNER, mReposAdapter.data[position].owner.login)
+            putExtra(ReposDetailActivity.WEB_URL, reposItemModel.html_url)
+            putExtra(ReposDetailActivity.REPO, reposItemModel.name)
+            putExtra(ReposDetailActivity.OWNER, reposItemModel.owner.login)
         }.run {
             startActivity(this)
         }
     }
 
-    override fun handleError() {
-        mSwipeRefreshLayout.isRefreshing = false
+    override fun dismissLoading() {
+        mRefreshLayout.finishRefresh()
+        mRefreshLayout.finishLoadMore()
     }
+
 }

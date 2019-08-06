@@ -25,6 +25,7 @@ import com.fmt.github.user.activity.UserSearchActivity
 import com.fmt.github.user.db.User
 import com.fmt.github.user.fragment.UserReposFragment
 import com.fmt.github.user.model.UserModel
+import com.fmt.github.util.of
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_nav_header.view.*
@@ -35,7 +36,7 @@ class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigatio
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
-    override fun initViewModel(): HomeViewModel = get(HomeViewModel::class.java)
+    override fun initViewModel(): HomeViewModel = of(this,HomeViewModel::class.java)
 
     private lateinit var mUser: User
 

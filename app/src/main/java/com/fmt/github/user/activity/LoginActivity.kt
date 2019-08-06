@@ -12,6 +12,7 @@ import com.fmt.github.user.db.User
 import com.fmt.github.user.model.AuthorizationRespModel
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.viewmodel.UserViewModel
+import com.fmt.github.util.of
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseVMActivity<UserViewModel>() {
@@ -24,7 +25,7 @@ class LoginActivity : BaseVMActivity<UserViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.activity_login
 
-    override fun initViewModel(): UserViewModel = get(UserViewModel::class.java)
+    override fun initViewModel(): UserViewModel = of(this,UserViewModel::class.java)
 
     override fun initView() {
         mSignInBt.setOnClickListener {

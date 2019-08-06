@@ -12,6 +12,8 @@ class UserViewModel : BaseViewModel() {
 
     private val mUserRepository by lazy { UserRepository() }
 
+    val mUserInfoModel = MutableLiveData<UserInfoModel>()
+
     fun createOrGetAuthorization(): MutableLiveData<AuthorizationRespModel> {
         val authorizationReqModel = AuthorizationReqModel(
             Configs.CLIENT_SECRET,
@@ -49,11 +51,10 @@ class UserViewModel : BaseViewModel() {
     }
 
     fun getUserInfo(user: String): MutableLiveData<UserInfoModel> {
-        val mutableLiveData = MutableLiveData<UserInfoModel>()
         launch {
-            mutableLiveData.value = mUserRepository.getUserInfo(user)
+            mUserInfoModel.value = mUserRepository.getUserInfo(user)
         }
-        return mutableLiveData
+        return mUserInfoModel
     }
 
     fun getUserPublicRepos(user: String, page: Int): MutableLiveData<List<ReposItemModel>> {

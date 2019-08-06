@@ -2,6 +2,8 @@ package com.fmt.github.base.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -14,15 +16,19 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 
 /**
- * 封装带有协程基类,使用代理类完成
+ * 封装带有协程基类(DataBinding + ViewModel),使用代理类完成
+ *
  */
-abstract class BaseVMActivity<VM : BaseViewModel> : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseDataBindVMActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity(),
+    CoroutineScope by MainScope() {
+
+    lateinit var mDataBind: DB
 
     lateinit var mViewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        mDataBind = DataBindingUtil.setContentView(this, getLayoutId())
         mViewModel = initViewModel()
         initViewModelAction()
         initView()
@@ -56,6 +62,7 @@ abstract class BaseVMActivity<VM : BaseViewModel> : AppCompatActivity(), Corouti
 
     }
 
+    //由于不同页面可能加载动画不一致，提供空实现，子类根据自身情况进行实现
     open fun showLoading() {
 
     }
@@ -64,7 +71,8 @@ abstract class BaseVMActivity<VM : BaseViewModel> : AppCompatActivity(), Corouti
 
     }
 
-    open fun handleError(){
+    //暴露自定义处理异常方法
+    open fun handleError() {
 
     }
 
