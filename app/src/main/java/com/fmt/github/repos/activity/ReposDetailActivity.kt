@@ -11,7 +11,7 @@ import com.fmt.github.constant.Constant
 import com.fmt.github.ext.successToast
 import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.viewmodel.ReposViewModel
-import com.fmt.github.util.of
+import com.fmt.github.ext.of
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.just.agentweb.AgentWeb
 import com.like.LikeButton
@@ -27,7 +27,7 @@ class ReposDetailActivity : BaseVMActivity<ReposViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.activity_repos_detail
 
-    override fun initViewModel(): ReposViewModel = of(this,ReposViewModel::class.java)
+    override fun initViewModel(): ReposViewModel = of(this, ReposViewModel::class.java)
 
     companion object {
         const val WEB_URL = "web_url"

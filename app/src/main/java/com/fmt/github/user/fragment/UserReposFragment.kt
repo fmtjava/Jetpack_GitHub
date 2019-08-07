@@ -10,14 +10,17 @@ import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
 import com.fmt.github.constant.Constant
 import com.fmt.github.databinding.LayoutReposBinding
+import com.fmt.github.ext.otherwise
+import com.fmt.github.ext.yes
 import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.activity.ReposDetailActivity
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.viewmodel.UserViewModel
-import com.fmt.github.util.of
+import com.fmt.github.ext.of
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.kennyc.view.MultiStateView
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
@@ -103,11 +106,14 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, On
     }
 
     private val mReposListObserver = Observer<List<ReposItemModel>> {
-        if (mPage == 1) {
+        (it != null && it.isNotEmpty()).yes {
+            mMultipleStatusView.viewState = MultiStateView.ViewState.CONTENT
+        }
+        (mPage == 1).yes {
             mReposList.clear()
             mReposList.addAll(it)
             mRefreshLayout.finishRefresh()
-        } else {
+        }.otherwise {
             mReposList.addAll(it)
             mRefreshLayout.finishLoadMore()
         }

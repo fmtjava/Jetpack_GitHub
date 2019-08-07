@@ -15,11 +15,11 @@ open class BaseViewModel : ViewModel() {
         viewModelScope.launch {
             //ViewModel自带的viewModelScope.launch,会在页面销毁的时候自动取消请求,有效封装内存泄露
             try {
-                mStateLiveData.value = StateActionEvent(StateAction.LOADING)
+                mStateLiveData.value = LoadState
                 block()
-                mStateLiveData.value = StateActionEvent(StateAction.SUCCESS)
+                mStateLiveData.value = SuccessState
             } catch (e: Exception) {
-                mStateLiveData.value = StateActionEvent(StateAction.ERROR, e.message)
+                mStateLiveData.value = ErrorState(e.message)
             }
         }
 

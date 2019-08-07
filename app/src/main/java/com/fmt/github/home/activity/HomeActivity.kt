@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.fmt.github.App
+import com.fmt.github.AppContext
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.constant.Constant
@@ -17,26 +18,23 @@ import com.fmt.github.data.storage.Preference
 import com.fmt.github.ext.loadUrl
 import com.fmt.github.home.adapter.HomePageAdapter
 import com.fmt.github.home.viewmodel.HomeViewModel
-import com.fmt.github.repos.activity.ReposSearchActivity
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
 import com.fmt.github.user.activity.UserInfoActivity
-import com.fmt.github.user.activity.UserSearchActivity
 import com.fmt.github.user.db.User
 import com.fmt.github.user.fragment.UserReposFragment
 import com.fmt.github.user.model.UserModel
-import com.fmt.github.util.of
+import com.fmt.github.ext.of
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_nav_header.view.*
 import kotlinx.coroutines.launch
 
-
 class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
-    override fun initViewModel(): HomeViewModel = of(this,HomeViewModel::class.java)
+    override fun initViewModel(): HomeViewModel = of(this, HomeViewModel::class.java)
 
     private lateinit var mUser: User
 
@@ -118,20 +116,23 @@ class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigatio
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_search_repos -> {
-                Intent(this, ReposSearchActivity::class.java).run { startActivity(this) }
-            }
-            R.id.item_search_users -> {
-                Intent(this, UserSearchActivity::class.java).run { startActivity(this) }
-            }
+            R.id.item_search_repos -> go2SearchActivity(true)
+            R.id.item_search_users -> go2SearchActivity(false)
         }
         return true
+    }
+
+    private fun go2SearchActivity(fromSearchRepos: Boolean) {
+        Intent(this, CommonSearchActivity::class.java).run {
+            putExtra(CommonSearchActivity.FROM_SEARCH_REPOS, fromSearchRepos)
+            startActivity(this)
+        }
     }
 
     private fun logout() {
         mViewModel.deleteAuthorization(mUser.uid).observe(this, Observer {
             if (it) {
-                App.mApplication.getSharedPreferences(Preference.SHARE_PRE_NAME, Context.MODE_PRIVATE).edit().clear()
+                AppContext.getSharedPreferences(Preference.SHARE_PRE_NAME, Context.MODE_PRIVATE).edit().clear()
                 mViewModel.deleteUser()
                 Intent(this, LoginActivity::class.java).run {
                     startActivity(this)

@@ -8,13 +8,16 @@ import com.fmt.github.BR
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
 import com.fmt.github.databinding.LayoutReposBinding
+import com.fmt.github.ext.otherwise
+import com.fmt.github.ext.yes
 import com.fmt.github.repos.activity.ReposDetailActivity
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.repos.model.ReposListModel
 import com.fmt.github.repos.viewmodel.ReposViewModel
-import com.fmt.github.util.of
+import com.fmt.github.ext.of
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
+import com.kennyc.view.MultiStateView
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
@@ -24,7 +27,7 @@ class ReposFragment : BaseVMFragment<ReposViewModel>(), OnRefreshListener, OnLoa
 
     override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
 
-    override fun initViewModel(): ReposViewModel = of(mActivity,ReposViewModel::class.java)
+    override fun initViewModel(): ReposViewModel = of(mActivity, ReposViewModel::class.java)
 
     private val mReposList = ObservableArrayList<ReposItemModel>()
 
@@ -78,11 +81,18 @@ class ReposFragment : BaseVMFragment<ReposViewModel>(), OnRefreshListener, OnLoa
     }
 
     private fun dealReposList(items: List<ReposItemModel>) {
-        if (mPage == 1) {
+        (items != null && items.isNotEmpty()).yes {
+            mMultipleStatusView.viewState = MultiStateView.ViewState.CONTENT
+        }.otherwise {
+            (mPage == 1).yes {
+                mMultipleStatusView.viewState = MultiStateView.ViewState.EMPTY
+            }
+        }
+        (mPage == 1).yes {
             mReposList.clear()
             mReposList.addAll(items)
             mRefreshLayout.finishRefresh()
-        } else {
+        }.otherwise {
             mReposList.addAll(items)
             mRefreshLayout.finishLoadMore()
         }

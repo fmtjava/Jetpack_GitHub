@@ -1,4 +1,10 @@
 package com.fmt.github.base.viewmodel
 
-//定义网络请求状态的事件驱动模型
-data class StateActionEvent(val stateAction: StateAction, val message: String? = "")
+//定义网络请求状态(密封类扩展性更好)
+sealed class StateActionEvent
+
+object LoadState : StateActionEvent()
+
+object SuccessState : StateActionEvent()
+
+class ErrorState(val message: String?) : StateActionEvent()

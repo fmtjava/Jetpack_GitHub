@@ -10,13 +10,16 @@ import com.fmt.github.BR
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
 import com.fmt.github.databinding.LayoutUsersBinding
+import com.fmt.github.ext.otherwise
+import com.fmt.github.ext.yes
 import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.model.UserListModel
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.viewmodel.UserViewModel
-import com.fmt.github.util.of
+import com.fmt.github.ext.of
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
+import com.kennyc.view.MultiStateView
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
@@ -26,7 +29,7 @@ class UserFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadM
 
     override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
 
-    override fun initViewModel(): UserViewModel = of(mActivity,UserViewModel::class.java)
+    override fun initViewModel(): UserViewModel = of(mActivity, UserViewModel::class.java)
 
     private var mPage = 1
     var mSearchKey: String = ""
@@ -79,11 +82,14 @@ class UserFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadM
     }
 
     private fun dealUserList(items: List<UserModel>) {
-        if (mPage == 1) {
+        (items != null && items.isNotEmpty()).yes {
+            mMultipleStatusView.viewState = MultiStateView.ViewState.CONTENT
+        }
+        (mPage == 1).yes {
             mUserList.clear()
             mUserList.addAll(items)
             mRefreshLayout.finishRefresh()
-        } else {
+        }.otherwise {
             mUserList.addAll(items)
             mRefreshLayout.finishLoadMore()
         }

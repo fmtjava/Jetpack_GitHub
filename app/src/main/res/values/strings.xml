@@ -11,6 +11,8 @@
 	<string name="introduce">I am %s, welcome you to visit my Home Page! </string>
 	<string name="username_not_null">User name cannot be empty</string>
 	<string name="password_not_null">Password name cannot be empty</string>
+	<string name="search_users">Search users</string>
+	<string name="search_repos">Search repos</string>
 	<string name="stared">Stared</string>
 	<string name="un_stared">UnStared</string>
 

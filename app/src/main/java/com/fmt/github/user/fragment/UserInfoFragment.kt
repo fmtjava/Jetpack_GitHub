@@ -5,7 +5,7 @@ import com.fmt.github.base.fragment.BaseDataBindVMFragment
 import com.fmt.github.databinding.FragmentUserInfoBinding
 import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.viewmodel.UserViewModel
-import com.fmt.github.util.of
+import com.fmt.github.ext.of
 import kotlinx.android.synthetic.main.fragment_user_info.*
 
 class UserInfoFragment : BaseDataBindVMFragment<FragmentUserInfoBinding, UserViewModel>() {

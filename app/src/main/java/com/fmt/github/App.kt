@@ -1,6 +1,7 @@
 package com.fmt.github
 
 import android.app.Application
+import android.content.ContextWrapper
 import androidx.core.content.ContextCompat
 import com.fmt.github.config.Configs
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -8,11 +9,9 @@ import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.tencent.bugly.crashreport.CrashReport
 
-class App : Application() {
+lateinit var mApplication: Application
 
-    companion object {
-        lateinit var mApplication: Application
-    }
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -32,3 +31,5 @@ class App : Application() {
         }
     }
 }
+
+object AppContext : ContextWrapper(mApplication)//ContextWrapper装饰者模式

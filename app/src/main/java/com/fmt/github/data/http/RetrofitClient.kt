@@ -4,7 +4,7 @@ import android.util.Log
 import com.fmt.github.BuildConfig
 import com.fmt.github.data.http.interceptor.AuthorizationInterceptor
 import com.fmt.github.repos.service.ReposService
-import com.fmt.github.user.service.UserService
+import com.fmt.github.user.service.UserApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -47,8 +47,9 @@ object RetrofitClient {
         mRetrofit.create(ReposService::class.java)
     }
 
-    val mUserService: UserService by lazy {
-        mRetrofit.create(UserService::class.java)
+    val mUserService: UserApi by lazy {
+        mRetrofit.create(UserApi::class.java)
     }
-
 }
+
+

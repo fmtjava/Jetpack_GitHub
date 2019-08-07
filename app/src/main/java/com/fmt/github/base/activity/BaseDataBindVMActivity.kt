@@ -8,8 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fmt.github.App
-import com.fmt.github.base.viewmodel.BaseViewModel
-import com.fmt.github.base.viewmodel.StateAction
+import com.fmt.github.base.viewmodel.*
 import com.fmt.github.ext.errorToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -38,10 +37,10 @@ abstract class BaseDataBindVMActivity<DB : ViewDataBinding, VM : BaseViewModel> 
     private fun initViewModelAction() {
         if (mViewModel is BaseViewModel) {
             mViewModel.mStateLiveData.observe(this, Observer {
-                when (it.stateAction) {
-                    StateAction.LOADING -> showLoading()
-                    StateAction.SUCCESS -> dismissLoading()
-                    StateAction.ERROR -> {
+                when (it) {
+                    LoadState -> showLoading()
+                    SuccessState -> dismissLoading()
+                    is ErrorState -> {
                         dismissLoading()
                         it.message?.apply {
                             errorToast(this)
