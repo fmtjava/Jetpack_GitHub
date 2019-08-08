@@ -74,12 +74,12 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    
 # 更新日志
  ### v1.1
-  * 1.启动页添加svg动画
-  * 2.加入DataBinding完善AAC架构
-  * 3.LastAdapter替换BaseRecyclerViewAdapterHelper,结合DataBinding更方便
-  * 4.调整项目结构，优化代码
+  * 启动页添加svg动画
+  * 加入DataBinding完善AAC架构
+  * LastAdapter替换BaseRecyclerViewAdapterHelper,结合DataBinding更方便
+  * 调整项目结构，优化代码
  ### v1.0
-   * 1.初始化项目，完成Github App核心功能
+   * 初始化项目，完成Github App核心功能
 # Thanks
   - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
   - [LastAdapter](https://github.com/nitrico/LastAdapter)
