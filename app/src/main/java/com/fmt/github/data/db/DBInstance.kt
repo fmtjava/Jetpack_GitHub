@@ -1,15 +1,14 @@
 package com.fmt.github.data.db
 
 import androidx.room.Room
-import com.fmt.github.App
 import com.fmt.github.AppContext
+import com.fmt.github.user.db.UserDao
 
-object DBInstance {
+private const val DB_NAME = "open_github_db"
 
-    private const val DB_NAME = "open_github_db"
-
-    val mAppDataBase by lazy {
-        Room.databaseBuilder(AppContext, AppDataBase::class.java, DB_NAME).build()
-    }
-
+private val mAppDataBase by lazy {
+    Room.databaseBuilder(AppContext, AppDataBase::class.java, DB_NAME).build()
 }
+
+object UserDaoImpl : UserDao by mAppDataBase.getUserDao()
+

@@ -1,21 +1,21 @@
 package com.fmt.github.home.activity
 
-import android.content.Context
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.fmt.github.App
-import com.fmt.github.AppContext
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.constant.Constant
-import com.fmt.github.data.db.DBInstance
+import com.fmt.github.data.db.UserDaoImpl
 import com.fmt.github.data.storage.Preference
-import com.fmt.github.ext.loadUrl
+import com.fmt.github.databinding.LayoutNavHeaderBinding
+import com.fmt.github.ext.of
 import com.fmt.github.home.adapter.HomePageAdapter
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.user.activity.AboutActivity
@@ -24,10 +24,8 @@ import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.db.User
 import com.fmt.github.user.fragment.UserReposFragment
 import com.fmt.github.user.model.UserModel
-import com.fmt.github.ext.of
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_nav_header.view.*
 import kotlinx.coroutines.launch
 
 class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigationItemSelectedListener {
@@ -47,16 +45,21 @@ class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigatio
 
     private fun initUserInfo() {
         launch {
-            mUser = DBInstance.mAppDataBase.getUserDao().getAll()[0]
+            mUser = UserDaoImpl.getAll()[0]
             initHeaderLayout()
             initViewPager()
         }
     }
 
     private fun initHeaderLayout() {
-        val headerView = mNavigationView.getHeaderView(0)
-        headerView.iv_head.loadUrl(mUser.avatar_url)
-        headerView.tv_name.text = mUser.login
+        val dataBind = DataBindingUtil.inflate<LayoutNavHeaderBinding>(
+            LayoutInflater.from(this),
+            R.layout.layout_nav_header,
+            mNavigationView,
+            false
+        )
+        dataBind.user = mUser
+        mNavigationView.addHeaderView(dataBind.root)
     }
 
     private fun initNavigationView() {
@@ -132,7 +135,7 @@ class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigatio
     private fun logout() {
         mViewModel.deleteAuthorization(mUser.uid).observe(this, Observer {
             if (it) {
-                AppContext.getSharedPreferences(Preference.SHARE_PRE_NAME, Context.MODE_PRIVATE).edit().clear()
+                Preference.clear()
                 mViewModel.deleteUser()
                 Intent(this, LoginActivity::class.java).run {
                     startActivity(this)

@@ -32,4 +32,4 @@ class App : Application() {
     }
 }
 
-object AppContext : ContextWrapper(mApplication)//ContextWrapper装饰者模式
+object AppContext : ContextWrapper(mApplication)//ContextWrapper对Context上下文进行包装(装饰者模式)

@@ -1,14 +1,6 @@
 package com.fmt.github.ext
 
-import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.fmt.github.AppContext
-import com.fmt.github.R
+import com.fmt.github.config.Settings
 
-fun ImageView.loadUrl(url: String) {
-    Glide.with(AppContext).load(url)
-        .placeholder(R.mipmap.ic_github)
-        .into(this)
-}
-
+fun isLogin(): Boolean = !Settings.Account.token.isNullOrBlank()
 

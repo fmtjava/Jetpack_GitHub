@@ -26,7 +26,7 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
 
     private val mUsersFragment by lazy { UserFragment() }
 
-    var mIsSearchRepos = true
+    private var mIsSearchRepos = true
 
     override fun getLayoutId(): Int = R.layout.activity_common_search
 

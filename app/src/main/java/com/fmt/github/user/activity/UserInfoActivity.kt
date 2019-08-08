@@ -2,10 +2,8 @@ package com.fmt.github.user.activity
 
 import androidx.fragment.app.Fragment
 import com.fmt.github.R
-import com.fmt.github.base.activity.BaseActivity
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityUserInfoBinding
-import com.fmt.github.ext.loadUrl
 import com.fmt.github.user.adapter.UserInfoPagerAdapter
 import com.fmt.github.user.fragment.UserInfoFragment
 import com.fmt.github.user.fragment.UserReposFragment

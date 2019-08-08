@@ -2,13 +2,13 @@ package com.fmt.github
 
 import android.content.Intent
 import com.fmt.github.base.activity.BaseActivity
-import com.fmt.github.data.db.DBInstance
+import com.fmt.github.data.db.UserDaoImpl
 import com.fmt.github.home.activity.HomeActivity
 import com.fmt.github.user.activity.LoginActivity
 import com.jaredrummler.android.widget.AnimatedSvgView
 import kotlinx.android.synthetic.main.activity_welcome.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
 
 class WelcomeActivity : BaseActivity() {
 
@@ -26,7 +26,8 @@ class WelcomeActivity : BaseActivity() {
 
     private fun checkIsLogin() {
         launch {
-            val userList = DBInstance.mAppDataBase.getUserDao().getAll()
+            delay(500)
+            val userList = UserDaoImpl.getAll()
             if (userList == null || userList.isEmpty()) {
                 go2Activity(LoginActivity::class.java)
             } else {

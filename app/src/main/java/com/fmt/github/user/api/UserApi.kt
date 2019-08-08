@@ -1,4 +1,4 @@
-package com.fmt.github.user.service
+package com.fmt.github.user.api
 
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.model.*

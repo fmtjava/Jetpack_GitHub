@@ -4,24 +4,25 @@ import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
 import com.fmt.github.R
-import com.fmt.github.base.activity.BaseVMActivity
-import com.fmt.github.constant.Constant
-import com.fmt.github.data.storage.Preference
+import com.fmt.github.base.activity.BaseDataBindVMActivity
+import com.fmt.github.config.Settings
+import com.fmt.github.databinding.ActivityLoginBinding
+import com.fmt.github.ext.of
+import com.fmt.github.ext.otherwise
+import com.fmt.github.ext.yes
 import com.fmt.github.home.activity.HomeActivity
 import com.fmt.github.user.db.User
 import com.fmt.github.user.model.AuthorizationRespModel
+import com.fmt.github.user.model.UserLoginModel
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.viewmodel.UserViewModel
-import com.fmt.github.ext.of
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : BaseVMActivity<UserViewModel>() {
-
-    var mToken by Preference(Constant.USER_TOKEN, "")
-    var mUserName by Preference(Constant.USER_NAME, "")
-    var mPassword by Preference(Constant.USER_PASSWORD, "")
+class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding, UserViewModel>() {
 
     var mAuthId = 0
+
+    private val mUserLoginModel: UserLoginModel by lazy { UserLoginModel() }
 
     override fun getLayoutId(): Int = R.layout.activity_login
 
@@ -33,30 +34,38 @@ class LoginActivity : BaseVMActivity<UserViewModel>() {
         }
     }
 
+    override fun initData() {
+        mDataBind.userLoginModel = mUserLoginModel
+    }
+
     private fun login() {
-        val userName = mUserNameEditText.text.toString().trim()
-        val password = mPasswordEditText.text.toString().trim()
-        if (userName.isNullOrEmpty()) {
+        val username = mUserLoginModel.username.get().toString()
+        val password = mUserLoginModel.password.get().toString()
+        username.isNullOrEmpty().yes {
             mUserNameInputLayout.error = getString(R.string.username_not_null)
             mUserNameInputLayout.isErrorEnabled = true
-            return
-        } else {
+        }.otherwise {
             mUserNameInputLayout.isErrorEnabled = false
+
+            password.isNullOrEmpty().yes {
+                mPasswordInputLayout.error = getString(R.string.password_not_null)
+                mPasswordInputLayout.isErrorEnabled = true
+            }.otherwise {
+                mPasswordInputLayout.isErrorEnabled = false
+                mSignInBt.visibility = View.GONE
+                mProgressBar.visibility = View.VISIBLE
+                Settings.Account.userName = username
+                Settings.Account.password = password
+                createOrGetAuthorization()
+            }
         }
-        if (password.isNullOrEmpty()) {
-            mPasswordInputLayout.error = getString(R.string.password_not_null)
-            mPasswordInputLayout.isErrorEnabled = true
-            return
-        } else {
-            mPasswordInputLayout.isErrorEnabled = false
-        }
-        mUserName = userName
-        mPassword = password
-        mSignInBt.visibility = View.GONE
-        mProgressBar.visibility = View.VISIBLE
+
+    }
+
+    private fun createOrGetAuthorization() {
         mViewModel.createOrGetAuthorization().observe(this, Observer<AuthorizationRespModel> {
             //保存授权后的Token和ID
-            mToken = it.token
+            Settings.Account.token = it.token
             mAuthId = it.id
             //获取用户信息
             getUserInfo()

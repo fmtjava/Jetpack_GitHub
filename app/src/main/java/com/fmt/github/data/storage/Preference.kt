@@ -1,6 +1,7 @@
 package com.fmt.github.data.storage
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.fmt.github.App
 import com.fmt.github.AppContext
 import java.lang.IllegalArgumentException
@@ -13,10 +14,19 @@ import kotlin.reflect.KProperty
 class Preference<T>(private val key: String, private val defaultValue: T) : ReadWriteProperty<Any, T> {
 
     companion object {
-        const val SHARE_PRE_NAME = "open_github"
-    }
+        private const val SHARE_PRE_NAME = "open_github"
 
-    private val mPreferences by lazy { AppContext.getSharedPreferences(SHARE_PRE_NAME, Context.MODE_PRIVATE) }
+        private val mPreferences: SharedPreferences by lazy {
+            AppContext.getSharedPreferences(
+                SHARE_PRE_NAME,
+                Context.MODE_PRIVATE
+            )
+        }
+
+        fun clear() {
+            mPreferences.edit().clear()
+        }
+    }
 
     override fun getValue(thisRef: Any, property: KProperty<*>): T = findPreference(key, defaultValue)
 

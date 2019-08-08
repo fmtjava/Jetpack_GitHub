@@ -1,6 +1,5 @@
 package com.fmt.github.base.fragment
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +8,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.fmt.github.App
-import com.fmt.github.base.viewmodel.*
+import com.fmt.github.base.viewmodel.BaseViewModel
+import com.fmt.github.base.viewmodel.ErrorState
+import com.fmt.github.base.viewmodel.LoadState
+import com.fmt.github.base.viewmodel.SuccessState
 import com.fmt.github.ext.errorToast
 
 /**
