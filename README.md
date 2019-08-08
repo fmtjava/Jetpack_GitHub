@@ -39,7 +39,7 @@
 # 核心技术栈
 ## Kotlin语言
   听说Android开发与Kotlin更配哦！Kotlin语言100%兼容Java,并且具有数据类、空安全、延迟加载、属性代理、拓展方法、函数表达式、高级函数等高级特性，极大
-  的简化代码量，不需要在findViewById、不需要为空指针烦恼、不需要编写复杂的JavaBean,让你能够更专注与业务，kotlin是一门小清新的语言，只有你Java足够
+  的简化代码量，不需要在findViewById、不需要为空指针烦恼、不需要编写复杂的JavaBean,让你能够更专注与业务，kotlin是一门小清新的语言，只要你Java足够
   扎实，上手kotlin会很方便，kotlin会让你开发Android APP如沐春风，快点学习Kotlin吧!
     
 ## AAC架构
@@ -51,6 +51,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    - Lifecycles：它持有关于组件（如 Activity 或 Fragment）生命周期状态的信息，并且允许其他对象观察此状态
    - ViewModel：以注重生命周期的方式管理界面相关的数据,为Activity 、Fragment存储数据，直到完全销毁；
    - LiveData：不用手动控制生命周期，不用担心内存泄露，数据变化时会收到通知，与ViewModel的组合使用可以说是双剑合璧，而Lifecycles贯穿其中；
+   - DataBinding：将布局组件与源数据绑定，使源数据变化的同时布局组件及时同步更新，与ViewModel、LiveData、Lifecycles搭配使用，能够碰撞出极致的MVVM火花
    - Room：流畅地访问 SQLite 数据库；
    
 ## Retrofit + Okhttp + Coroutines(协程)打造强大的网络请求
@@ -72,16 +73,24 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    Glide相比起Fresco要轻量很多，api调用起来也很简洁，对图片加载要求不是很高的话建议使用Glide。
    
 # 更新日志
+ ### v1.1
+      -启动页添加svg动画
+      -加入DataBinding完善AAC架构
+      -LastAdapter替换BaseRecyclerViewAdapterHelper,结合DataBinding更方便
+      -调整项目结构，优化代码
  ### v1.0
        -初始化项目，完成Github App核心功能
 # Thanks
   - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
-  - [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+  - [LastAdapter](https://github.com/nitrico/LastAdapter)
   - [AgentWeb](https://github.com/Justson/AgentWeb)
   - [Glide](https://github.com/bumptech/glide)
   - [Toasty](https://github.com/GrenderG/Toasty)
   - [LikeButton](https://github.com/jd-alexander/LikeButton)
   - [CircleImageView](https://github.com/hdodenhof/CircleImageView)
+  - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
+  - [AnimatedSvgView](https://github.com/jaredrummler/AnimatedSvgView)
+  - [MultiStateView](https://github.com/Kennyc1012/MultiStateView)
   - [LiveEventBus](https://github.com/JeremyLiao/LiveEventBus)
   - [simple-view-behavior](https://github.com/zoonooz/simple-view-behavior)
   - [Okhttp](https://github.com/square/okhttp)
