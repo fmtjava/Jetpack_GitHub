@@ -97,6 +97,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
   - [Retrofit](https://github.com/square/retrofit)
   
  # 关于我
+  - WX：fmtjava
   - QQ：2694746499
   - Email：2694746499@qq.com
   - Github：https://github.com/fmtjava
