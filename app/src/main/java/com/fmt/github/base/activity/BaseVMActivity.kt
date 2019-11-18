@@ -38,6 +38,7 @@ abstract class BaseVMActivity<VM : BaseViewModel> : AppCompatActivity(), Corouti
                         dismissLoading()
                         it.message?.apply {
                             errorToast(this)
+                            handleError()
                         }
                     }
                 }

@@ -43,8 +43,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //Androidx
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
@@ -52,11 +52,15 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
 
+    //Android KTX 是一组 Kotlin 扩展程序，属于 Android Jetpack 系列
+    implementation 'androidx.core:core-ktx:1.0.2'
+
     //协程
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0-M2'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0-M2'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01'
 
+    //第三方控件
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.just.agentweb:agentweb:4.0.3-beta'
     implementation project(path: ':simplebehavior')

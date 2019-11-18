@@ -84,6 +84,7 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
                         dismissLoading()
                         it.message?.apply {
                             errorToast(this)
+                            handleError()
                         }
                     }
                 }

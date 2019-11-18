@@ -44,6 +44,7 @@ abstract class BaseDataBindVMActivity<DB : ViewDataBinding, VM : BaseViewModel> 
                         dismissLoading()
                         it.message?.apply {
                             errorToast(this)
+                            handleError()
                         }
                     }
                 }

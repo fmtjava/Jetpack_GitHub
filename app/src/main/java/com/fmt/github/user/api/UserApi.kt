@@ -1,5 +1,6 @@
 package com.fmt.github.user.api
 
+import com.fmt.github.config.Configs
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.model.*
 import okhttp3.ResponseBody
@@ -20,15 +21,14 @@ interface UserApi {
     suspend fun getUser(): UserModel
 
     @GET("search/users")
-    suspend fun searchUsers(@Query("q") query: String, @Query("page") page: Int, @Query("per_page") per_page: Int = 10): UserListModel
+    suspend fun searchUsers(@Query("q") query: String, @Query("page") page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE): UserListModel
 
     @GET("users/{user}")
     suspend fun getUserInfo(@Path("user") user: String): UserInfoModel
 
     @GET("users/{user}/repos")
-    suspend fun getUserPublicRepos(@Path("user") user: String, @Query("page") page: Int, @Query("per_page") per_page: Int = 10): List<ReposItemModel>
+    suspend fun getUserPublicRepos(@Path("user") user: String, @Query("page") page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE): List<ReposItemModel>
 
     @GET("users/{user}/starred")
-    suspend fun getStarredRepos(@Path("user") user: String, @Query("page") page: Int, @Query("per_page") per_page: Int = 10): List<ReposItemModel>
-
+    suspend fun getStarredRepos(@Path("user") user: String, @Query("page") page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE): List<ReposItemModel>
 }

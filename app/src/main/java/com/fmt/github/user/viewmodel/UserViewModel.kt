@@ -72,5 +72,4 @@ class UserViewModel : BaseViewModel() {
         }
         return mutableLiveData
     }
-
 }
