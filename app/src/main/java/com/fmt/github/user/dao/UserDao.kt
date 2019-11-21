@@ -1,9 +1,10 @@
-package com.fmt.github.user.db
+package com.fmt.github.user.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.fmt.github.user.model.db.User
 
 @Dao
 interface UserDao {

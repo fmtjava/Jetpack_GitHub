@@ -4,10 +4,12 @@ import android.app.Application
 import android.content.ContextWrapper
 import androidx.core.content.ContextCompat
 import com.fmt.github.config.Configs
+import com.fmt.github.di.appModule
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.tencent.bugly.crashreport.CrashReport
+import org.koin.core.context.startKoin
 
 lateinit var mApplication: Application
 
@@ -28,6 +30,10 @@ class App : Application() {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
             layout.setEnableHeaderTranslationContent(false)
             MaterialHeader(context).setColorSchemeColors(ContextCompat.getColor(context, R.color.colorPrimary))
+        }
+
+        startKoin {
+            modules(appModule)
         }
     }
 }

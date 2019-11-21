@@ -20,7 +20,7 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
         const val FROM_SEARCH_REPOS = "from_search_repos"
     }
 
-    var mSearchReposModel = SearchModel()
+    private var mSearchReposModel = SearchModel()
 
     private val mReposFragment by lazy { ReposFragment() }
 

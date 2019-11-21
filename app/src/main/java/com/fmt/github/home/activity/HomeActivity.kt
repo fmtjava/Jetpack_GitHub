@@ -11,28 +11,32 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
+import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.constant.Constant
-import com.fmt.github.data.db.UserDaoImpl
 import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
-import com.fmt.github.ext.of
 import com.fmt.github.home.adapter.HomePageAdapter
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
 import com.fmt.github.user.activity.UserInfoActivity
-import com.fmt.github.user.db.User
+import com.fmt.github.user.model.db.User
+import com.fmt.github.user.dao.UserDao
 import com.fmt.github.user.fragment.UserReposFragment
 import com.fmt.github.user.model.UserModel
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private val mUserDao : UserDao by inject()
+
+    private val mViewModel: HomeViewModel by viewModel()
 
     override fun getLayoutId(): Int = R.layout.activity_main
-
-    override fun initViewModel(): HomeViewModel = of(this, HomeViewModel::class.java)
 
     private lateinit var mUser: User
 
@@ -43,9 +47,11 @@ class HomeActivity : BaseVMActivity<HomeViewModel>(), NavigationView.OnNavigatio
         initDrawerLayout()
     }
 
+    override fun getViewModel(): BaseViewModel = mViewModel
+
     private fun initUserInfo() {
         launch {
-            mUser = UserDaoImpl.getAll()[0]
+            mUser = mUserDao.getAll()[0]
             initHeaderLayout()
             initViewPager()
         }

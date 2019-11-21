@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fmt.github.BR
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
+import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.databinding.LayoutUsersBinding
 import com.fmt.github.ext.otherwise
 import com.fmt.github.ext.yes
@@ -16,7 +17,6 @@ import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.model.UserListModel
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.viewmodel.UserViewModel
-import com.fmt.github.ext.of
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.kennyc.view.MultiStateView
@@ -24,12 +24,13 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadMoreListener {
+class UserFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
+
+    private val mViewModel: UserViewModel by viewModel()
 
     override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
-
-    override fun initViewModel(): UserViewModel = of(mActivity, UserViewModel::class.java)
 
     private var mPage = 1
     var mSearchKey: String = ""
@@ -41,9 +42,13 @@ class UserFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadM
         initRecyclerView()
     }
 
+    override fun getViewModel(): BaseViewModel = mViewModel
+
     private fun initRefreshLayout() {
-        mRefreshLayout.setOnRefreshListener(this)
-        mRefreshLayout.setOnLoadMoreListener(this)
+        mRefreshLayout.run {
+            setOnRefreshListener(this@UserFragment)
+            setOnLoadMoreListener(this@UserFragment)
+        }
     }
 
     private fun initRecyclerView() {
@@ -100,15 +105,19 @@ class UserFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadM
             putExtra(UserInfoActivity.USER_INFO, userModel)
         }.run {
             //共享元素共享动画
-            val optionsCompat =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity, view.findViewById(R.id.iv_head), "image")
-            startActivity(this, optionsCompat.toBundle())
+            ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity, view.findViewById(R.id.iv_head), "image")
+                .toBundle()
+                .also { bundle ->
+                    startActivity(this, bundle)
+                }
         }
     }
 
     override fun dismissLoading() {
-        mRefreshLayout.finishRefresh()
-        mRefreshLayout.finishLoadMore()
+        mRefreshLayout.run {
+            finishRefresh()
+            finishLoadMore()
+        }
     }
 
 }

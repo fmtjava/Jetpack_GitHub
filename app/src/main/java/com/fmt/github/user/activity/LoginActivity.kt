@@ -5,28 +5,31 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseDataBindVMActivity
+import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.config.Settings
 import com.fmt.github.databinding.ActivityLoginBinding
-import com.fmt.github.ext.of
 import com.fmt.github.ext.otherwise
 import com.fmt.github.ext.yes
 import com.fmt.github.home.activity.HomeActivity
-import com.fmt.github.user.db.User
+import com.fmt.github.user.model.db.User
 import com.fmt.github.user.model.AuthorizationRespModel
 import com.fmt.github.user.model.UserLoginModel
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding, UserViewModel>() {
+class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
 
-    var mAuthId = 0
+    private var mAuthId = 0
+
+    private val mViewModel: UserViewModel by viewModel()
 
     private val mUserLoginModel: UserLoginModel by lazy { UserLoginModel() }
 
     override fun getLayoutId(): Int = R.layout.activity_login
 
-    override fun initViewModel(): UserViewModel = of(this, UserViewModel::class.java)
+    override fun getViewModel(): BaseViewModel = mViewModel
 
     override fun initView() {
         mSignInBt.setOnClickListener {

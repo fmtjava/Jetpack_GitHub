@@ -1,17 +1,10 @@
 package com.fmt.github.home.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.user.repository.UserRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class HomeViewModel : BaseViewModel() {
-
-    private val mUserRepository by lazy { UserRepository() }
+class HomeViewModel(private val mUserRepository : UserRepository) : BaseViewModel() {
 
     fun deleteAuthorization(id: Int): MutableLiveData<Boolean> {
         val mutableLiveData = MutableLiveData<Boolean>()

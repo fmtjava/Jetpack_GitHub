@@ -3,7 +3,7 @@
         xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="user" type="com.fmt.github.user.db.User"/>
+        <variable name="user" type="com.fmt.github.user.model.db.User"/>
     </data>
 
     <LinearLayout

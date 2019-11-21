@@ -18,31 +18,28 @@ import kotlinx.coroutines.cancel
  * 封装带有协程基类(DataBinding + ViewModel),使用代理类完成
  *
  */
-abstract class BaseDataBindVMActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity(),
+abstract class BaseDataBindVMActivity<DB : ViewDataBinding> : AppCompatActivity(),
     CoroutineScope by MainScope() {
 
     lateinit var mDataBind: DB
 
-    lateinit var mViewModel: VM
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mDataBind = DataBindingUtil.setContentView(this, getLayoutId())
-        mViewModel = initViewModel()
         initViewModelAction()
         initView()
         initData()
     }
 
     private fun initViewModelAction() {
-        if (mViewModel is BaseViewModel) {
-            mViewModel.mStateLiveData.observe(this, Observer {
-                when (it) {
+        getViewModel().let { baseViewModel ->
+            baseViewModel.mStateLiveData.observe(this, Observer { stateActionState ->
+                when (stateActionState) {
                     LoadState -> showLoading()
                     SuccessState -> dismissLoading()
                     is ErrorState -> {
                         dismissLoading()
-                        it.message?.apply {
+                        stateActionState.message?.apply {
                             errorToast(this)
                             handleError()
                         }
@@ -56,7 +53,7 @@ abstract class BaseDataBindVMActivity<DB : ViewDataBinding, VM : BaseViewModel> 
 
     abstract fun initView()
 
-    abstract fun initViewModel(): VM
+    abstract fun getViewModel(): BaseViewModel
 
     open fun initData() {
 

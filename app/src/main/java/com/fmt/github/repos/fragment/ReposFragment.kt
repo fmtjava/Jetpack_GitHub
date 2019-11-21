@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fmt.github.BR
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
+import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.databinding.LayoutReposBinding
 import com.fmt.github.ext.otherwise
 import com.fmt.github.ext.yes
@@ -14,7 +15,6 @@ import com.fmt.github.repos.activity.ReposDetailActivity
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.repos.model.ReposListModel
 import com.fmt.github.repos.viewmodel.ReposViewModel
-import com.fmt.github.ext.of
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.kennyc.view.MultiStateView
@@ -22,12 +22,11 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ReposFragment : BaseVMFragment<ReposViewModel>(), OnRefreshListener, OnLoadMoreListener {
+class ReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
 
-    override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
-
-    override fun initViewModel(): ReposViewModel = of(mActivity, ReposViewModel::class.java)
+    private val mViewModel: ReposViewModel by viewModel()
 
     private val mReposList = ObservableArrayList<ReposItemModel>()
 
@@ -35,14 +34,20 @@ class ReposFragment : BaseVMFragment<ReposViewModel>(), OnRefreshListener, OnLoa
 
     private var mSearchKey: String = ""//搜索关键字
 
+    override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
+
     override fun initView() {
         initRefreshLayout()
         initRecyclerView()
     }
 
+    override fun getViewModel(): BaseViewModel = mViewModel
+
     private fun initRefreshLayout() {
-        mRefreshLayout.setOnRefreshListener(this)
-        mRefreshLayout.setOnLoadMoreListener(this)
+        mRefreshLayout.run {
+            setOnRefreshListener(this@ReposFragment)
+            setOnLoadMoreListener(this@ReposFragment)
+        }
     }
 
     private fun initRecyclerView() {
@@ -109,8 +114,10 @@ class ReposFragment : BaseVMFragment<ReposViewModel>(), OnRefreshListener, OnLoa
     }
 
     override fun dismissLoading() {
-        mRefreshLayout.finishRefresh()
-        mRefreshLayout.finishLoadMore()
+        mRefreshLayout.run {
+            finishRefresh()
+            finishLoadMore()
+        }
     }
 
 }

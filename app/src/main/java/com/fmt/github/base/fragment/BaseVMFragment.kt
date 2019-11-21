@@ -17,11 +17,9 @@ import com.fmt.github.ext.errorToast
 /**
  * Fragment懒加载
  */
-abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
+abstract class BaseVMFragment : Fragment() {
 
     private var mRootView: View? = null
-
-    lateinit var mViewModel: VM
 
     private var mIsCreateView: Boolean = false
 
@@ -36,7 +34,6 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = initViewModel()
         initViewModelAction()
     }
 
@@ -75,14 +72,14 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
     }
 
     private fun initViewModelAction() {
-        if (mViewModel is BaseViewModel) {
-            mViewModel.mStateLiveData.observe(this, Observer {
-                when (it) {
+        this.getViewModel().let { baseViewModel ->
+            baseViewModel.mStateLiveData.observe(this, Observer { stateActionState ->
+                when (stateActionState) {
                     LoadState -> showLoading()
                     SuccessState -> dismissLoading()
                     is ErrorState -> {
                         dismissLoading()
-                        it.message?.apply {
+                        stateActionState.message?.apply {
                             errorToast(this)
                             handleError()
                         }
@@ -94,9 +91,9 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment() {
 
     abstract fun getLayoutRes(): Int
 
-    abstract fun initView()
+    abstract fun getViewModel(): BaseViewModel
 
-    abstract fun initViewModel(): VM
+    abstract fun initView()
 
     open fun initData() {
 

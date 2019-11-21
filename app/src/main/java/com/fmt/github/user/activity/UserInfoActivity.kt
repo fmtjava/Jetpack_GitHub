@@ -38,13 +38,14 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
     }
 
     private fun initViewPager() {
-        val fragmentList = mutableListOf<Fragment>().apply {
+        mutableListOf<Fragment>().apply {
             add(UserInfoFragment())
             add(UserReposFragment.newInstance(mUserModel.login))
             add(UserReposFragment.newInstance(mUserModel.login, true))
+        }.apply {
+            mViewPager.adapter = UserInfoPagerAdapter(supportFragmentManager, this)
+            mTabLayout.setupWithViewPager(mViewPager)
         }
-        mViewPager.adapter = UserInfoPagerAdapter(supportFragmentManager, fragmentList)
-        mTabLayout.setupWithViewPager(mViewPager)
     }
 
     override fun onBackPressed() {

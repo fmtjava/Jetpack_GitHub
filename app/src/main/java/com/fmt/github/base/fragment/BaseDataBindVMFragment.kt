@@ -16,13 +16,11 @@ import com.fmt.github.ext.errorToast
 /**
  * Fragment懒加载(DataBinding + ViewModel)
  */
-abstract class BaseDataBindVMFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
+abstract class BaseDataBindVMFragment<DB : ViewDataBinding> : Fragment() {
 
     private var mRootView: View? = null
 
     lateinit var mDataBind: DB
-
-    lateinit var mViewModel: VM
 
     private var mIsCreateView: Boolean = false
 
@@ -37,7 +35,6 @@ abstract class BaseDataBindVMFragment<DB : ViewDataBinding, VM : BaseViewModel> 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = initViewModel()
         initViewModelAction()
     }
 
@@ -80,14 +77,14 @@ abstract class BaseDataBindVMFragment<DB : ViewDataBinding, VM : BaseViewModel> 
 
     //初始化通用事件驱动(如：显示对话框、关闭对话框、统一错误提示)
     private fun initViewModelAction() {
-        if (mViewModel is BaseViewModel) {
-            mViewModel.mStateLiveData.observe(this, Observer {
-                when (it) {
+        getViewModel().let { baseViewModel ->
+            baseViewModel.mStateLiveData.observe(this, Observer { stateActionState ->
+                when (stateActionState) {
                     LoadState -> showLoading()
                     SuccessState -> dismissLoading()
                     is ErrorState -> {
                         dismissLoading()
-                        it.message?.apply {
+                        stateActionState.message?.apply {
                             errorToast(this)
                             handleError()
                         }
@@ -101,7 +98,7 @@ abstract class BaseDataBindVMFragment<DB : ViewDataBinding, VM : BaseViewModel> 
 
     abstract fun initView()
 
-    abstract fun initViewModel(): VM
+    abstract fun getViewModel(): BaseViewModel
 
     open fun initData() {
 

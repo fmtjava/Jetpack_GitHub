@@ -4,13 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.config.Configs
 import com.fmt.github.repos.model.ReposItemModel
-import com.fmt.github.user.db.User
+import com.fmt.github.user.model.db.User
 import com.fmt.github.user.model.*
 import com.fmt.github.user.repository.UserRepository
 
-class UserViewModel : BaseViewModel() {
-
-    private val mUserRepository by lazy { UserRepository() }
+class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel() {
 
     val mUserInfoModel = MutableLiveData<UserInfoModel>()
 

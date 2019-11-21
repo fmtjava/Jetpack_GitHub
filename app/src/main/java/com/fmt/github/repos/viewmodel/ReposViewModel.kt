@@ -5,9 +5,7 @@ import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.repos.model.ReposListModel
 import com.fmt.github.repos.repository.ReposRepository
 
-class ReposViewModel : BaseViewModel() {
-
-    private val mReposRepository by lazy { ReposRepository() }
+class ReposViewModel(private val mReposRepository: ReposRepository) : BaseViewModel() {
 
     fun searchRepos(query: String, page: Int): MutableLiveData<ReposListModel> {
         val mutableLiveData = MutableLiveData<ReposListModel>()

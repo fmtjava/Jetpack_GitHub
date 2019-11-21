@@ -2,15 +2,18 @@ package com.fmt.github
 
 import android.content.Intent
 import com.fmt.github.base.activity.BaseActivity
-import com.fmt.github.data.db.UserDaoImpl
 import com.fmt.github.home.activity.HomeActivity
 import com.fmt.github.user.activity.LoginActivity
+import com.fmt.github.user.dao.UserDao
 import com.jaredrummler.android.widget.AnimatedSvgView
 import kotlinx.android.synthetic.main.activity_welcome.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class WelcomeActivity : BaseActivity() {
+
+    private val mUserDao : UserDao by inject()
 
     override fun getLayoutId(): Int = R.layout.activity_welcome
 
@@ -27,7 +30,7 @@ class WelcomeActivity : BaseActivity() {
     private fun checkIsLogin() {
         launch {
             delay(500)
-            val userList = UserDaoImpl.getAll()
+            val userList = mUserDao.getAll()
             if (userList == null || userList.isEmpty()) {
                 go2Activity(LoginActivity::class.java)
             } else {

@@ -7,27 +7,27 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
+import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.constant.Constant
 import com.fmt.github.ext.successToast
 import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.viewmodel.ReposViewModel
-import com.fmt.github.ext.of
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.just.agentweb.AgentWeb
 import com.like.LikeButton
 import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.activity_repos_detail.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ReposDetailActivity : BaseVMActivity<ReposViewModel>() {
+class ReposDetailActivity : BaseVMActivity() {
 
+    private val mViewModel : ReposViewModel by viewModel()
     private lateinit var mAgentWeb: AgentWeb
     private lateinit var mOwner: String
     private lateinit var mRepos: String
     private lateinit var mWebUrl: String
 
     override fun getLayoutId(): Int = R.layout.activity_repos_detail
-
-    override fun initViewModel(): ReposViewModel = of(this, ReposViewModel::class.java)
 
     companion object {
         const val WEB_URL = "web_url"
@@ -42,6 +42,8 @@ class ReposDetailActivity : BaseVMActivity<ReposViewModel>() {
         initAgentWeb()
         initListener()
     }
+
+    override fun getViewModel(): BaseViewModel = mViewModel
 
     private fun initAgentWeb() {
         mAgentWeb = AgentWeb.with(this)

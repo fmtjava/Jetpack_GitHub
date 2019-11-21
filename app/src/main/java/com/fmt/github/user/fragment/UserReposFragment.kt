@@ -16,7 +16,6 @@ import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.activity.ReposDetailActivity
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.viewmodel.UserViewModel
-import com.fmt.github.ext.of
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -25,20 +24,21 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserReposFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, OnLoadMoreListener {
+class UserReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
+
+    private val mViewModel: UserViewModel by viewModel()
 
     override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
-
-    override fun initViewModel(): UserViewModel = of(mActivity, UserViewModel::class.java)
 
     private val mReposList = ObservableArrayList<ReposItemModel>()
 
     private var mPage = 1
 
-    var mUserName: String = ""
+    private var mUserName: String = ""
 
-    var mIsFavor: Boolean = false
+    private var mIsFavor: Boolean = false
 
     companion object {
 
@@ -60,9 +60,13 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, On
         initRecyclerView()
     }
 
+    override fun getViewModel() = mViewModel
+
     private fun initRefreshLayout() {
-        mRefreshLayout.setOnRefreshListener(this)
-        mRefreshLayout.setOnLoadMoreListener(this)
+        mRefreshLayout.run {
+            setOnRefreshListener(this@UserReposFragment)
+            setOnLoadMoreListener(this@UserReposFragment)
+        }
     }
 
     private fun initRecyclerView() {
@@ -97,10 +101,12 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, On
     }
 
     private fun initReposViewModelAction() {
-        if (mPage == 1) mRefreshLayout.autoRefreshAnimationOnly()
-        if (mIsFavor) {
+        (mPage == 1).yes {
+            mRefreshLayout.autoRefreshAnimationOnly()
+        }
+        mIsFavor.yes {
             mViewModel.getStarredRepos(mUserName, mPage).observe(this, mReposListObserver)
-        } else {
+        }.otherwise {
             mViewModel.getUserPublicRepos(mUserName, mPage).observe(this, mReposListObserver)
         }
     }
@@ -139,7 +145,9 @@ class UserReposFragment : BaseVMFragment<UserViewModel>(), OnRefreshListener, On
     }
 
     override fun dismissLoading() {
-        mRefreshLayout.finishRefresh()
-        mRefreshLayout.finishLoadMore()
+        mRefreshLayout.run {
+            finishRefresh()
+            finishLoadMore()
+        }
     }
 }

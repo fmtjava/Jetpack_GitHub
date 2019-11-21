@@ -1,4 +1,4 @@
-package com.fmt.github.user.db
+package com.fmt.github.user.model.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
