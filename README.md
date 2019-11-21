@@ -5,7 +5,7 @@
 [![Release Version](https://img.shields.io/badge/version-1.0-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
 [![](https://img.shields.io/badge/QQ-2694746499-orange.svg)](https://github.com/fmtjava)<br />
-一款基于Material Design + AndroidX + Kotlin + MVVM + DataBinding + ViewModel + LiveData  + Room + Retrofit + Okhttp + Coroutines(协程) + LiveDataBus + Glide等架构实现精简版Github客户端项目(持续更新中)。<br />
+一款基于Material Design + AndroidX + Kotlin + koin + MVVM + DataBinding + ViewModel + LiveData  + Room + Retrofit + Okhttp + Coroutines(协程) + LiveDataBus + Glide等架构实现精简版Github客户端项目(持续更新中)。<br />
 
 **开源不易，如果喜欢的话希望给个 `Star` 或 `Fork` ^_^ ，谢谢**
 
@@ -54,6 +54,9 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    - DataBinding：将布局组件与源数据绑定，使源数据变化的同时布局组件及时同步更新，与ViewModel、LiveData、Lifecycles搭配使用，能够碰撞出极致的MVVM火花
    - Room：流畅地访问 SQLite 数据库；
    
+## koin
+   koin 是一个用于kotlin的实用型轻量级依赖注入框架，采用纯kotlin编写而成，仅使用功能解析，无代理、无代码生成、无反射。koin 是一个DSL,一个轻便的容易和一个使用的API。从此告别Dagger2的困境，让依赖注入更加简单。
+   
 ## Retrofit + Okhttp + Coroutines(协程)打造强大的网络请求
    - Retrofit：Square出品的网络请求库，极大的减少了http请求的代码和步骤
    - Okhttp： 同样Square出品，不多介绍，做Android都应该知道
@@ -65,7 +68,6 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    - 异步编程时无需编写大量的回调接口，Coroutines的“黑魔法“特性让你用同步的方式编写代码，增强代码可读性
    - 协程调度器代替Handler、AsyncTask、Rxjava更优雅的处理线程切换
 
-
 ## LiveEventBus
    LiveEventBus是一款Android消息总线，基于LiveData，具有生命周期感知能力，支持Sticky，支持AndroidX，支持跨进程，支持跨APP
    
@@ -73,6 +75,9 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    Glide相比起Fresco要轻量很多，api调用起来也很简洁，对图片加载要求不是很高的话建议使用Glide。
    
 # 更新日志
+ ### v1.3
+  * 加入koin依赖注入框架完善AAC架构
+  * 调整项目结构，优化代码
  ### v1.2
   * 修复Activity/Fragment自定义异常处理没有调用问题
   * 调整项目结构，优化代码
@@ -98,6 +103,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
   - [simple-view-behavior](https://github.com/zoonooz/simple-view-behavior)
   - [Okhttp](https://github.com/square/okhttp)
   - [Retrofit](https://github.com/square/retrofit)
+  - [koin](https://github.com/InsertKoinIO/koin)
   
  # 关于我
   - WX：fmtjava
