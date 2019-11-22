@@ -20,14 +20,18 @@
 
 <div style="float:right">
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1351564044999_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1341564044998_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1291564044993_.pic.jpg" width="270"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1771574405820_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1781574405821_.pic.jpg" width="270"/>
 </div>
 <br/>
 
 <div style="float:right">
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1291564044993_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1321564044996_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1331564044997_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1331564044997_.pic.jpg" width="270"/>
+</div>
+
+<div style="float:right">
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1311564044995_.pic.jpg" width="270"/>
 </div>
 
@@ -75,6 +79,9 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    Glide相比起Fresco要轻量很多，api调用起来也很简洁，对图片加载要求不是很高的话建议使用Glide。
    
 # 更新日志
+ ### v1.4
+  * 完善搜索功能，新增用户以及仓库排序搜索
+  * 调整项目结构，优化代码
  ### v1.3
   * 加入koin依赖注入框架完善AAC架构
   * 调整项目结构，优化代码
