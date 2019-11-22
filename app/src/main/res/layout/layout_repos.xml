@@ -88,7 +88,7 @@
                         android:textColor="@color/repos_common_text_color"
                         android:text="@{item.description}"/>
 
-                <LinearLayout
+                <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -97,8 +97,7 @@
 
                     <TextView
                             android:id="@+id/tv_start_num"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:drawableLeft="@mipmap/icon_start"
@@ -108,10 +107,10 @@
 
                     <TextView
                             android:id="@+id/tv_fork_num"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
+                            android:layout_marginLeft="80dp"
                             android:textColor="@color/repos_common_text_color"
                             android:drawableLeft="@mipmap/icon_fork"
                             android:drawablePadding="5dp"
@@ -119,16 +118,16 @@
 
                     <TextView
                             android:id="@+id/tv_author"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
+                            android:layout_marginLeft="160dp"
                             android:drawableLeft="@mipmap/icon_author"
                             android:drawablePadding="5dp"
                             android:textColor="@color/repos_common_text_color"
                             android:text="@{item.owner.login}"/>
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 

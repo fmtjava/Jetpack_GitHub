@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fmt.github.AppContext
 import com.fmt.github.BR
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseVMFragment
@@ -33,6 +34,8 @@ class ReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
     private var mPage = 1//页码
 
     private var mSearchKey: String = ""//搜索关键字
+    private var mSort: String = ""//排序类型
+    private var mOrder: String = ""//升序/降序
 
     override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
 
@@ -72,13 +75,15 @@ class ReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
         searchRepos()
     }
 
-    fun searchReposByKey(searchKey: String = "") {//默认参数,兼容搜索操作
+    fun searchReposByKey(searchKey: String = "", sort: String, order: String) {//默认参数,兼容搜索操作
         mSearchKey = searchKey
+        mSort = sort
+        mOrder = order
         mRefreshLayout.autoRefresh()
     }
 
     private fun searchRepos() {
-        mViewModel.searchRepos(mSearchKey, mPage).observe(this, mSearchReposListObserver)
+        mViewModel.searchRepos(mSearchKey, mSort, mOrder, mPage).observe(this, mSearchReposListObserver)
     }
 
     private val mSearchReposListObserver = Observer<ReposListModel> {

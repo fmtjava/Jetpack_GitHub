@@ -9,7 +9,11 @@ import retrofit2.http.*
 interface ReposApi {
 
     @GET("search/repositories")
-    suspend fun searchRepos(@Query("q") query: String, @Query("page") page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE): ReposListModel
+    suspend fun searchRepos(
+        @Query("q") query: String, @Query("sort") sort: String, @Query("order") order: String, @Query(
+            "page"
+        ) page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE
+    ): ReposListModel
 
     @GET("user/starred/{owner}/{repo}")
     suspend fun checkRepoStarred(@Path("owner") owner: String, @Path("repo") repo: String): Response<ResponseBody>

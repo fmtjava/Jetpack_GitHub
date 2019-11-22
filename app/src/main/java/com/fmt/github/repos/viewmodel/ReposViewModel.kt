@@ -1,16 +1,18 @@
 package com.fmt.github.repos.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.fmt.github.AppContext
+import com.fmt.github.R
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.repos.model.ReposListModel
 import com.fmt.github.repos.repository.ReposRepository
 
 class ReposViewModel(private val mReposRepository: ReposRepository) : BaseViewModel() {
 
-    fun searchRepos(query: String, page: Int): MutableLiveData<ReposListModel> {
+    fun searchRepos(query: String,sort: String, order: String,page: Int): MutableLiveData<ReposListModel> {
         val mutableLiveData = MutableLiveData<ReposListModel>()
         launch {
-            mutableLiveData.value = mReposRepository.searchRepos(query, page)
+            mutableLiveData.value = mReposRepository.searchRepos(query, sort,order, page)
         }
         return mutableLiveData
     }

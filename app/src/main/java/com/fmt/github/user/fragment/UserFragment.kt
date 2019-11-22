@@ -34,6 +34,8 @@ class UserFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
 
     private var mPage = 1
     var mSearchKey: String = ""
+    private var mSort: String = ""//排序类型
+    private var mOrder: String = ""//升序/降序
 
     private val mUserList = ObservableArrayList<UserModel>()
 
@@ -73,13 +75,15 @@ class UserFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
         searchUsers()
     }
 
-    fun searchUsersByKey(searchKey: String = "") {
+    fun searchUsersByKey(searchKey: String = "", sort: String, order: String) {
         mSearchKey = searchKey
+        mSort = sort
+        mOrder = order
         mRefreshLayout.autoRefresh()
     }
 
     private fun searchUsers() {
-        mViewModel.searchUsers(mSearchKey, mPage).observe(this, mSearchUserListObserver)
+        mViewModel.searchUsers(mSearchKey, mSort, mOrder, mPage).observe(this, mSearchUserListObserver)
     }
 
     private val mSearchUserListObserver = Observer<UserListModel> {

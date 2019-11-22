@@ -21,8 +21,8 @@ class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDa
 
     suspend fun getUser(): UserModel = mUserApi.getUser()
 
-    suspend fun searchUsers(query: String, page: Int): UserListModel =
-        mUserApi.searchUsers(query, page)
+    suspend fun searchUsers(query: String, sort: String, order: String, page: Int): UserListModel =
+        mUserApi.searchUsers(query, sort, order, page)
 
     suspend fun getUserInfo(user: String): UserInfoModel =
         mUserApi.getUserInfo(user)

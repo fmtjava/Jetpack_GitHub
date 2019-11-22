@@ -21,7 +21,7 @@ interface UserApi {
     suspend fun getUser(): UserModel
 
     @GET("search/users")
-    suspend fun searchUsers(@Query("q") query: String, @Query("page") page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE): UserListModel
+    suspend fun searchUsers(@Query("q") query: String, @Query("sort") sort: String, @Query("order") order: String, @Query("page") page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE): UserListModel
 
     @GET("users/{user}")
     suspend fun getUserInfo(@Path("user") user: String): UserInfoModel

@@ -7,8 +7,8 @@ import retrofit2.Response
 
 class ReposRepository(private val mReposApi: ReposApi) {
 
-    suspend fun searchRepos(query: String, page: Int): ReposListModel =
-        mReposApi.searchRepos(query, page)
+    suspend fun searchRepos(query: String, sort: String,order: String, page: Int): ReposListModel =
+        mReposApi.searchRepos(query, sort,order, page)
 
     suspend fun checkRepoStarred(owner: String, repo: String): Response<ResponseBody> =//返回原始类型
         mReposApi.checkRepoStarred(owner, repo)

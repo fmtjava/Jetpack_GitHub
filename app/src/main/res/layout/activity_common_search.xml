@@ -39,6 +39,19 @@
                     android:maxLines="1"
                     android:text="@={searchModel.searchKey}"/>
 
+            <TextView
+                    android:id="@+id/mSortTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:text="@string/sort"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="15dp"
+                    android:visibility="gone"
+            />
+
         </LinearLayout>
 
         <FrameLayout

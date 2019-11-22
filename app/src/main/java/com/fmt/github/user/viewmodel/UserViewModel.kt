@@ -40,10 +40,10 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         }
     }
 
-    fun searchUsers(query: String, page: Int): MutableLiveData<UserListModel> {
+    fun searchUsers(query: String, sort: String, order: String, page: Int): MutableLiveData<UserListModel> {
         val mutableLiveData = MutableLiveData<UserListModel>()
         launch {
-            mutableLiveData.value = mUserRepository.searchUsers(query, page)
+            mutableLiveData.value = mUserRepository.searchUsers(query, sort, order, page)
         }
         return mutableLiveData
     }
