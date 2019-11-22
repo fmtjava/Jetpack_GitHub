@@ -97,6 +97,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    * 初始化项目，完成Github App核心功能
 # Thanks
   - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
+  - [koin](https://github.com/InsertKoinIO/koin)
   - [LastAdapter](https://github.com/nitrico/LastAdapter)
   - [AgentWeb](https://github.com/Justson/AgentWeb)
   - [Glide](https://github.com/bumptech/glide)
@@ -106,11 +107,12 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
   - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
   - [AnimatedSvgView](https://github.com/jaredrummler/AnimatedSvgView)
   - [MultiStateView](https://github.com/Kennyc1012/MultiStateView)
+  - [XPopup](https://github.com/li-xiaojun/XPopup)
   - [LiveEventBus](https://github.com/JeremyLiao/LiveEventBus)
   - [simple-view-behavior](https://github.com/zoonooz/simple-view-behavior)
   - [Okhttp](https://github.com/square/okhttp)
   - [Retrofit](https://github.com/square/retrofit)
-  - [koin](https://github.com/InsertKoinIO/koin)
+ 
   
  # 关于我
   - WX：fmtjava
