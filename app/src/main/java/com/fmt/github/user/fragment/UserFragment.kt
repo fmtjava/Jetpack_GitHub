@@ -33,7 +33,7 @@ class UserFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
     override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
 
     private var mPage = 1
-    var mSearchKey: String = ""
+    private var mSearchKey: String = ""
     private var mSort: String = ""//排序类型
     private var mOrder: String = ""//升序/降序
 
