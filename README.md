@@ -2,7 +2,7 @@
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://github.com/fmtjava/OpenGitHub)
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Release Version](https://img.shields.io/badge/version-1.0-red.svg)](https://fir.im/8jw7)
+[![Release Version](https://img.shields.io/badge/version-1.5-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
 [![](https://img.shields.io/badge/QQ-2694746499-orange.svg)](https://github.com/fmtjava)<br />
 一款基于Material Design + AndroidX + Kotlin + koin + MVVM + DataBinding + ViewModel + LiveData  + Room + Retrofit + Okhttp + Coroutines(协程) + LiveDataBus + Glide等架构实现精简版Github客户端项目(持续更新中)。<br />
