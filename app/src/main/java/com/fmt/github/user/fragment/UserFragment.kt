@@ -91,7 +91,7 @@ class UserFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
     }
 
     private fun dealUserList(items: List<UserModel>) {
-        (items != null && items.isNotEmpty()).yes {
+        (items.isNotEmpty()).yes {
             mMultipleStatusView.viewState = MultiStateView.ViewState.CONTENT
         }
         (mPage == 1).yes {

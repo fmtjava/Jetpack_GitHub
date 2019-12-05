@@ -70,8 +70,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/shape_login_bg"
-                android:textColor="@android:color/white"
+                android:background="@drawable/selector_login_bg"
+                android:textColor="@drawable/selector_login_text_color"
                 android:textSize="16sp"
                 android:textAllCaps="false"/>
 

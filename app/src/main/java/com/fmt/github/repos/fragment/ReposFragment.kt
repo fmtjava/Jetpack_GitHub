@@ -91,7 +91,7 @@ class ReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
     }
 
     private fun dealReposList(items: List<ReposItemModel>) {
-        (items != null && items.isNotEmpty()).yes {
+        (items.isNotEmpty()).yes {
             mMultipleStatusView.viewState = MultiStateView.ViewState.CONTENT
         }.otherwise {
             (mPage == 1).yes {

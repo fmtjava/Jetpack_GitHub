@@ -10,6 +10,7 @@
 	<color name="common_bg_color">#f9f9f9</color>
 	<color name="email_text_color">#00EE00</color>
 	<color name="indicator_color">#3473e0</color>
+	<color name="version_text_color">#C8C8C8</color>
 
 	<integer-array name="github_glyph_colors">
 		<item>@color/colorPrimary</item>

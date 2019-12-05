@@ -12,8 +12,8 @@ android {
         applicationId "com.fmt.github"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.4"
+        versionCode 5
+        versionName "1.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -91,6 +91,10 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:2.0.1"
     implementation "org.koin:koin-androidx-ext:2.0.1"
 
+    //动态权限
+    implementation 'com.afollestad:assent:2.3.1'
+
+    
     //bugly捕获异常
     implementation 'com.tencent.bugly:crashreport:latest.release'
 
