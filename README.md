@@ -2,7 +2,7 @@
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://github.com/fmtjava/OpenGitHub)
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Release Version](https://img.shields.io/badge/version-1.0-red.svg)](https://fir.im/8jw7)
+[![Release Version](https://img.shields.io/badge/version-1.5-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
 [![](https://img.shields.io/badge/QQ-2694746499-orange.svg)](https://github.com/fmtjava)<br />
 一款基于Material Design + AndroidX + Kotlin + koin + MVVM + DataBinding + ViewModel + LiveData  + Room + Retrofit + Okhttp + Coroutines(协程) + LiveDataBus + Glide等架构实现精简版Github客户端项目(持续更新中)。<br />
@@ -11,27 +11,28 @@
 
 # 项目截图
 <div style="float:right">
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1281564044992_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1301564044994_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1371564048402_.pic.jpg" width="270"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1871575531757_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1851575526269_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1301564044994_.pic.jpg" width="270"/>
 </div>
 
 <br/>
 
 <div style="float:right">
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1371564048402_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1351564044999_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1771574405820_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1781574405821_.pic.jpg" width="270"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1771574405820_.pic.jpg" width="270"/>
 </div>
 <br/>
 
 <div style="float:right">
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1781574405821_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1291564044993_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1321564044996_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1331564044997_.pic.jpg" width="270"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1321564044996_.pic.jpg" width="270"/>
 </div>
 
 <div style="float:right">
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1331564044997_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1311564044995_.pic.jpg" width="270"/>
 </div>
 
@@ -75,10 +76,16 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
 ## LiveEventBus
    LiveEventBus是一款Android消息总线，基于LiveData，具有生命周期感知能力，支持Sticky，支持AndroidX，支持跨进程，支持跨APP
    
+## Assent
+   轻便且灵活的Android动态权限申请框架，支持Kotlin和AndroidX
+   
 ## Glide   
    Glide相比起Fresco要轻量很多，api调用起来也很简洁，对图片加载要求不是很高的话建议使用Glide。
    
 # 更新日志
+ ### v1.5
+  * 添加动态权限申请功能，优化欢迎页以及登陆页的样式以及逻辑
+  * 调整项目结构，优化代码
  ### v1.4
   * 完善搜索功能，新增用户以及仓库排序搜索
   * 调整项目结构，优化代码
@@ -98,6 +105,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
 # Thanks
   - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
   - [koin](https://github.com/InsertKoinIO/koin)
+  - [Assent](https://github.com/afollestad/assent)
   - [LastAdapter](https://github.com/nitrico/LastAdapter)
   - [AgentWeb](https://github.com/Justson/AgentWeb)
   - [Glide](https://github.com/bumptech/glide)
