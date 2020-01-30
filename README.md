@@ -88,7 +88,6 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
   * 使用FragmentTransaction#setMaxLifecycle(Fragment, Lifecycle.State)替换setUserVisibleHint，实现新的Fragment懒加载方案
   * BaseFragment以及BaseActivity等基类再次进行封装
   * 调整项目结构，优化代码
-# 更新日志
  ### v1.5
   * 添加动态权限申请功能，优化欢迎页以及登陆页的样式以及逻辑
   * 调整项目结构，优化代码
