@@ -19,13 +19,10 @@ abstract class BaseVMActivity : AppCompatActivity(), CoroutineScope by MainScope
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
-        initViewModelAction()
-        initView()
-        initData()
+        setContentLayout()
     }
 
-    private fun initViewModelAction() {
+    protected fun initViewModelAction() {
         getViewModel().let { baseViewModel ->
             baseViewModel.mStateLiveData.observe(this, Observer { stateActionState ->
                 when (stateActionState) {
@@ -49,6 +46,13 @@ abstract class BaseVMActivity : AppCompatActivity(), CoroutineScope by MainScope
 
     abstract fun getViewModel(): BaseViewModel
 
+    open fun setContentLayout() {
+        setContentView(getLayoutId())
+        initViewModelAction()
+        initView()
+        initData()
+    }
+
     open fun initData() {
 
     }
@@ -69,5 +73,4 @@ abstract class BaseVMActivity : AppCompatActivity(), CoroutineScope by MainScope
         super.onDestroy()
         cancel()//取消协程任务
     }
-
 }

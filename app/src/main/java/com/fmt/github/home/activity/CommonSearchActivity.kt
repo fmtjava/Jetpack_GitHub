@@ -3,17 +3,14 @@ package com.fmt.github.home.activity
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityCommonSearchBinding
-import com.fmt.github.ext.hideKeyboard
-import com.fmt.github.ext.otherwise
-import com.fmt.github.ext.warningToast
-import com.fmt.github.ext.yes
+import com.fmt.github.ext.*
 import com.fmt.github.home.model.SearchModel
 import com.fmt.github.repos.fragment.ReposFragment
 import com.fmt.github.user.fragment.UserFragment
-import com.lxj.xpopup.XPopup
 import kotlinx.android.synthetic.main.activity_common_search.*
 
 class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>() {
@@ -22,16 +19,14 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
         const val FROM_SEARCH_REPOS = "from_search_repos"
     }
 
+    private var mIsSearchRepos = true//类型自动推导，无需写声明类型即:Boolean
+
     private var mSearchReposModel = SearchModel()
 
     private val mReposFragment by lazy { ReposFragment() }
-
     private val mUsersFragment by lazy { UserFragment() }
 
-    private var mIsSearchRepos = true
-
-    private var mSort: String = ""
-
+    private var mSort = ""
     private lateinit var mOrder: String
 
     override fun getLayoutId(): Int = R.layout.activity_common_search
@@ -73,107 +68,20 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
 
     private fun showPopupView() {
         mIsSearchRepos.yes {
-            showSortReposPopupView()
+            createSortReposPopup(this).observe(this, Observer {
+                searchReposOrUsersBySortOption(it)
+            })
         }.otherwise {
-            showSortUsesPopupView()
+            createSortUsesPopup(this).observe(this, Observer {
+                searchReposOrUsersBySortOption(it)
+            })
         }
-
     }
 
-    private fun showSortReposPopupView() {
-        XPopup.Builder(this)
-            .asBottomList(
-                getString(R.string.sort_options), arrayOf(
-                    getString(R.string.best_match), getString(R.string.most_stars),
-                    getString(R.string.fewest_stars), getString(R.string.most_forks),
-                    getString(R.string.fewest_forks), getString(R.string.recently_updated),
-                    getString(R.string.least_recently_updated)
-                )
-            ) { position, _ ->
-                run {
-                    when (position) {
-                        0 -> {
-                            mSort = ""
-                            mOrder = getString(R.string.desc)
-                        }
-                        1 -> {
-                            mSort = getString(R.string.stars)
-                            mOrder = getString(R.string.desc)
-                        }
-                        2 -> {
-                            mSort = getString(R.string.stars)
-                            mOrder = getString(R.string.asc)
-                        }
-
-                        3 -> {
-                            mSort = getString(R.string.forks)
-                            mOrder = getString(R.string.desc)
-                        }
-                        4 -> {
-                            mSort = getString(R.string.forks)
-                            mOrder = getString(R.string.asc)
-                        }
-                        5 -> {
-                            mSort = getString(R.string.updated)
-                            mOrder = getString(R.string.desc)
-                        }
-                        6 -> {
-                            mSort = getString(R.string.updated)
-                            mOrder = getString(R.string.asc)
-                        }
-                    }
-                    searchReposOrUsers()
-                }
-
-            }.show()
-    }
-
-    private fun showSortUsesPopupView() {
-        XPopup.Builder(this)
-            .asBottomList(
-                getString(R.string.sort_options), arrayOf(
-                    getString(R.string.best_match), getString(R.string.most_followers),
-                    getString(R.string.fewest_followers), getString(R.string.most_recently_joined),
-                    getString(R.string.least_recently_joined), getString(R.string.most_repositories),
-                    getString(R.string.fewest_repositories)
-                )
-            ) { position, _ ->
-                run {
-                    when (position) {
-                        0 -> {
-                            mSort = ""
-                            mOrder = getString(R.string.desc)
-                        }
-                        1 -> {
-                            mSort = getString(R.string.followers)
-                            mOrder = getString(R.string.desc)
-                        }
-                        2 -> {
-                            mSort = getString(R.string.followers)
-                            mOrder = getString(R.string.asc)
-                        }
-
-                        3 -> {
-                            mSort = getString(R.string.joined)
-                            mOrder = getString(R.string.desc)
-                        }
-                        4 -> {
-                            mSort = getString(R.string.joined)
-                            mOrder = getString(R.string.asc)
-                        }
-                        5 -> {
-                            mSort = getString(R.string.repositories)
-                            mOrder = getString(R.string.desc)
-                        }
-                        6 -> {
-                            mSort = getString(R.string.repositories)
-                            mOrder = getString(R.string.asc)
-                        }
-                    }
-                    searchReposOrUsers()
-                }
-
-            }.show()
+    private fun searchReposOrUsersBySortOption(sortOption: SortOption) {
+        mSort = sortOption.sort
+        mOrder = sortOption.order
+        searchReposOrUsers()
     }
 
     private fun setContentFragment(fragment: Fragment) {

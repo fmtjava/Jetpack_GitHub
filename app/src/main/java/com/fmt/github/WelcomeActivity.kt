@@ -1,13 +1,10 @@
 package com.fmt.github
 
 import android.content.Intent
-import com.afollestad.assent.Permission
-import com.afollestad.assent.askForPermissions
+import com.afollestad.assent.*
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityWelcomeBinding
-import com.fmt.github.ext.getVersionName
-import com.fmt.github.ext.otherwise
-import com.fmt.github.ext.yes
+import com.fmt.github.ext.*
 import com.fmt.github.home.activity.HomeActivity
 import com.fmt.github.user.activity.LoginActivity
 import com.fmt.github.user.dao.UserDao
@@ -38,13 +35,15 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
     }
 
     private fun askForPermission() {
-        askForPermissions(Permission.READ_PHONE_STATE) { result ->
-            result.isAllGranted(Permission.READ_PHONE_STATE).yes {
+        runWithPermissions(Permission.READ_PHONE_STATE, granted = object : Callback {
+            override fun invoke(result: AssentResult) {
                 checkIsLogin()
-            }.otherwise {
+            }
+        }, denied = object : Callback {
+            override fun invoke(result: AssentResult) {
                 finish()
             }
-        }
+        })
     }
 
     private fun checkIsLogin() {

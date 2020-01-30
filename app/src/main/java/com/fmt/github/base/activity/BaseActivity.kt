@@ -10,6 +10,10 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentLayout()
+    }
+
+    open fun setContentLayout() {
         setContentView(getLayoutId())
         initView()
         initData()

@@ -2,9 +2,7 @@ package com.fmt.github.data.storage
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.fmt.github.App
 import com.fmt.github.AppContext
-import java.lang.IllegalArgumentException
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

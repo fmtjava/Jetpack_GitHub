@@ -1,6 +1,7 @@
 package com.fmt.github.user.activity
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityUserInfoBinding
@@ -43,7 +44,8 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
             add(UserReposFragment.newInstance(mUserModel.login))
             add(UserReposFragment.newInstance(mUserModel.login, true))
         }.apply {
-            mViewPager.adapter = UserInfoPagerAdapter(supportFragmentManager, this)
+            mViewPager.adapter = UserInfoPagerAdapter(supportFragmentManager, this,
+                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
             mTabLayout.setupWithViewPager(mViewPager)
         }
     }

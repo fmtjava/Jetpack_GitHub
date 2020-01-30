@@ -2,12 +2,11 @@ package com.fmt.github.user.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fmt.github.BR
 import com.fmt.github.R
-import com.fmt.github.base.fragment.BaseVMFragment
+import com.fmt.github.base.fragment.BaseListMVFragment
 import com.fmt.github.constant.Constant
 import com.fmt.github.databinding.LayoutReposBinding
 import com.fmt.github.ext.otherwise
@@ -19,26 +18,14 @@ import com.fmt.github.user.viewmodel.UserViewModel
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.jeremyliao.liveeventbus.LiveEventBus
-import com.kennyc.view.MultiStateView
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
+class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
 
     private val mViewModel: UserViewModel by viewModel()
-
-    override fun getLayoutRes(): Int = R.layout.common_refresh_recyclerview
-
-    private val mReposList = ObservableArrayList<ReposItemModel>()
-
-    private var mPage = 1
-
-    private var mUserName: String = ""
-
-    private var mIsFavor: Boolean = false
+    private var mUserName = ""
+    private var mIsFavor = false
 
     companion object {
 
@@ -55,26 +42,14 @@ class UserReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListene
         }
     }
 
-    override fun initView() {
-        initRefreshLayout()
-        initRecyclerView()
-    }
-
     override fun getViewModel() = mViewModel
 
-    private fun initRefreshLayout() {
-        mRefreshLayout.run {
-            setOnRefreshListener(this@UserReposFragment)
-            setOnLoadMoreListener(this@UserReposFragment)
-        }
-    }
-
-    private fun initRecyclerView() {
+    override fun initRecyclerView() {
         val type = Type<LayoutReposBinding>(R.layout.layout_repos)
             .onClick {
-                go2ReposDetailActivity(mReposList[it.adapterPosition])
+                go2ReposDetailActivity(mListData[it.adapterPosition])
             }
-        LastAdapter(mReposList, BR.item)
+        LastAdapter(mListData, BR.item)
             .map<ReposItemModel>(type)
             .into(mRecyclerView.apply {
                 layoutManager = LinearLayoutManager(mActivity)
@@ -85,43 +60,19 @@ class UserReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListene
         arguments?.let {
             mUserName = it.getString(KEY)
             mIsFavor = it.getBoolean(IS_FAVOR)
-            initReposViewModelAction()
+            getListData()
             if (mIsFavor) initStarEvent()
         }
     }
 
-    override fun onRefresh(refreshLayout: RefreshLayout) {
-        mPage = 1
-        initReposViewModelAction()
-    }
-
-    override fun onLoadMore(refreshLayout: RefreshLayout) {
-        mPage++
-        initReposViewModelAction()
-    }
-
-    private fun initReposViewModelAction() {
+    override fun getListData() {
         (mPage == 1).yes {
             mRefreshLayout.autoRefreshAnimationOnly()
         }
         mIsFavor.yes {
-            mViewModel.getStarredRepos(mUserName, mPage).observe(this, mReposListObserver)
+            mViewModel.getStarredRepos(mUserName, mPage).observe(this, mListObserver)
         }.otherwise {
-            mViewModel.getUserPublicRepos(mUserName, mPage).observe(this, mReposListObserver)
-        }
-    }
-
-    private val mReposListObserver = Observer<List<ReposItemModel>> {
-        (it != null && it.isNotEmpty()).yes {
-            mMultipleStatusView.viewState = MultiStateView.ViewState.CONTENT
-        }
-        (mPage == 1).yes {
-            mReposList.clear()
-            mReposList.addAll(it)
-            mRefreshLayout.finishRefresh()
-        }.otherwise {
-            mReposList.addAll(it)
-            mRefreshLayout.finishLoadMore()
+            mViewModel.getUserPublicRepos(mUserName, mPage).observe(this, mListObserver)
         }
     }
 
@@ -142,12 +93,5 @@ class UserReposFragment : BaseVMFragment(), OnRefreshListener, OnLoadMoreListene
             .observe(this, Observer {
                 onRefresh(mRefreshLayout)
             })
-    }
-
-    override fun dismissLoading() {
-        mRefreshLayout.run {
-            finishRefresh()
-            finishLoadMore()
-        }
     }
 }

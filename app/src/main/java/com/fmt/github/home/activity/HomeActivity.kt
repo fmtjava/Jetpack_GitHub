@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
@@ -32,7 +33,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private val mUserDao : UserDao by inject()
+    private val mUserDao: UserDao by inject()//kotlin的val相当于Java的final
 
     private val mViewModel: HomeViewModel by viewModel()
 
@@ -90,7 +91,10 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
             add(UserReposFragment.newInstance(mUser.login))
             add(UserReposFragment.newInstance(mUser.login, true))
         }
-        val homePageAdapter = HomePageAdapter(supportFragmentManager, this, fragmentList)
+        val homePageAdapter = HomePageAdapter(
+            supportFragmentManager, fragmentList,
+            FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+        )
         mViewPager.adapter = homePageAdapter
         mTabLayout.setupWithViewPager(mViewPager)
     }
@@ -99,7 +103,10 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
         when (menuItem.itemId) {
             R.id.item_user -> go2UserInfoActivity(mUser.login, mUser.avatar_url)
 
-            R.id.item_copy_right -> go2UserInfoActivity(Constant.AUTHOR_NAME, Constant.AUTHOR_AVATAR_URL)
+            R.id.item_copy_right -> go2UserInfoActivity(
+                Constant.AUTHOR_NAME,
+                Constant.AUTHOR_AVATAR_URL
+            )
 
             R.id.item_about -> Intent(this, AboutActivity::class.java).run { startActivity(this) }
 

@@ -1,30 +1,17 @@
 package com.fmt.github.base.activity
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 
-abstract class BaseDataBindActivity<DB : ViewDataBinding> : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseDataBindActivity<DB : ViewDataBinding> : BaseActivity() {
 
     lateinit var mDataBind: DB
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mDataBind = DataBindingUtil.setContentView(this,getLayoutId())
+    override fun setContentLayout() {
+        mDataBind = DataBindingUtil.setContentView(this, getLayoutId())
         initView()
         initData()
-    }
-
-    abstract fun getLayoutId(): Int
-
-    abstract fun initView()
-
-    open fun initData() {
-
     }
 
     override fun onDestroy() {
