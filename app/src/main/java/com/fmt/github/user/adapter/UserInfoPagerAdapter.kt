@@ -6,8 +6,9 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 
 class UserInfoPagerAdapter(
     fm: FragmentManager,
-    private val mFragmentList: List<Fragment>
-) : FragmentStatePagerAdapter(fm) {
+    private val mFragmentList: List<Fragment>,
+    behavior: Int
+) : FragmentStatePagerAdapter(fm, behavior) {//Behavior实现Fragment的懒加载
 
     private val mTitles = listOf("Info", "Repos", "Favor")
 

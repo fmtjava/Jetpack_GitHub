@@ -21,7 +21,11 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         val mutableLiveData = MutableLiveData<AuthorizationRespModel>()
         launch {
             mutableLiveData.value =
-                mUserRepository.createOrGetAuthorization(authorizationReqModel, Configs.CLIENT_ID, Configs.FINGERPRINT)
+                mUserRepository.createOrGetAuthorization(
+                    authorizationReqModel,
+                    Configs.CLIENT_ID,
+                    Configs.FINGERPRINT
+                )
         }
         return mutableLiveData
     }
@@ -40,10 +44,15 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         }
     }
 
-    fun searchUsers(query: String, sort: String, order: String, page: Int): MutableLiveData<UserListModel> {
-        val mutableLiveData = MutableLiveData<UserListModel>()
+    fun searchUsers(
+        query: String,
+        sort: String,
+        order: String,
+        page: Int
+    ): MutableLiveData<List<UserModel>> {
+        val mutableLiveData = MutableLiveData<List<UserModel>>()
         launch {
-            mutableLiveData.value = mUserRepository.searchUsers(query, sort, order, page)
+            mutableLiveData.value = mUserRepository.searchUsers(query, sort, order, page).items
         }
         return mutableLiveData
     }

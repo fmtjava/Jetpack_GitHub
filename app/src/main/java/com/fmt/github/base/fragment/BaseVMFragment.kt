@@ -19,11 +19,9 @@ import com.fmt.github.ext.errorToast
  */
 abstract class BaseVMFragment : Fragment() {
 
-    private var mRootView: View? = null
+    protected var mRootView: View? = null
 
-    private var mIsCreateView: Boolean = false
-
-    private var mIsHasData: Boolean = false
+    private var mIsHasData = false//是否加载过数据
 
     lateinit var mActivity: AppCompatActivity
 
@@ -37,7 +35,11 @@ abstract class BaseVMFragment : Fragment() {
         initViewModelAction()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         if (mRootView == null) {
             mRootView = View.inflate(container?.context, getLayoutRes(), null)
         }
@@ -46,22 +48,12 @@ abstract class BaseVMFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mIsCreateView = true
         initView()
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser && mIsCreateView) {//可见并且view被创建后后才加载数据
-            lazyLoadData()
-        }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {//防止和ViewPager结合使用时，第一个Fragment空白问题
-        super.onActivityCreated(savedInstanceState)
-        if (userVisibleHint) {//可见时才加载数据
-            lazyLoadData()
-        }
+    override fun onResume() {
+        super.onResume()
+        lazyLoadData()
     }
 
     private fun lazyLoadData() {
