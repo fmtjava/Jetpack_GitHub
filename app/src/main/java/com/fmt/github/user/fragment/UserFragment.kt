@@ -58,10 +58,9 @@ class UserFragment : BaseListMVFragment<UserModel>() {
                 mActivity,
                 view.findViewById(R.id.iv_head),
                 "image"
-            )
-                .toBundle()
-                .also { bundle ->
-                    startActivity(this, bundle)
+            ).toBundle()
+                .also {
+                    startActivity(this, it)
                 }
         }
     }
