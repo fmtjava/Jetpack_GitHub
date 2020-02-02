@@ -3,6 +3,7 @@ package com.fmt.github.home.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fmt.github.base.viewmodel.BaseViewModel
+import com.fmt.github.ext.yes
 import com.fmt.github.user.repository.UserRepository
 
 class HomeViewModel(private val mUserRepository : UserRepository) : BaseViewModel() {
@@ -11,7 +12,7 @@ class HomeViewModel(private val mUserRepository : UserRepository) : BaseViewMode
         val mutableLiveData = MutableLiveData<Boolean>()
         launch {
             val response = mUserRepository.deleteAuthorization(id)
-            if (response.code() == 204) {
+            (response.code() == 204).yes {
                 mutableLiveData.value = true
             }
         }

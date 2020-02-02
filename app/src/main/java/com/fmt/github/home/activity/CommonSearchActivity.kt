@@ -21,7 +21,7 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
 
     private var mIsSearchRepos = true//类型自动推导，无需写声明类型即:Boolean
 
-    private var mSearchReposModel = SearchModel()
+    private val mSearchReposModel by lazy { SearchModel() }
 
     private val mReposFragment by lazy { ReposFragment() }
     private val mUsersFragment by lazy { UserFragment() }

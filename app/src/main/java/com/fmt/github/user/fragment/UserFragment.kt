@@ -54,7 +54,11 @@ class UserFragment : BaseListMVFragment<UserModel>() {
             putExtra(UserInfoActivity.USER_INFO, userModel)
         }.run {
             //共享元素共享动画
-            ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity, view.findViewById(R.id.iv_head), "image")
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                mActivity,
+                view.findViewById(R.id.iv_head),
+                "image"
+            )
                 .toBundle()
                 .also { bundle ->
                     startActivity(this, bundle)
