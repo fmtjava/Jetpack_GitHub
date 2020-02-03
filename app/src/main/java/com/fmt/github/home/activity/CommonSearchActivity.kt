@@ -97,15 +97,15 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
 
     private fun searchReposOrUsers() {
         mSearchReposModel.searchKey.get()?.apply {
-            this.isEmpty().yes {
-                warningToast(R.string.please_enter_search_keywords)
-            }.otherwise {
+            this.isEmpty().no {
                 mSortTv.visibility = View.VISIBLE
                 mIsSearchRepos.yes {
                     mReposFragment.searchReposByKey(this, mSort, mOrder)
                 }.otherwise {
                     mUsersFragment.searchUsersByKey(this, mSort, mOrder)
                 }
+            }.otherwise {
+                warningToast(R.string.please_enter_search_keywords)
             }
         }
     }

@@ -131,7 +131,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        when (item.itemId) {//增强版switch
             R.id.item_search_repos -> go2SearchActivity(true)
             R.id.item_search_users -> go2SearchActivity(false)
         }
