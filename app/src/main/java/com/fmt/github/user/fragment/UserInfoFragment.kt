@@ -17,7 +17,7 @@ class UserInfoFragment : BaseDataBindVMFragment<FragmentUserInfoBinding>() {
 
     override fun getLayoutRes(): Int = R.layout.fragment_user_info
 
-    lateinit var mUser: String
+    private lateinit var mUser: String
 
     override fun initView() {
         mUser = (activity as UserInfoActivity).mUserModel.login
