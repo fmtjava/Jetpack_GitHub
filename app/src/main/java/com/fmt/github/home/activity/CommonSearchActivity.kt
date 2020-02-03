@@ -97,7 +97,7 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
 
     private fun searchReposOrUsers() {
         mSearchReposModel.searchKey.get()?.apply {
-            this.isNullOrEmpty().yes {
+            this.isEmpty().yes {
                 warningToast(R.string.please_enter_search_keywords)
             }.otherwise {
                 mSortTv.visibility = View.VISIBLE

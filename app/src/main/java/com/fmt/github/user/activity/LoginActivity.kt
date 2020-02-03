@@ -44,12 +44,12 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
     private fun login() {
         val username = mUserLoginModel.username.get().toString()
         val password = mUserLoginModel.password.get().toString()
-        username.isNullOrEmpty().yes {
+        username.isEmpty().yes {
             mUserNameInputLayout.error = getString(R.string.username_not_null)
             mUserNameInputLayout.isErrorEnabled = true
         }.otherwise {
             mUserNameInputLayout.isErrorEnabled = false
-            password.isNullOrEmpty().yes {
+            password.isEmpty().yes {
                 mPasswordInputLayout.error = getString(R.string.password_not_null)
                 mPasswordInputLayout.isErrorEnabled = true
             }.otherwise {
