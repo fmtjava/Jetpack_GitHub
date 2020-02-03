@@ -11,6 +11,9 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
 
+/**
+ * 分页列表页面封装
+ */
 abstract class BaseListMVFragment<M> : BaseVMFragment(), OnRefreshListener,
     OnLoadMoreListener {
 
