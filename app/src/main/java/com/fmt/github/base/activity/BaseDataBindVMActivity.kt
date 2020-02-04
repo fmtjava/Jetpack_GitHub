@@ -2,7 +2,6 @@ package com.fmt.github.base.activity
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import kotlinx.coroutines.cancel
 
 /**
  * 封装带有协程基类(DataBinding + ViewModel),使用代理类完成
@@ -22,7 +21,7 @@ abstract class BaseDataBindVMActivity<DB : ViewDataBinding> : BaseVMActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        cancel()//取消协程任务
+        mDataBind.unbind()
     }
 
 }

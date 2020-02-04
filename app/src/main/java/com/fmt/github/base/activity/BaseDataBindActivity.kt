@@ -16,7 +16,6 @@ abstract class BaseDataBindActivity<DB : ViewDataBinding> : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        cancel()
         mDataBind.unbind()
     }
 
