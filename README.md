@@ -2,7 +2,7 @@
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://github.com/fmtjava/OpenGitHub)
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Release Version](https://img.shields.io/badge/version-1.6-red.svg)](https://fir.im/8jw7)
+[![Release Version](https://img.shields.io/badge/version-1.7-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
 [![](https://img.shields.io/badge/QQ-2694746499-orange.svg)](https://github.com/fmtjava)<br />
 基于Material Design + AndroidX + Kotlin + koin + MVVM + DataBinding + ViewModel + LiveData  + Room + Retrofit + Okhttp + Coroutines(协程) + LiveDataBus + Glide等架构实现的一款精简版Github客户端项目(持续更新中)。<br />
@@ -83,6 +83,9 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    Glide相比起Fresco要轻量很多，api调用起来也很简洁，对图片加载要求不是很高的话建议使用Glide。
    
 # 更新日志
+ ### v1.7
+  * 使用协程进一步简化异步代码，增强代码的可读性
+  * BaseActivity、BaseMVActivity等基类再次进行封装
  ### v1.6
   * 封装通用列表以及统一分页模版代码
   * 使用FragmentTransaction#setMaxLifecycle(Fragment, Lifecycle.State)替换setUserVisibleHint，实现新的Fragment懒加载方案
