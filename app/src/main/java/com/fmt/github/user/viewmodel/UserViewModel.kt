@@ -1,6 +1,8 @@
 package com.fmt.github.user.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.config.Configs
 import com.fmt.github.repos.model.ReposItemModel
@@ -12,30 +14,25 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
 
     val mUserInfoModel = MutableLiveData<UserInfoModel>()
 
-    fun createOrGetAuthorization(): MutableLiveData<AuthorizationRespModel> {
+    fun createOrGetAuthorization(): LiveData<AuthorizationRespModel> {
         val authorizationReqModel = AuthorizationReqModel(
             Configs.CLIENT_SECRET,
             Configs.SCOPE,
             Configs.NOTE, Configs.NOTE_URL
         )
-        val mutableLiveData = MutableLiveData<AuthorizationRespModel>()
-        launch {
-            mutableLiveData.value =
+        return liveData {
+            emit(
                 mUserRepository.createOrGetAuthorization(
                     authorizationReqModel,
                     Configs.CLIENT_ID,
                     Configs.FINGERPRINT
                 )
+            )
         }
-        return mutableLiveData
     }
 
-    fun getUser(): MutableLiveData<UserModel> {
-        val mutableLiveData = MutableLiveData<UserModel>()
-        launch {
-            mutableLiveData.value = mUserRepository.getUser()
-        }
-        return mutableLiveData
+    fun getUser(): LiveData<UserModel> = liveData {
+        emit(mUserRepository.getUser())
     }
 
     fun saveLocalUser(user: User) {
@@ -49,12 +46,8 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         sort: String,
         order: String,
         page: Int
-    ): MutableLiveData<List<UserModel>> {
-        val mutableLiveData = MutableLiveData<List<UserModel>>()
-        launch {
-            mutableLiveData.value = mUserRepository.searchUsers(query, sort, order, page).items
-        }
-        return mutableLiveData
+    ): LiveData<List<UserModel>> = liveData {
+        emit(mUserRepository.searchUsers(query, sort, order, page).items)
     }
 
     fun getUserInfo(user: String): MutableLiveData<UserInfoModel> {
@@ -64,19 +57,11 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         return mUserInfoModel
     }
 
-    fun getUserPublicRepos(user: String, page: Int): MutableLiveData<List<ReposItemModel>> {
-        val mutableLiveData = MutableLiveData<List<ReposItemModel>>()
-        launch {
-            mutableLiveData.value = mUserRepository.getUserPublicRepos(user, page)
-        }
-        return mutableLiveData
+    fun getUserPublicRepos(user: String, page: Int): LiveData<List<ReposItemModel>> = liveData {
+        emit(mUserRepository.getUserPublicRepos(user, page))
     }
 
-    fun getStarredRepos(user: String, page: Int): MutableLiveData<List<ReposItemModel>> {
-        val mutableLiveData = MutableLiveData<List<ReposItemModel>>()
-        launch {
-            mutableLiveData.value = mUserRepository.getStarredRepos(user, page)
-        }
-        return mutableLiveData
+    fun getStarredRepos(user: String, page: Int): LiveData<List<ReposItemModel>> = liveData {
+        emit(mUserRepository.getStarredRepos(user, page))
     }
 }

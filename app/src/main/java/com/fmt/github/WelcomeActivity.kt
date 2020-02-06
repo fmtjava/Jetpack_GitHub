@@ -1,6 +1,7 @@
 package com.fmt.github
 
 import android.content.Intent
+import androidx.lifecycle.lifecycleScope
 import com.afollestad.assent.*
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityWelcomeBinding
@@ -47,7 +48,7 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
     }
 
     private fun checkIsLogin() {
-        launch {
+        lifecycleScope.launch {
             delay(500)//挂起,但不会阻塞,后续通过resumeWith恢复执行
             val userList = mUserDao.getAll()
             (userList.isEmpty()).yes {

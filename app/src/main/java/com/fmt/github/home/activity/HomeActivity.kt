@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
@@ -51,7 +52,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun getViewModel(): BaseViewModel = mViewModel
 
     private fun initUserInfo() {
-        launch {
+        lifecycleScope.launch {//Androidx的协程支持LifecycleScope、ViewModelScope
             mUser = mUserDao.getAll()[0]
             initHeaderLayout()
             initViewPager()

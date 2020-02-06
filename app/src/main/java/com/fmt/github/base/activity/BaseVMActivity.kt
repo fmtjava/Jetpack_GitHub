@@ -8,14 +8,8 @@ import com.fmt.github.base.viewmodel.ErrorState
 import com.fmt.github.base.viewmodel.LoadState
 import com.fmt.github.base.viewmodel.SuccessState
 import com.fmt.github.ext.errorToast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 
-/**
- * 封装带有协程基类,使用代理类完成
- */
-abstract class BaseVMActivity : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseVMActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,10 +61,5 @@ abstract class BaseVMActivity : AppCompatActivity(), CoroutineScope by MainScope
 
     open fun handleError() {
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cancel()//取消协程任务
     }
 }

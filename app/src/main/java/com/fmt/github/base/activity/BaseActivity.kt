@@ -2,11 +2,8 @@ package com.fmt.github.base.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 
-abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +23,4 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     open fun initData() {
 
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cancel()
-    }
-
 }
