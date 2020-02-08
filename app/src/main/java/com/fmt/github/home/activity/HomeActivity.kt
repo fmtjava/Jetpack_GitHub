@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -17,6 +18,8 @@ import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.constant.Constant
 import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
+import com.fmt.github.ext.showConfirmPopup
+import com.fmt.github.ext.yes
 import com.fmt.github.home.adapter.HomePageAdapter
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.user.activity.AboutActivity
@@ -52,7 +55,8 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun getViewModel(): BaseViewModel = mViewModel
 
     private fun initUserInfo() {
-        lifecycleScope.launch {//Androidx的协程支持LifecycleScope、ViewModelScope
+        lifecycleScope.launch {
+            //Androidx的协程支持LifecycleScope、ViewModelScope
             mUser = mUserDao.getAll()[0]
             initHeaderLayout()
             initViewPager()
@@ -111,7 +115,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
 
             R.id.item_about -> Intent(this, AboutActivity::class.java).run { startActivity(this) }
 
-            R.id.item_logout -> logout()
+            R.id.item_logout -> showLogoutPopup()
         }
         mDrawerLayout.closeDrawers()//选择菜单时，关闭侧滑菜单
         return true
@@ -143,6 +147,18 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
         Intent(this, CommonSearchActivity::class.java).run {
             putExtra(CommonSearchActivity.FROM_SEARCH_REPOS, fromSearchRepos)
             startActivity(this)
+        }
+    }
+
+    private fun showLogoutPopup() {
+        lifecycleScope.launch {
+            showConfirmPopup(
+                this@HomeActivity,
+                getString(R.string.tips),
+                getString(R.string.logout_message)
+            ).yes {
+                logout()
+            }
         }
     }
 

@@ -6,6 +6,24 @@ import androidx.lifecycle.MutableLiveData
 import com.fmt.github.AppContext
 import com.fmt.github.R
 import com.lxj.xpopup.XPopup
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
+
+//回调转协程
+suspend fun showConfirmPopup(context: Context, title: String, message: String) =
+    suspendCoroutine<Boolean> { continuation ->
+        XPopup.Builder(context)
+            .asConfirm(
+                title,
+                message,
+                context.getString(R.string.cancel),
+                context.getString(R.string.sure),
+                { continuation.resume(true) },
+                { continuation.resume(false) },
+                false
+            )
+            .show()
+    }
 
 fun createSortReposPopup(context: Context): LiveData<SortOption> {
     val liveData = MutableLiveData<SortOption>()//LiveData代替回调接口
@@ -67,9 +85,12 @@ fun createSortUsesPopup(context: Context): LiveData<SortOption> {
     XPopup.Builder(context)
         .asBottomList(
             context.getString(R.string.sort_options), arrayOf(
-                context.getString(R.string.best_match), context.getString(R.string.most_followers),
-                context.getString(R.string.fewest_followers), context.getString(R.string.most_recently_joined),
-                context.getString(R.string.least_recently_joined), context.getString(R.string.most_repositories),
+                context.getString(R.string.best_match),
+                context.getString(R.string.most_followers),
+                context.getString(R.string.fewest_followers),
+                context.getString(R.string.most_recently_joined),
+                context.getString(R.string.least_recently_joined),
+                context.getString(R.string.most_repositories),
                 context.getString(R.string.fewest_repositories)
             )
         ) { position, _ ->

@@ -60,15 +60,12 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
         arguments?.let {
             mUserName = it.getString(KEY)
             mIsFavor = it.getBoolean(IS_FAVOR)
-            getListData()
+            initViewModelAction()
             if (mIsFavor) initStarEvent()
         }
     }
 
     override fun getListData() {
-        (mPage == 1).yes {
-            mRefreshLayout.autoRefreshAnimationOnly()
-        }
         mIsFavor.yes {
             mViewModel.getStarredRepos(mUserName, mPage).observe(this, mListObserver)
         }.otherwise {

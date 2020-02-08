@@ -45,7 +45,7 @@ abstract class BaseListMVFragment<M> : BaseVMFragment(), OnRefreshListener,
         initViewModelAction()
     }
 
-    private fun initViewModelAction() {
+    protected fun initViewModelAction() {
         (mPage == 1).yes {
             mRefreshLayout.autoRefreshAnimationOnly()
         }
