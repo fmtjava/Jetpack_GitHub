@@ -30,6 +30,9 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
     private fun initUserInfo() {
         mUserModel = intent.getSerializableExtra(USER_INFO) as UserModel
         mDataBind.userModel = mUserModel
+        mUserIconIv.setOnClickListener {
+            PhotoPreviewActivity.go2PhotoPreviewActivity(this, mUserModel.avatar_url)
+        }
     }
 
     private fun initToolbar() {
@@ -44,8 +47,10 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
             add(UserReposFragment.newInstance(mUserModel.login))
             add(UserReposFragment.newInstance(mUserModel.login, true))
         }.apply {
-            mViewPager.adapter = UserInfoPagerAdapter(supportFragmentManager, this,
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+            mViewPager.adapter = UserInfoPagerAdapter(
+                supportFragmentManager, this,
+                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+            )
             mTabLayout.setupWithViewPager(mViewPager)
         }
     }

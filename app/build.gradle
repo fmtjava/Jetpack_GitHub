@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.fmt.github"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 7
         versionName "1.7"
@@ -96,6 +96,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.lxj:xpopup:1.8.10-x'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0@aar'
 
     //bugly捕获异常
     implementation 'com.tencent.bugly:crashreport:latest.release'
