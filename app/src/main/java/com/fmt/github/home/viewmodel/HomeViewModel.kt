@@ -8,11 +8,9 @@ import com.fmt.github.user.repository.UserRepository
 
 class HomeViewModel(private val mUserRepository: UserRepository) : BaseViewModel() {
 
-    fun deleteAuthorization(id: Int): LiveData<Boolean> = liveData {
+    fun deleteAuthorization(id: Int): LiveData<Boolean> = emit {
         val response = mUserRepository.deleteAuthorization(id)
-        (response.code() == 204).yes {
-            emit(true)
-        }
+        response.code() == 204
     }
 
     fun deleteUser() {

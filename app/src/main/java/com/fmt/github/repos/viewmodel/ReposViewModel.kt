@@ -14,31 +14,19 @@ class ReposViewModel(private val mReposRepository: ReposRepository) : BaseViewMo
         sort: String,
         order: String,
         page: Int
-    ): LiveData<List<ReposItemModel>> = liveData {
-        emit(mReposRepository.searchRepos(query, sort, order, page).items)//挂起函数
+    ): LiveData<List<ReposItemModel>> = emit {
+        mReposRepository.searchRepos(query, sort, order, page).items
     }
 
-    fun checkRepoStarred(owner: String, repo: String): LiveData<Boolean> = liveData {
-        val response = mReposRepository.checkRepoStarred(owner, repo)
-        if (response.code() == 204) {
-            emit(true)
-        } else if (response.code() == 404) {
-            emit(false)
-        }
+    fun checkRepoStarred(owner: String, repo: String): LiveData<Boolean> = emit {
+        mReposRepository.starRepo(owner, repo).code() == 204
     }
 
-    fun starRepo(owner: String, repo: String): LiveData<Boolean> = liveData {
-        val response = mReposRepository.starRepo(owner, repo)
-        (response.code() == 204).yes {
-            emit(true)
-        }
+    fun starRepo(owner: String, repo: String): LiveData<Boolean> = emit {
+        mReposRepository.starRepo(owner, repo).code() == 204
     }
 
-    fun unStarRepo(owner: String, repo: String): LiveData<Boolean> = liveData {
-        val response = mReposRepository.unStarRepo(owner, repo)
-        (response.code() == 204).yes {
-            emit(true)
-        }
+    fun unStarRepo(owner: String, repo: String): LiveData<Boolean> = emit {
+        mReposRepository.unStarRepo(owner, repo).code() == 204
     }
-
 }
