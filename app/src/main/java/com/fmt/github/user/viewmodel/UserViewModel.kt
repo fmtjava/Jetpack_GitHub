@@ -2,7 +2,6 @@ package com.fmt.github.user.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.config.Configs
 import com.fmt.github.repos.model.ReposItemModel
@@ -20,19 +19,17 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
             Configs.SCOPE,
             Configs.NOTE, Configs.NOTE_URL
         )
-        return liveData {
-            emit(
-                mUserRepository.createOrGetAuthorization(
-                    authorizationReqModel,
-                    Configs.CLIENT_ID,
-                    Configs.FINGERPRINT
-                )
+        return emit {
+            mUserRepository.createOrGetAuthorization(
+                authorizationReqModel,
+                Configs.CLIENT_ID,
+                Configs.FINGERPRINT
             )
         }
     }
 
-    fun getUser(): LiveData<UserModel> = liveData {
-        emit(mUserRepository.getUser())
+    fun getUser(): LiveData<UserModel> = emit {
+        mUserRepository.getUser()
     }
 
     fun saveLocalUser(user: User) {
@@ -46,22 +43,22 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         sort: String,
         order: String,
         page: Int
-    ): LiveData<List<UserModel>> = liveData {
-        emit(mUserRepository.searchUsers(query, sort, order, page).items)
+    ): LiveData<List<UserModel>> = emit {
+        mUserRepository.searchUsers(query, sort, order, page).items
     }
 
-    fun getUserInfo(user: String): MutableLiveData<UserInfoModel> {
+    fun getUserInfo(user: String): LiveData<UserInfoModel> {
         launch {
             mUserInfoModel.value = mUserRepository.getUserInfo(user)
         }
         return mUserInfoModel
     }
 
-    fun getUserPublicRepos(user: String, page: Int): LiveData<List<ReposItemModel>> = liveData {
-        emit(mUserRepository.getUserPublicRepos(user, page))
+    fun getUserPublicRepos(user: String, page: Int):LiveData<List<ReposItemModel>> = emit {
+        mUserRepository.getUserPublicRepos(user, page)
     }
 
-    fun getStarredRepos(user: String, page: Int): LiveData<List<ReposItemModel>> = liveData {
-        emit(mUserRepository.getStarredRepos(user, page))
+    fun getStarredRepos(user: String, page: Int): LiveData<List<ReposItemModel>> = emit {
+        mUserRepository.getStarredRepos(user, page)
     }
 }
