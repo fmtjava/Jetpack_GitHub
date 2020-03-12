@@ -69,9 +69,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
     //协程 + room
-    implementation "androidx.room:room-runtime:2.2.3"
-    kapt "androidx.room:room-compiler:2.2.3"
-    implementation "androidx.room:room-ktx:2.2.3"
+    implementation "androidx.room:room-runtime:2.2.4"
+    kapt "androidx.room:room-compiler:2.2.4"
+    implementation "androidx.room:room-ktx:2.2.4"
 
     //koin(依赖注入)
     implementation "org.koin:koin-androidx-scope:2.0.1"
