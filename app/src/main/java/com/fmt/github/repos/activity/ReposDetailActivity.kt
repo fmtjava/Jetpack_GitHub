@@ -9,7 +9,10 @@ import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.constant.Constant
+import com.fmt.github.ext.no
+import com.fmt.github.ext.otherwise
 import com.fmt.github.ext.successToast
+import com.fmt.github.ext.yes
 import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.viewmodel.ReposViewModel
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -21,7 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ReposDetailActivity : BaseVMActivity() {
 
-    private val mViewModel : ReposViewModel by viewModel()
+    private val mViewModel: ReposViewModel by viewModel()
     private lateinit var mAgentWeb: AgentWeb
     private lateinit var mOwner: String
     private lateinit var mRepos: String
@@ -56,7 +59,7 @@ class ReposDetailActivity : BaseVMActivity() {
 
     private fun initListener() {
         mBackIB.setOnClickListener {
-            if (!mAgentWeb.back()) {
+            mAgentWeb.back().no {
                 finish()
             }
         }
@@ -115,9 +118,10 @@ class ReposDetailActivity : BaseVMActivity() {
         super.onDestroy()
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return if (mAgentWeb.handleKeyEvent(keyCode, event)) {
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean =
+        (mAgentWeb.handleKeyEvent(keyCode, event)).yes {
             true
-        } else super.onKeyDown(keyCode, event)
-    }
+        }.otherwise {
+            super.onKeyDown(keyCode, event)
+        }
 }
