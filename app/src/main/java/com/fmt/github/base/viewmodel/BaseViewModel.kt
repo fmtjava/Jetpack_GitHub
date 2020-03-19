@@ -21,15 +21,13 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
-    fun <T> emit(block: suspend LiveDataScope<T>.() -> T): LiveData<T> {
-        return liveData {
-            try {
-                mStateLiveData.value = LoadState
-                emit(block())
-                mStateLiveData.value = SuccessState
-            } catch (e: Exception) {
-                mStateLiveData.value = ErrorState(e.message)
-            }
+    fun <T> emit(block: suspend LiveDataScope<T>.() -> T): LiveData<T> = liveData {
+        try {
+            mStateLiveData.value = LoadState
+            emit(block())
+            mStateLiveData.value = SuccessState
+        } catch (e: Exception) {
+            mStateLiveData.value = ErrorState(e.message)
         }
     }
 }

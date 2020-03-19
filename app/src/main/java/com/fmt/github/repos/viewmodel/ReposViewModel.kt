@@ -19,7 +19,7 @@ class ReposViewModel(private val mReposRepository: ReposRepository) : BaseViewMo
     }
 
     fun checkRepoStarred(owner: String, repo: String): LiveData<Boolean> = emit {
-        mReposRepository.starRepo(owner, repo).code() == 204
+        mReposRepository.checkRepoStarred(owner, repo).code() == 204
     }
 
     fun starRepo(owner: String, repo: String): LiveData<Boolean> = emit {
