@@ -1,16 +1,13 @@
 package com.fmt.github.home.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import com.fmt.github.base.viewmodel.BaseViewModel
-import com.fmt.github.ext.yes
 import com.fmt.github.user.repository.UserRepository
 
 class HomeViewModel(private val mUserRepository: UserRepository) : BaseViewModel() {
 
     fun deleteAuthorization(id: Int): LiveData<Boolean> = emit {
-        val response = mUserRepository.deleteAuthorization(id)
-        response.code() == 204
+        mUserRepository.deleteAuthorization(id).code() == 204
     }
 
     fun deleteUser() {

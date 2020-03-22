@@ -1,9 +1,7 @@
 package com.fmt.github.repos.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import com.fmt.github.base.viewmodel.BaseViewModel
-import com.fmt.github.ext.yes
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.repos.repository.ReposRepository
 
