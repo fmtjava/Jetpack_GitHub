@@ -63,12 +63,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     private fun initHeaderLayout() {
-        val dataBind = DataBindingUtil.inflate<LayoutNavHeaderBinding>(
-            LayoutInflater.from(this),
-            R.layout.layout_nav_header,
-            mNavigationView,
-            false
-        )
+        val dataBind = LayoutNavHeaderBinding.inflate(LayoutInflater.from(this), mNavigationView,false)
         dataBind.user = mUser
         mNavigationView.addHeaderView(dataBind.root)
     }

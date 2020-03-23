@@ -17,7 +17,6 @@
 
         <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/mPhotoView"
-                android:transitionName="image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:url="@{url}" />

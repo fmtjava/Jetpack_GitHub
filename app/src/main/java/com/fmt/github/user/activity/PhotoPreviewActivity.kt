@@ -27,8 +27,4 @@ class PhotoPreviewActivity : BaseDataBindActivity<ActivityPhotoPreviewBinding>()
             finish()
         }
     }
-
-    override fun onBackPressed() {
-        supportFinishAfterTransition()
-    }
 }
