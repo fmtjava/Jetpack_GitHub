@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import com.bumptech.glide.Glide
-import com.fmt.github.App
 import com.fmt.github.AppContext
 import com.fmt.github.R
 import com.fmt.github.repos.model.ReposItemModel

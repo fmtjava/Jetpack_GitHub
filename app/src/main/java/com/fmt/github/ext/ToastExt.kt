@@ -1,7 +1,6 @@
 package com.fmt.github.ext
 
 import android.widget.Toast
-import com.fmt.github.App
 import com.fmt.github.AppContext
 import es.dmoral.toasty.Toasty
 

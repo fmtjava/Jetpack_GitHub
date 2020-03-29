@@ -1,40 +1,40 @@
 <resources>
 
-	<!-- Base application theme. -->
-	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-		<!-- Customize your theme here. -->
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorAccent">@color/colorAccent</item>
-		<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-		<!--允许内容过度-->
-		<item name="android:windowContentTransitions">true</item>
-	</style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <!--允许内容过度-->
+        <item name="android:windowContentTransitions">true</item>
+    </style>
 
-	<style name="ToolBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<!--右侧菜单按钮样式-->
-		<item name="colorControlNormal">@android:color/white</item>
-		<item name="overlapAnchor">false</item>
-	</style>
+    <style name="ToolBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--右侧菜单按钮样式-->
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="overlapAnchor">false</item>
+    </style>
 
-	<!-- DrawerLayout左边图标样式 -->
-	<style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-		<item name="spinBars">true</item>
-		<item name="color">@android:color/white</item>
-	</style>
+    <!-- DrawerLayout左边图标样式 -->
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
 
-	<!--处理启动白屏-->
-	<style name="SplashTheme" parent="AppTheme">
-		<!-- 这里的trans自己写一个#00000000即可-->
-		<item name="android:windowBackground">@android:color/transparent</item>
-		<item name="windowNoTitle">true</item>
-		<item name="android:windowFullscreen">true</item>
-	</style>
+    <!--处理启动白屏,主题样式启动优化-->
+    <style name="SplashTheme" parent="AppTheme">
+        <!-- 这里的trans自己写一个#00000000即可-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
-	<style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="android:windowFullscreen">true</item>
-	</style>
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
 </resources>

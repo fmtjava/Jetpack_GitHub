@@ -12,8 +12,8 @@ android {
         applicationId "com.fmt.github"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 7
-        versionName "1.7"
+        versionCode 8
+        versionName "1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -100,5 +100,6 @@ dependencies {
 
     //bugly捕获异常
     implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation project(path: ':LaunchStarter')
 
 }
