@@ -25,11 +25,8 @@
     </style>
 
     <!--处理启动白屏,主题样式启动优化-->
-    <style name="SplashTheme" parent="AppTheme">
-        <!-- 这里的trans自己写一个#00000000即可-->
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
