@@ -7,8 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <!--允许内容过度-->
-        <item name="android:windowContentTransitions">true</item>
+        <!--去掉window的默认背景，防止过度绘制-->
+        <item name="android:windowBackground">@null</item>
     </style>
 
     <style name="ToolBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -22,7 +22,6 @@
     <!-- DrawerLayout左边图标样式 -->
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@android:color/white</item>
     </style>
 
     <!--处理启动白屏,主题样式启动优化-->

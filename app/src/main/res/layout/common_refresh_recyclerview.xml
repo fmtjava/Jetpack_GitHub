@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/repos_common_background_color">
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg_color"
+    >
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/mRefreshLayout"
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/mMultipleStatusView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:msv_emptyView="@layout/layout_empty"
+        app:msv_viewState="empty">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
+    </com.kennyc.view.MultiStateView>
 
-        <com.kennyc.view.MultiStateView
-                android:id="@+id/mMultipleStatusView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:msv_emptyView="@layout/layout_empty"
-                app:msv_viewState="empty">
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/mRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-        </com.kennyc.view.MultiStateView>
-
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
-
-</LinearLayout>

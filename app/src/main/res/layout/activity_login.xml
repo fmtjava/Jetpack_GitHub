@@ -1,87 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="userLoginModel" type="com.fmt.github.user.model.UserLoginModel"/>
+
+        <variable
+            name="userLoginModel"
+            type="com.fmt.github.user.model.UserLoginModel" />
     </data>
 
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-                android:id="@+id/mToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:title="@string/go_to_login"
-                app:titleTextColor="@android:color/white"/>
+            android:id="@+id/mToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:title="@string/go_to_login"
+            app:titleTextColor="@android:color/white" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_github"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            android:src="@mipmap/ic_github" />
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/mUserNameInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp">
+            android:id="@+id/mUserNameInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mUserNameEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Username"
-                    android:singleLine="true"
-                    android:text="@={userLoginModel.username}"/>
+                android:id="@+id/mUserNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Username"
+                android:singleLine="true"
+                android:text="@={userLoginModel.username}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/mPasswordInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                app:passwordToggleEnabled="true">
+            android:id="@+id/mPasswordInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mPasswordEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPassword"
-                    android:hint="Password"
-                    android:singleLine="true"
-                    android:text="@={userLoginModel.password}"/>
+                android:id="@+id/mPasswordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text="@={userLoginModel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-                android:id="@+id/mSignInBt"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:text="Sign in"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="35dp"
-                android:background="@drawable/selector_login_bg"
-                android:textColor="@drawable/selector_login_text_color"
-                android:textSize="16sp"
-                android:textAllCaps="false"/>
+            android:id="@+id/mSignInBt"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/selector_login_bg"
+            android:text="Sign in"
+            android:textAllCaps="false"
+            android:textColor="@drawable/selector_login_text_color"
+            android:textSize="16sp" />
 
         <ProgressBar
-                android:id="@+id/mProgressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="35dp"
-                android:visibility="gone"/>
+            android:id="@+id/mProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 </layout>

@@ -1,137 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
-        <variable name="item"
-                  type="com.fmt.github.repos.model.ReposItemModel"/>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.fmt.github.repos.model.ReposItemModel" />
     </data>
 
     <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="3dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="3dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            android:clickable="true"
-            android:foreground="?android:selectableItemBackground"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_head"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    app:url="@{item.owner.avatar_url}"/>
+                android:id="@+id/iv_head"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:url="@{item.owner.avatar_url}" />
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="8dp">
+            <TextView
+                android:id="@+id/tv_repos_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{item.name}"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/iv_head"
+                app:layout_constraintRight_toLeftOf="@id/tv_language"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+            <View
+                android:id="@+id/view_language_bg"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:background="@{item}"
+                android:visibility='@{(item.language == null || item.language == "") ? View.GONE :View.VISIBLE}'
+                app:layout_constraintBottom_toBottomOf="@id/tv_language"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_language" />
 
-                    <TextView
-                            android:id="@+id/tv_repos_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:layout_marginRight="60dp"
-                            android:text="@{item.name}"/>
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="3dp"
+                android:text="@{item.language}"
+                android:textColor="@color/repos_common_text_color"
+                android:textSize="12sp"
+                android:visibility='@{(item.language == null || item.language == "") ? View.GONE :View.VISIBLE}'
+                app:layout_constraintRight_toLeftOf="@id/view_language_bg"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <View
-                            android:id="@+id/view_language_bg"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="10dp"
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_centerVertical="true"
-                            android:visibility='@{(item.language == null || item.language == "") ? View.GONE :View.VISIBLE}'
-                            android:background="@{item}"/>
+            <TextView
+                android:id="@+id/tv_repos_des"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="5dp"
+                android:text="@{item.description}"
+                android:textColor="@color/repos_common_text_color"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/iv_head"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_repos_name" />
 
-                    <TextView
-                            android:id="@+id/tv_language"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:textSize="12sp"
-                            android:textColor="@color/repos_common_text_color"
-                            android:layout_toLeftOf="@id/view_language_bg"
-                            android:layout_marginRight="3dp"
-                            android:text="@{item.language}"
-                            android:visibility='@{(item.language == null || item.language == "") ? View.GONE :View.VISIBLE}'/>
+            <TextView
+                android:id="@+id/tv_start_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:drawableStart="@mipmap/icon_start"
+                android:drawablePadding="5dp"
+                android:text="@{String.valueOf(item.stargazers_count)}"
+                android:textColor="@color/repos_common_text_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toRightOf="@id/iv_head"
+                app:layout_constraintTop_toBottomOf="@id/tv_repos_des" />
 
-                </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_fork_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                android:drawableStart="@mipmap/icon_fork"
+                android:drawablePadding="5dp"
+                android:text="@{String.valueOf(item.forks)}"
+                android:textColor="@color/repos_common_text_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toRightOf="@id/tv_start_num"
+                app:layout_constraintTop_toBottomOf="@id/tv_repos_des" />
 
-                <TextView
-                        android:id="@+id/tv_repos_des"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/repos_common_text_color"
-                        android:text="@{item.description}"/>
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                android:drawableStart="@mipmap/icon_author"
+                android:drawablePadding="5dp"
+                android:text="@{item.owner.login}"
+                android:textColor="@color/repos_common_text_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toRightOf="@id/tv_fork_num"
+                app:layout_constraintTop_toBottomOf="@id/tv_repos_des" />
 
-                <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
 
-                    <TextView
-                            android:id="@+id/tv_start_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:drawableLeft="@mipmap/icon_start"
-                            android:drawablePadding="5dp"
-                            android:textColor="@color/repos_common_text_color"
-                            android:text="@{String.valueOf(item.stargazers_count)}"/>
-
-                    <TextView
-                            android:id="@+id/tv_fork_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_marginLeft="80dp"
-                            android:textColor="@color/repos_common_text_color"
-                            android:drawableLeft="@mipmap/icon_fork"
-                            android:drawablePadding="5dp"
-                            android:text="@{String.valueOf(item.forks)}"/>
-
-                    <TextView
-                            android:id="@+id/tv_author"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_marginLeft="160dp"
-                            android:drawableLeft="@mipmap/icon_author"
-                            android:drawablePadding="5dp"
-                            android:textColor="@color/repos_common_text_color"
-                            android:text="@{item.owner.login}"/>
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
