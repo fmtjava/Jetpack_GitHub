@@ -85,7 +85,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    
 # 更新日志
 ### v1.8
-  * 添加App启动优化代码，提示App的启动速度
+  * 添加App启动优化代码，提升App的启动速度
  ### v1.7
   * 使用协程进一步简化异步代码，增强代码的可读性
   * BaseActivity、BaseMVActivity等基类再次进行封装
