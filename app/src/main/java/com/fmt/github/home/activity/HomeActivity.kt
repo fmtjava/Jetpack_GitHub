@@ -19,6 +19,7 @@ import com.fmt.github.databinding.LayoutNavHeaderBinding
 import com.fmt.github.ext.showConfirmPopup
 import com.fmt.github.ext.yes
 import com.fmt.github.home.adapter.HomePageAdapter
+import com.fmt.github.home.fragment.HomeFragment
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
@@ -57,12 +58,13 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
             //Androidx的协程支持LifecycleScope、ViewModelScope
             mUser = mUserDao.getAll()[0]
             initHeaderLayout()
-            initViewPager()
+            initRecyclerView()
         }
     }
 
     private fun initHeaderLayout() {
-        val dataBind = LayoutNavHeaderBinding.inflate(LayoutInflater.from(this), mNavigationView,false)
+        val dataBind =
+            LayoutNavHeaderBinding.inflate(LayoutInflater.from(this), mNavigationView, false)
         dataBind.user = mUser
         mNavigationView.addHeaderView(dataBind.root)
     }
@@ -84,17 +86,14 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
             }
     }
 
-    private fun initViewPager() {
-        val fragmentList = mutableListOf<Fragment>().apply {
-            add(UserReposFragment.newInstance(mUser.login))
-            add(UserReposFragment.newInstance(mUser.login, true))
-        }
-        val homePageAdapter = HomePageAdapter(
-            supportFragmentManager, fragmentList,
-            FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    private fun initRecyclerView() {
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.replace(
+            R.id.frameLayout,
+            HomeFragment.newInstance(mUser.login),
+            "Home_Fragment"
         )
-        mViewPager.adapter = homePageAdapter
-        mTabLayout.setupWithViewPager(mViewPager)
+        beginTransaction.commit()
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

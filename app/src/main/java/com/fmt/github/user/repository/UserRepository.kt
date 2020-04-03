@@ -1,5 +1,6 @@
 package com.fmt.github.user.repository
 
+import com.fmt.github.home.model.ReceivedEventModel
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.api.UserApi
 import com.fmt.github.user.model.db.User
@@ -8,6 +9,8 @@ import com.fmt.github.user.model.AuthorizationReqModel
 import com.fmt.github.user.model.UserInfoModel
 import com.fmt.github.user.model.UserListModel
 import com.fmt.github.user.model.UserModel
+import okhttp3.ResponseBody
+import retrofit2.Response
 
 class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDao) {
 
@@ -32,6 +35,9 @@ class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDa
 
     suspend fun getStarredRepos(user: String, page: Int): List<ReposItemModel> =
         mUserApi.getStarredRepos(user, page)
+
+    suspend fun queryReceivedEvents(user: String, page: Int): List<ReceivedEventModel> =
+        mUserApi.queryReceivedEvents(user, page)
 
     suspend fun saveLocalUser(user: User) = mUserDao.insertAll(user)
 

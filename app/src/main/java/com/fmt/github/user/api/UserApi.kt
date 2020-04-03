@@ -1,6 +1,7 @@
 package com.fmt.github.user.api
 
 import com.fmt.github.config.Configs
+import com.fmt.github.home.model.ReceivedEventModel
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.model.*
 import okhttp3.ResponseBody
@@ -31,4 +32,10 @@ interface UserApi {
 
     @GET("users/{user}/starred")
     suspend fun getStarredRepos(@Path("user") user: String, @Query("page") page: Int, @Query("per_page") per_page: Int = Configs.PAGE_SIZE): List<ReposItemModel>
+
+    @GET("users/{username}/received_events?")
+    suspend fun queryReceivedEvents(@Path("username") username: String,
+                                    @Query("page") page: Int,
+                                    @Query("per_page") perPage: Int = Configs.PAGE_SIZE): List<ReceivedEventModel>
+
 }
