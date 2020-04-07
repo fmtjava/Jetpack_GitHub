@@ -6,28 +6,23 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
-import com.fmt.github.constant.Constant
 import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
 import com.fmt.github.ext.showConfirmPopup
 import com.fmt.github.ext.yes
-import com.fmt.github.home.adapter.HomePageAdapter
 import com.fmt.github.home.fragment.HomeFragment
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
 import com.fmt.github.user.activity.UserInfoActivity
-import com.fmt.github.user.model.db.User
 import com.fmt.github.user.dao.UserDao
-import com.fmt.github.user.fragment.UserReposFragment
 import com.fmt.github.user.model.UserModel
+import com.fmt.github.user.model.db.User
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
@@ -99,11 +94,6 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.item_user -> go2UserInfoActivity(mUser.login, mUser.avatar_url)
-
-            R.id.item_copy_right -> go2UserInfoActivity(
-                Constant.AUTHOR_NAME,
-                Constant.AUTHOR_AVATAR_URL
-            )
 
             R.id.item_about -> Intent(this, AboutActivity::class.java).run { startActivity(this) }
 

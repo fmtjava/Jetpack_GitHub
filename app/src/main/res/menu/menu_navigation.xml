@@ -12,14 +12,6 @@
 
 	<group android:checkableBehavior="single">
 		<item
-				android:id="@+id/item_copy_right"
-				android:title="CopyRight"
-				android:icon="@mipmap/icon_copy_right"
-				/>
-	</group>
-
-	<group android:checkableBehavior="single">
-		<item
 				android:id="@+id/item_about"
 				android:title="About"
 				android:icon="@mipmap/icon_about"
