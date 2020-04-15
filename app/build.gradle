@@ -2,19 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-noarg'
-apply plugin: 'kotlin-allopen'
 
 kapt {
     generateStubs = true
-}
-
-allOpen {
-    annotation("com.fmt.github.Poko")
-}
-
-noArg {
-    annotation("com.fmt.github.Poko")
 }
 
 android {
@@ -24,7 +14,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 9
-        versionName "1.9"
+        versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
