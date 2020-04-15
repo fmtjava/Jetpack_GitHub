@@ -9,8 +9,6 @@ import com.fmt.github.user.model.AuthorizationReqModel
 import com.fmt.github.user.model.UserInfoModel
 import com.fmt.github.user.model.UserListModel
 import com.fmt.github.user.model.UserModel
-import okhttp3.ResponseBody
-import retrofit2.Response
 
 class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDao) {
 

@@ -7,6 +7,7 @@ import com.fmt.github.BuildConfig
 import com.fmt.github.data.db.AppDataBase
 import com.fmt.github.data.http.interceptor.AuthorizationInterceptor
 import com.fmt.github.home.viewmodel.HomeViewModel
+import com.fmt.github.home.viewmodel.ReceivedEventViewModel
 import com.fmt.github.repos.api.ReposApi
 import com.fmt.github.repos.repository.ReposRepository
 import com.fmt.github.repos.viewmodel.ReposViewModel
@@ -28,17 +29,19 @@ private const val TAG = "fmt"
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
+    viewModel { ReceivedEventViewModel(get()) }
     viewModel { ReposViewModel(get()) }
     viewModel { UserViewModel(get()) }
 }
 
 val reposModule = module {
+    //factory 每次注入时都重新创建一个新的对象
     factory { ReposRepository(get()) }
     factory { UserRepository(get(), get()) }
 }
 
 val remoteModule = module {
-
+    //single 单例对象
     single {
         val httpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
             override fun log(message: String) {

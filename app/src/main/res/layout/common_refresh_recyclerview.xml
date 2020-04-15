@@ -4,8 +4,7 @@
     android:id="@+id/mRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_bg_color"
-    >
+    android:background="@color/common_bg_color">
 
     <com.kennyc.view.MultiStateView
         android:id="@+id/mMultipleStatusView"
@@ -17,7 +16,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
     </com.kennyc.view.MultiStateView>
 
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

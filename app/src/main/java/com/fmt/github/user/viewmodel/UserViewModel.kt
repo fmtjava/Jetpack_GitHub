@@ -13,19 +13,16 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
 
     val mUserInfoModel = MutableLiveData<UserInfoModel>()
 
-    fun createOrGetAuthorization(): LiveData<AuthorizationRespModel> {
-        val authorizationReqModel = AuthorizationReqModel(
-            Configs.CLIENT_SECRET,
-            Configs.SCOPE,
-            Configs.NOTE, Configs.NOTE_URL
+    fun createOrGetAuthorization(): LiveData<AuthorizationRespModel> = emit {
+        mUserRepository.createOrGetAuthorization(
+            AuthorizationReqModel(
+                Configs.CLIENT_SECRET,
+                Configs.SCOPE,
+                Configs.NOTE, Configs.NOTE_URL
+            ),
+            Configs.CLIENT_ID,
+            Configs.FINGERPRINT
         )
-        return emit {
-            mUserRepository.createOrGetAuthorization(
-                authorizationReqModel,
-                Configs.CLIENT_ID,
-                Configs.FINGERPRINT
-            )
-        }
     }
 
     fun getUser(): LiveData<UserModel> = emit {
@@ -54,7 +51,7 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         return mUserInfoModel
     }
 
-    fun getUserPublicRepos(user: String, page: Int):LiveData<List<ReposItemModel>> = emit {
+    fun getUserPublicRepos(user: String, page: Int): LiveData<List<ReposItemModel>> = emit {
         mUserRepository.getUserPublicRepos(user, page)
     }
 

@@ -15,7 +15,7 @@ import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
 import com.fmt.github.ext.showConfirmPopup
 import com.fmt.github.ext.yes
-import com.fmt.github.home.fragment.HomeFragment
+import com.fmt.github.home.fragment.ReceivedEventFragment
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
@@ -85,7 +85,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
         val beginTransaction = supportFragmentManager.beginTransaction()
         beginTransaction.replace(
             R.id.frameLayout,
-            HomeFragment.newInstance(mUser.login),
+            ReceivedEventFragment.newInstance(mUser.login),
             "Home_Fragment"
         )
         beginTransaction.commit()
