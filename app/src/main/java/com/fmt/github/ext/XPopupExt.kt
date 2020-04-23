@@ -6,12 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import com.fmt.github.AppContext
 import com.fmt.github.R
 import com.lxj.xpopup.XPopup
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 //回调转协程
 suspend fun showConfirmPopup(context: Context, title: String, message: String) =
-    suspendCoroutine<Boolean> { continuation ->
+    suspendCancellableCoroutine<Boolean> { continuation -> //Continuation(本质还是回调接口),kotlin编译器的黑魔法帮我们做了封装处理了
         XPopup.Builder(context)
             .asConfirm(
                 title,
@@ -22,7 +22,11 @@ suspend fun showConfirmPopup(context: Context, title: String, message: String) =
                 { continuation.resume(false) },
                 false
             )
-            .show()
+            .show().also { popupView ->
+                continuation.invokeOnCancellation {//在协程取消时，隐藏对话框
+                    popupView.dismiss()
+                }
+            }
     }
 
 fun createSortReposPopup(context: Context): LiveData<SortOption> {
