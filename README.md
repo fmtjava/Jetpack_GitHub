@@ -86,7 +86,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
 # 更新日志
 ### v2.1
   * 接入WorkManager实现版本更新功能
-  * 新增smallestWidth限定符屏幕适配方案
+  * 新增SmallestWidth限定符屏幕适配方案
 ### v2.0
   * 接入Paging改写动态分页列表页面,并封装Paging版分页模版(BasePagingVMFragment、BaseLPagingModel)
   * 提供Paging版分页列表模版以及普通版分页列表模版，方便对比学习
