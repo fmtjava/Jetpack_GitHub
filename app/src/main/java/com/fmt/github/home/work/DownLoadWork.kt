@@ -117,7 +117,7 @@ class DownLoadWork(context: Context, params: WorkerParameters) : CoroutineWorker
     }
 
     private fun startDown(inputStream: InputStream, totalLength: Long) {
-        val downLoadDir = AppContext.getExternalFilesDir(DOWN_LOAD_DIR)//Android Q文件存储机制修改成了沙盒模式
+        val downLoadDir = AppContext.getExternalFilesDir(DOWN_LOAD_DIR)//Android Q文件存储机制推荐使用沙盒模式
         val downLoadFile = File(downLoadDir, DOWN_LOAD_NAME)
         val outputStream = FileOutputStream(downLoadFile)
 
