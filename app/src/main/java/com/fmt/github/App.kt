@@ -16,6 +16,7 @@ class App : Application() {
         super.onCreate()
         mApplication = this
 
+        //启动器进行异步初始化
         TaskDispatcher.init(this)
         TaskDispatcher.createInstance()
             .addTask(InitBuGlyTask())

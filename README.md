@@ -1,6 +1,6 @@
 # Jetpack_GitHub
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://github.com/fmtjava/OpenGitHub)
-[![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Release Version](https://img.shields.io/badge/version-2.0-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
@@ -84,6 +84,9 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    Glide相比起Fresco要轻量很多，api调用起来也很简洁，对图片加载要求不是很高的话建议使用Glide。
    
 # 更新日志
+### v2.1
+  * 接入WorkManager实现版本更新功能
+  * 新增smallestWidth限定符屏幕适配方案
 ### v2.0
   * 接入Paging改写动态分页列表页面,并封装Paging版分页模版(BasePagingVMFragment、BaseLPagingModel)
   * 提供Paging版分页列表模版以及普通版分页列表模版，方便对比学习

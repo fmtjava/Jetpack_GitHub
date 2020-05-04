@@ -36,15 +36,16 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
     }
 
     private fun askForPermission() {
-        runWithPermissions(Permission.READ_PHONE_STATE, granted = object : Callback {
-            override fun invoke(result: AssentResult) {
-                checkIsLogin()
-            }
-        }, denied = object : Callback {
-            override fun invoke(result: AssentResult) {
-                finish()
-            }
-        })
+        runWithPermissions(Permission.READ_PHONE_STATE, Permission.READ_EXTERNAL_STORAGE,
+            Permission.WRITE_EXTERNAL_STORAGE, granted = object : Callback {
+                override fun invoke(result: AssentResult) {
+                    checkIsLogin()
+                }
+            }, denied = object : Callback {
+                override fun invoke(result: AssentResult) {
+                    finish()
+                }
+            })
     }
 
     private fun checkIsLogin() {

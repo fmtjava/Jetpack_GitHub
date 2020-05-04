@@ -4,6 +4,14 @@ import android.widget.Toast
 import com.fmt.github.AppContext
 import es.dmoral.toasty.Toasty
 
+fun infoToast(success: String) {
+    Toasty.info(AppContext, success, Toast.LENGTH_SHORT, true).show()
+}
+
+fun infoToast(success: Int) {
+    Toasty.info(AppContext, success, Toast.LENGTH_SHORT, true).show()
+}
+
 fun successToast(success: String) {
     Toasty.success(AppContext, success, Toast.LENGTH_SHORT, true).show()
 }

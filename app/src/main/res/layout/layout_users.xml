@@ -9,15 +9,16 @@
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="3dp"
+            app:cardCornerRadius="@dimen/dp_3"
             app:cardBackgroundColor="@android:color/white"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_5"
+            android:focusable="true">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -25,10 +26,10 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_head"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/dp_48"
+                    android:layout_height="@dimen/dp_48"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_margin="@dimen/dp_10"
                     android:transitionName="image"
                     app:url="@{item.avatar_url}"/>
 
@@ -36,7 +37,7 @@
                     android:id="@+id/tv_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/sp_18"
                     android:textColor="@color/colorPrimary"
                     android:layout_marginLeft="10dp"
                     android:text="@{item.login}"

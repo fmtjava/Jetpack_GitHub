@@ -7,7 +7,6 @@ object Constant {
     const val USER_PASSWORD = "password"
     const val AUTHORIZATIONS = "authorizations"
     const val AUTHORIZATION = "Authorization"
-    const val AUTHOR_NAME = "fmtjava"
-    const val AUTHOR_AVATAR_URL = "https://avatars3.githubusercontent.com/u/16126424?v=4"
+    const val DOWNLOAD = "download"
     const val STAR_EVENT_KEY= "star_event"
 }

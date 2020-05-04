@@ -8,7 +8,7 @@
 
 	<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="48dp"
+			android:layout_height="@dimen/dp_48"
 			android:background="@color/colorPrimary">
 
 		<ImageButton
@@ -17,17 +17,17 @@
 				android:layout_height="wrap_content"
 				android:src="@mipmap/icon_back"
 				android:layout_centerVertical="true"
-				android:paddingLeft="15dp"
+				android:paddingStart="@dimen/dp_15"
 				android:background="@null"
 				/>
 
 		<com.like.LikeButton
 				android:id="@+id/mFavorIb"
 				app:icon_type="heart"
-				app:icon_size="20dp"
+				app:icon_size="@dimen/dp_20"
 				app:unlike_drawable="@mipmap/icon_favorite_uncheck"
 				app:like_drawable="@mipmap/icon_favorite_check"
-				android:layout_alignParentRight="true"
+				android:layout_alignParentEnd="true"
 				android:layout_centerVertical="true"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
 				android:layout_toLeftOf="@id/mFavorIb"
 				android:singleLine="true"
 				android:ellipsize="start"
-				android:textSize="20sp"
+				android:textSize="@dimen/sp_20"
 				android:gravity="center"
 				android:layout_centerInParent="true"
 				/>

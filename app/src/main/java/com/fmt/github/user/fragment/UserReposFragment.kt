@@ -58,7 +58,7 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
 
     override fun initData() {
         arguments?.let {
-            mUserName = it.getString(KEY)
+            mUserName = it.getString(KEY).toString()
             mIsFavor = it.getBoolean(IS_FAVOR)
             initViewModelAction()
             if (mIsFavor) initStarEvent()

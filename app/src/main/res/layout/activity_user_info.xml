@@ -41,7 +41,7 @@
                             android:text="HI!"
                             android:textStyle="bold"
                             android:textColor="@android:color/white"
-                            android:textSize="30dp"/>
+                            android:textSize="30sp"/>
 
                     <TextView
                             android:id="@+id/mIntroduceTv"
@@ -104,9 +104,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="?attr/actionBarSize"
                 android:text="@{userModel.login}"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:elevation="10dp"
-                android:layout_marginLeft="96dp"
+                android:layout_marginStart="96dp"
                 android:layout_marginTop="-100dp"
                 android:gravity="center_vertical"
                 android:textColor="@android:color/white"

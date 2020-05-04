@@ -8,13 +8,13 @@ kapt {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.fmt.github"
-        minSdkVersion 17
-        targetSdkVersion 28
-        versionCode 9
-        versionName "2.0"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 10
+        versionName "2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -33,6 +33,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
     dataBinding {
         enabled = true
     }
@@ -81,6 +82,9 @@ dependencies {
     //paging
     implementation "androidx.paging:paging-runtime-ktx:2.1.2"
 
+    //WorkManager
+    implementation "androidx.work:work-runtime-ktx:2.3.4"
+
     //koin(依赖注入)
     implementation "org.koin:koin-androidx-scope:2.0.1"
     implementation "org.koin:koin-androidx-viewmodel:2.0.1"
@@ -93,10 +97,11 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.just.agentweb:agentweb:4.0.3-beta'
     implementation project(path: ':simplebehavior')
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt "com.github.bumptech.glide:compiler:4.11.0"
     implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
-    implementation  'com.github.Kennyc1012:MultiStateView:2.1'
+    implementation  'com.github.Kennyc1012:MultiStateView:2.1.2'
     implementation 'com.jaredrummler:animated-svg-view:1.0.6'
     implementation 'com.jeremyliao:live-event-bus-x:1.4.4'
     implementation 'com.github.nitrico.lastadapter:lastadapter:2.3.0'

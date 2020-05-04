@@ -1,6 +1,8 @@
 package com.fmt.github.user.repository
 
+import com.fmt.github.config.Configs
 import com.fmt.github.home.model.ReceivedEventModel
+import com.fmt.github.home.model.ReleaseModel
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.api.UserApi
 import com.fmt.github.user.model.db.User
@@ -36,6 +38,9 @@ class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDa
 
     suspend fun queryReceivedEvents(user: String, page: Int): List<ReceivedEventModel> =
         mUserApi.queryReceivedEvents(user, page)
+
+    suspend fun getReleases(): List<ReleaseModel> =
+        mUserApi.getReleases(Configs.OWNER, Configs.OWNER_REPO, 1)
 
     suspend fun saveLocalUser(user: User) = mUserDao.insertAll(user)
 

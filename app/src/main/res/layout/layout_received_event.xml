@@ -15,9 +15,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_5"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:selectableItemBackground"
@@ -28,14 +28,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginBottom="@dimen/dp_15">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_head"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginStart="@dimen/dp_10"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:url="@{item.actor.avatar_url}" />
@@ -44,11 +44,11 @@
                 android:id="@+id/tv_content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/dp_16"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{item}"
-                android:textSize="14sp"
+                android:textSize="@dimen/sp_14"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/iv_head"
@@ -57,9 +57,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_event_type"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_16"
                 android:src="@{item}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -68,11 +68,11 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_8"
                 android:text="@{TimeConverter.INSTANCE.tramsTimeAgo(item.created_at)}"
                 android:textColor="@color/repos_time_color"
-                android:textSize="12sp"
+                android:textSize="@dimen/sp_12"
                 app:layout_constraintLeft_toRightOf="@id/iv_head"
                 app:layout_constraintTop_toBottomOf="@id/tv_content"
                 tools:text="2小时前" />

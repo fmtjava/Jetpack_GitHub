@@ -13,10 +13,12 @@ import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
+import com.fmt.github.ext.getVersionName
 import com.fmt.github.ext.showConfirmPopup
 import com.fmt.github.ext.yes
 import com.fmt.github.home.fragment.ReceivedEventFragment
 import com.fmt.github.home.viewmodel.HomeViewModel
+import com.fmt.github.home.work.DownLoadWork
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
 import com.fmt.github.user.activity.UserInfoActivity
@@ -29,6 +31,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val mUserDao: UserDao by inject()//kotlin的val相当于Java的final
@@ -36,6 +39,8 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     private val mViewModel: HomeViewModel by viewModel()
 
     override fun getLayoutId(): Int = R.layout.activity_main
+
+    override fun getViewModel(): BaseViewModel = mViewModel
 
     private lateinit var mUser: User
 
@@ -46,7 +51,9 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
         initDrawerLayout()
     }
 
-    override fun getViewModel(): BaseViewModel = mViewModel
+    override fun initData() {
+        checkVersionUpdate()
+    }
 
     private fun initUserInfo() {
         lifecycleScope.launch {
@@ -129,6 +136,26 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
         Intent(this, CommonSearchActivity::class.java).run {
             putExtra(CommonSearchActivity.FROM_SEARCH_REPOS, fromSearchRepos)
             startActivity(this)
+        }
+    }
+
+    private fun checkVersionUpdate() {
+        mViewModel.getReleases().observe(this, Observer {
+            (it.tag_name != getVersionName()).yes {
+                showVersionUpdatePopup(it.assets[0].browser_download_url)
+            }
+        })
+    }
+
+    private fun showVersionUpdatePopup(downLoadUrl: String) {
+        lifecycleScope.launch {
+            showConfirmPopup(
+                this@HomeActivity,
+                getString(R.string.new_version_found),
+                getString(R.string.update_message)
+            ).yes {
+                DownLoadWork.startDownLoadWork(this@HomeActivity, downLoadUrl)
+            }
         }
     }
 

@@ -8,16 +8,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/dp_100"
         android:src="@mipmap/icon_empty" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:text="@string/empty_data"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:textSize="@dimen/sp_18" />
 
 </LinearLayout>

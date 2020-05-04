@@ -16,6 +16,10 @@ object Configs {
     val SCOPE = listOf("user", "repo", "notifications", "gist")
     val FINGERPRINT: String by lazy { Build.FINGERPRINT + UUID.randomUUID().toString() }
 
+    //仓库信息
+    const val OWNER = "fmtjava"
+    const val OWNER_REPO = "Jetpack_GitHub"
+
     //bugly
     const val BUGLY_APP_ID = "8a37e3b7c7"
 

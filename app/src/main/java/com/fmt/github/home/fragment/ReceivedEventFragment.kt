@@ -33,7 +33,7 @@ class ReceivedEventFragment :
 
     override fun afterViewCreated() {
         arguments?.let {
-            mUserName = it.getString(KEY)
+            mUserName = it.getString(KEY).toString()
             mViewModel.user = mUserName
         }
     }

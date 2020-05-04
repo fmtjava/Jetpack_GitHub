@@ -55,7 +55,7 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
 
         mSearchEt.setOnEditorActionListener { _, actionId, _ ->
             return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                hideKeyboard(currentFocus)
+                currentFocus?.let { hideKeyboard(it) }
                 mSort = ""
                 mOrder = getString(R.string.desc)
                 searchReposOrUsers()

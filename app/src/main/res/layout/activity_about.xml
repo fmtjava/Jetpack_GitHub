@@ -33,7 +33,7 @@
 		<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textSize="30sp"
+				android:textSize="@dimen/sp_30"
 				android:text="GitHub"
 				android:textColor="@color/colorPrimary"
 				android:textStyle="bold"
@@ -43,7 +43,7 @@
 		<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textSize="15sp"
+				android:textSize="@dimen/sp_15"
 				android:text="By fmtjava"
 				android:textColor="@color/colorPrimary"
 				android:layout_marginTop="10dp"
@@ -52,7 +52,7 @@
 		<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textSize="15sp"
+				android:textSize="@dimen/sp_15"
 				android:text="Open Source Licenses"
 				android:textColor="@color/colorPrimary"
 				android:layout_marginTop="10dp"

@@ -20,11 +20,11 @@
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="3dp"
+                    app:cardCornerRadius="@dimen/dp_3"
                     app:cardBackgroundColor="@android:color/white"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_5">
 
                 <LinearLayout
                         android:layout_width="match_parent"
@@ -36,9 +36,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="16sp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginLeft="15dp"
+                            android:textSize="@dimen/sp_16"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:layout_marginStart="@dimen/dp_15"
                             android:text="@{userViewModel.mUserInfoModel.login}"/>
 
                     <TextView
@@ -46,10 +46,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/repos_common_text_color"
-                            android:textSize="14sp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
+                            android:textSize="@dimen/sp_14"
+                            android:layout_marginTop="@dimen/dp_15"
+                            android:layout_marginLeft="@dimen/dp_15"
+                            android:layout_marginRight="@dimen/dp_15"
                             android:text="@{userViewModel.mUserInfoModel.bio}"/>
 
                     <TextView
@@ -57,11 +57,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/email_text_color"
-                            android:textSize="14sp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:drawableLeft="@mipmap/icon_email"
-                            android:drawablePadding="15dp"
+                            android:textSize="@dimen/sp_14"
+                            android:layout_marginTop="@dimen/dp_15"
+                            android:layout_marginStart="@dimen/dp_15"
+                            android:drawableStart="@mipmap/icon_email"
+                            android:drawablePadding="@dimen/dp_15"
                             android:text="@{userViewModel.mUserInfoModel.email}"/>
 
                     <TextView
@@ -69,20 +69,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/email_text_color"
-                            android:textSize="14sp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginLeft="13dp"
-                            android:drawableLeft="@mipmap/icon_link"
-                            android:drawablePadding="15dp"
+                            android:textSize="@dimen/sp_14"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:layout_marginStart="@dimen/dp_13"
+                            android:drawableStart="@mipmap/icon_link"
+                            android:drawablePadding="@dimen/dp_15"
                             android:text="@{userViewModel.mUserInfoModel.blog}"/>
 
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="20dp">
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:layout_marginBottom="@dimen/dp_20">
 
                         <LinearLayout
                                 android:layout_width="0dp"
@@ -95,14 +95,14 @@
                                     android:id="@+id/mFollowersTv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/sp_16"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="@{String.valueOf(userViewModel.mUserInfoModel.followers)}"/>
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/sp_12"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="Followers"/>
 
@@ -119,14 +119,14 @@
                                     android:id="@+id/mFollowingTv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/sp_16"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="@{String.valueOf(userViewModel.mUserInfoModel.followers)}"/>
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/sp_12"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="Following"
                             />
@@ -144,14 +144,14 @@
                                     android:id="@+id/mRepositoriesTv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/sp_16"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="@{String.valueOf(userViewModel.mUserInfoModel.public_repos)}"/>
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/sp_12"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="Repositories"/>
 
@@ -168,14 +168,14 @@
                                     android:id="@+id/mGistsTv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/sp_16"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="@{String.valueOf(userViewModel.mUserInfoModel.public_gists)}"/>
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/sp_12"
                                     android:textColor="@color/user_info_common_text_color"
                                     android:text="Gists"/>
 

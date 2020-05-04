@@ -8,26 +8,26 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="@dimen/dp_140"
             android:orientation="vertical"
             android:background="@color/colorPrimary">
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_head"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="@dimen/dp_64"
+                android:layout_height="@dimen/dp_64"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 bind:url="@{user.avatar_url}"/>
 
         <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="@dimen/sp_20"
                 android:textColor="@android:color/white"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/dp_10"
                 android:text="@{user.login}"/>
 
     </LinearLayout>

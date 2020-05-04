@@ -9,8 +9,8 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
-import com.bumptech.glide.Glide
 import com.fmt.github.AppContext
+import com.fmt.github.GlideApp
 import com.fmt.github.R
 import com.fmt.github.home.model.ReceivedEventModel
 import com.fmt.github.repos.model.ReposItemModel
@@ -18,7 +18,7 @@ import com.fmt.github.repos.model.ReposItemModel
 //DataBinding自定义属性
 @BindingAdapter("url")
 fun loadImage(imageView: ImageView, url: String) {
-    Glide.with(AppContext).load(url)
+    GlideApp.with(AppContext).load(url)
         .placeholder(R.mipmap.ic_github)
         .into(imageView)
 }
@@ -77,8 +77,8 @@ fun setReceivedEventContent(receivedEventModel: ReceivedEventModel): CharSequenc
 
     //利用SpannableStringBuilder处理富文本
     return SpannableStringBuilder().apply {
-        append("$actor $action $repo")
-
+        append("$actor $action $repo")//添加文本内容
+        //设置文本样式
         setSpan(StyleSpan(Typeface.BOLD), 0, actor.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         setSpan(
             StyleSpan(Typeface.BOLD),
