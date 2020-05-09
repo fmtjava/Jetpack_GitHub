@@ -1,5 +1,9 @@
 package com.fmt.github.user.activity
 
+import android.app.Activity
+import android.content.Intent
+import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.fmt.github.R
@@ -57,5 +61,21 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
 
     override fun onBackPressed() {
         supportFinishAfterTransition()//共享元素共享动画
+    }
+}
+
+fun go2UserInfoActivity(activity: Activity, view: View, userModel: UserModel) {
+    with(Intent(activity, UserInfoActivity::class.java)) {
+        putExtra(UserInfoActivity.USER_INFO, userModel)
+    }.run {
+        //共享元素共享动画
+        ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity,
+            view,
+            "image"
+        ).toBundle()
+            .also {
+                activity.startActivity(this, it)
+            }
     }
 }

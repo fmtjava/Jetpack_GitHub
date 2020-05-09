@@ -1,5 +1,7 @@
 package com.fmt.github.repos.activity
 
+import android.content.Context
+import android.content.Intent
 import android.view.KeyEvent
 import android.view.View
 import android.widget.LinearLayout
@@ -124,4 +126,14 @@ class ReposDetailActivity : BaseVMActivity() {
         }.otherwise {
             super.onKeyDown(keyCode, event)
         }
+}
+
+fun go2ReposDetailActivity(context: Context, webUrl: String, repo: String, owner: String) {
+    with(Intent(context, ReposDetailActivity::class.java)) {
+        putExtra(ReposDetailActivity.WEB_URL, webUrl)
+        putExtra(ReposDetailActivity.REPO, repo)
+        putExtra(ReposDetailActivity.OWNER, owner)
+    }.run {
+        context.startActivity(this)
+    }
 }

@@ -1,7 +1,6 @@
 package com.fmt.github.home.adapter
 
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fmt.github.databinding.LayoutReceivedEventBinding
 import com.fmt.github.home.model.ReceivedEventModel
-import com.fmt.github.repos.activity.ReposDetailActivity
+import com.fmt.github.repos.activity.go2ReposDetailActivity
+import com.fmt.github.user.activity.go2UserInfoActivity
+import com.fmt.github.user.model.UserModel
 
 const val BASE_WEB_URL = "https://github.com/"
 
-class HomeAdapter(private val mContext: Context) :
+class HomeAdapter(private val mContext: Activity) :
     PagedListAdapter<ReceivedEventModel, HomeAdapter.ViewHolder>(object :
         DiffUtil.ItemCallback<ReceivedEventModel>() {
         override fun areItemsTheSame(oldItem: ReceivedEventModel, newItem: ReceivedEventModel) =
@@ -38,27 +39,25 @@ class HomeAdapter(private val mContext: Context) :
         getItem(position)?.let { receivedEventModel ->
             holder.bindData(receivedEventModel)
             holder.itemView.setOnClickListener {
-                go2ReposDetailActivity(receivedEventModel)
+                val splitArr = receivedEventModel.repo.name.split("/")
+                go2ReposDetailActivity(mContext,"${BASE_WEB_URL}${receivedEventModel.repo.name}",
+                    splitArr[1],splitArr[0])
             }
         }
     }
 
-    private fun go2ReposDetailActivity(receivedEventModel: ReceivedEventModel) {
-        val splitArr = receivedEventModel.repo.name.split("/")
-        with(Intent(mContext, ReposDetailActivity::class.java)) {
-            putExtra(ReposDetailActivity.WEB_URL, "${BASE_WEB_URL}${receivedEventModel.repo.name}")
-            putExtra(ReposDetailActivity.OWNER, splitArr[0])
-            putExtra(ReposDetailActivity.REPO, splitArr[1])
-        }.run {
-            mContext.startActivity(this)
-        }
-    }
-
-    class ViewHolder(itemView: View, val binding: LayoutReceivedEventBinding) :
+    inner class ViewHolder(itemView: View, val binding: LayoutReceivedEventBinding) :
         RecyclerView.ViewHolder(itemView) {
 
         fun bindData(receivedEventModel: ReceivedEventModel) {
             binding.item = receivedEventModel
+            binding.ivHead.setOnClickListener {
+                go2UserInfoActivity(
+                    mContext,
+                    binding.ivHead,
+                    UserModel(receivedEventModel.actor.login, receivedEventModel.actor.avatar_url)
+                )
+            }
         }
     }
 }

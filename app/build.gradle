@@ -13,8 +13,8 @@ android {
         applicationId "com.fmt.github"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 10
-        versionName "2.1"
+        versionCode 11
+        versionName "2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -79,6 +79,10 @@ dependencies {
     kapt "androidx.room:room-compiler:2.2.5"
     implementation "androidx.room:room-ktx:2.2.5"
 
+    //navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha06"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha06"
+
     //paging
     implementation "androidx.paging:paging-runtime-ktx:2.1.2"
 
@@ -101,7 +105,7 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:4.11.0"
     implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
-    implementation  'com.github.Kennyc1012:MultiStateView:2.1.2'
+    implementation 'com.github.Kennyc1012:MultiStateView:2.1.2'
     implementation 'com.jaredrummler:animated-svg-view:1.0.6'
     implementation 'com.jeremyliao:live-event-bus-x:1.4.4'
     implementation 'com.github.nitrico.lastadapter:lastadapter:2.3.0'
@@ -112,7 +116,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0@aar'
 
     //bugly捕获异常
-    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport:3.2.1'
     implementation project(path: ':LaunchStarter')
 
 }

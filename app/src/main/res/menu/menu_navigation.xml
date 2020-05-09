@@ -6,20 +6,20 @@
         <item
             android:id="@+id/item_user"
             android:icon="@mipmap/icon_user"
-            android:title="Profile" />
+            android:title="@string/profile" />
     </group>
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_about"
             android:icon="@mipmap/icon_about"
-            android:title="About" />
+            android:title="@string/about" />
     </group>
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_logout"
-            android:icon="@mipmap/icon_logout"
-            android:title="Logout" />
+            android:icon="@mipmap/icon_exit"
+            android:title="@string/logout" />
     </group>
 </menu>

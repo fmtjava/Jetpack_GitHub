@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
@@ -16,7 +17,6 @@ import com.fmt.github.databinding.LayoutNavHeaderBinding
 import com.fmt.github.ext.getVersionName
 import com.fmt.github.ext.showConfirmPopup
 import com.fmt.github.ext.yes
-import com.fmt.github.home.fragment.ReceivedEventFragment
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.home.work.DownLoadWork
 import com.fmt.github.user.activity.AboutActivity
@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -60,7 +59,6 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
             //Androidx的协程支持LifecycleScope、ViewModelScope
             mUser = mUserDao.getAll()[0]
             initHeaderLayout()
-            initRecyclerView()
         }
     }
 
@@ -88,15 +86,8 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
             }
     }
 
-    private fun initRecyclerView() {
-        val beginTransaction = supportFragmentManager.beginTransaction()
-        beginTransaction.replace(
-            R.id.frameLayout,
-            ReceivedEventFragment.newInstance(mUser.login),
-            "Home_Fragment"
-        )
-        beginTransaction.commit()
-    }
+    override fun onSupportNavigateUp(): Boolean =
+        Navigation.findNavController(this, R.id.nav_home_fragment).navigateUp()
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {

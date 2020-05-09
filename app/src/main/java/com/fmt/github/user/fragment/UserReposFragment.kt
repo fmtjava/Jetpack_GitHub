@@ -1,6 +1,5 @@
 package com.fmt.github.user.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +11,7 @@ import com.fmt.github.databinding.LayoutReposBinding
 import com.fmt.github.ext.otherwise
 import com.fmt.github.ext.yes
 import com.fmt.github.home.event.ReposStarEvent
-import com.fmt.github.repos.activity.ReposDetailActivity
+import com.fmt.github.repos.activity.go2ReposDetailActivity
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.viewmodel.UserViewModel
 import com.github.nitrico.lastadapter.LastAdapter
@@ -47,7 +46,8 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
     override fun initRecyclerView() {
         val type = Type<LayoutReposBinding>(R.layout.layout_repos)
             .onClick {
-                go2ReposDetailActivity(mListData[it.adapterPosition])
+                val reposItemModel = mListData[it.adapterPosition]
+                go2ReposDetailActivity(mActivity,reposItemModel.html_url,reposItemModel.name,reposItemModel.owner.login)
             }
         LastAdapter(mListData, BR.item)
             .map<ReposItemModel>(type)
@@ -70,16 +70,6 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
             mViewModel.getStarredRepos(mUserName, mPage).observe(this, mListObserver)
         }.otherwise {
             mViewModel.getUserPublicRepos(mUserName, mPage).observe(this, mListObserver)
-        }
-    }
-
-    private fun go2ReposDetailActivity(reposItemModel: ReposItemModel) {
-        with(Intent(mActivity, ReposDetailActivity::class.java)) {
-            putExtra(ReposDetailActivity.WEB_URL, reposItemModel.html_url)
-            putExtra(ReposDetailActivity.REPO, reposItemModel.name)
-            putExtra(ReposDetailActivity.OWNER, reposItemModel.owner.login)
-        }.run {
-            startActivity(this)
         }
     }
 

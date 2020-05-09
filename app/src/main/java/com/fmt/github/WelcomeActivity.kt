@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import com.afollestad.assent.*
 import com.fmt.github.base.activity.BaseDataBindActivity
+import com.fmt.github.config.Settings
 import com.fmt.github.databinding.ActivityWelcomeBinding
 import com.fmt.github.ext.*
 import com.fmt.github.home.activity.HomeActivity
@@ -55,6 +56,7 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
             (userList.isEmpty()).yes {
                 go2Activity(LoginActivity::class.java)
             }.otherwise {
+                Settings.Account.loginUser = userList[0].login
                 go2Activity(HomeActivity::class.java)
             }
         }

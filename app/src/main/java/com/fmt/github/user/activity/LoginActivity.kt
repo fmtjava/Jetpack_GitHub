@@ -11,10 +11,10 @@ import com.fmt.github.databinding.ActivityLoginBinding
 import com.fmt.github.ext.otherwise
 import com.fmt.github.ext.yes
 import com.fmt.github.home.activity.HomeActivity
-import com.fmt.github.user.model.db.User
 import com.fmt.github.user.model.AuthorizationRespModel
 import com.fmt.github.user.model.UserLoginModel
 import com.fmt.github.user.model.UserModel
+import com.fmt.github.user.model.db.User
 import com.fmt.github.user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -82,6 +82,7 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
 
     private fun saveUserInfo(userModel: UserModel) {
         User(mAuthId, userModel.login, userModel.avatar_url).apply {
+            Settings.Account.loginUser = this.login
             mViewModel.saveLocalUser(this@apply)
             go2MainActivity()
         }

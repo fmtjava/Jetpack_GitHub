@@ -36,6 +36,7 @@
                 android:layout_width="@dimen/dp_40"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginStart="@dimen/dp_10"
+                android:transitionName="image"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:url="@{item.actor.avatar_url}" />
