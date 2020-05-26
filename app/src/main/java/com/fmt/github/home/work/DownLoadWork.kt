@@ -72,13 +72,10 @@ class DownLoadWork(context: Context, params: WorkerParameters) : CoroutineWorker
         }.otherwise {
             try {
                 initNotification()
-                withContext(Dispatchers.IO) {
-                    //withContext进行线程切换
-                    val responseBody =
-                        DownloadService.download(inputData.getString(DOWN_LOAD_URL).toString())
-                    startDown(responseBody.byteStream(), responseBody.contentLength())
-                    Result.success()
-                }
+                val responseBody =
+                    DownloadService.download(inputData.getString(DOWN_LOAD_URL).toString())
+                startDown(responseBody.byteStream(), responseBody.contentLength())
+                Result.success()
             } catch (e: Exception) {
                 mNotificationManager.cancel(NOTIFY_ID)
                 withContext(Dispatchers.Main) {

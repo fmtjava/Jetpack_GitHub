@@ -11,6 +11,7 @@ import com.fmt.github.user.repository.UserRepository
 
 class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel() {
 
+    //提供给xml文件进行绑定
     val mUserInfoModel = MutableLiveData<UserInfoModel>()
 
     fun createOrGetAuthorization(): LiveData<AuthorizationRespModel> = emit {
@@ -44,11 +45,10 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         mUserRepository.searchUsers(query, sort, order, page).items
     }
 
-    fun getUserInfo(user: String): LiveData<UserInfoModel> {
+    fun getUserInfo(user: String){
         launch {
             mUserInfoModel.value = mUserRepository.getUserInfo(user)
         }
-        return mUserInfoModel
     }
 
     fun getUserPublicRepos(user: String, page: Int): LiveData<List<ReposItemModel>> = emit {

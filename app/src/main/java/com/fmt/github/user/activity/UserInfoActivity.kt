@@ -55,6 +55,7 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
                 supportFragmentManager, this,
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
             )
+            mViewPager.offscreenPageLimit = 2
             mTabLayout.setupWithViewPager(mViewPager)
         }
     }

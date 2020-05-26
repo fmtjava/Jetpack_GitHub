@@ -11,7 +11,8 @@ import kotlin.coroutines.resume
 
 //回调转协程
 suspend fun showConfirmPopup(context: Context, title: String, message: String) =
-    suspendCancellableCoroutine<Boolean> { continuation -> //Continuation(本质还是回调接口),kotlin编译器的黑魔法帮我们做了封装处理了
+    suspendCancellableCoroutine<Boolean> { continuation ->
+        //Continuation(本质还是回调接口),kotlin编译器的黑魔法帮我们做了封装处理了
         XPopup.Builder(context)
             .asConfirm(
                 title,
@@ -23,7 +24,8 @@ suspend fun showConfirmPopup(context: Context, title: String, message: String) =
                 false
             )
             .show().also { popupView ->
-                continuation.invokeOnCancellation {//在协程取消时，隐藏对话框
+                continuation.invokeOnCancellation {
+                    //在协程取消时，隐藏对话框
                     popupView.dismiss()
                 }
             }
