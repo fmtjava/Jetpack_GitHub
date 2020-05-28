@@ -36,12 +36,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginEnd="@dimen/dp_20">
+            android:layout_marginEnd="@dimen/dp_20"
+            app:boxBackgroundColor="@android:color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mUserNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@null"
                 android:hint="@string/username"
                 android:singleLine="true"
                 android:text="@={userLoginModel.username}" />
@@ -54,19 +56,21 @@
             android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_marginRight="@dimen/dp_20"
+            app:boxBackgroundColor="@android:color/white"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@null"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:text="@={userLoginModel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/mSignInBt"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
