@@ -59,6 +59,7 @@
     <string name="profile">Profile</string>
     <string name="about">About</string>
     <string name="logout">Logout</string>
+    <string name="retry_load">retry load</string>
 
     <string-array name="github_glyph_strings">
         <item>M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4

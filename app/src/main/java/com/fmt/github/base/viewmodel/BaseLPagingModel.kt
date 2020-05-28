@@ -15,13 +15,15 @@ import kotlinx.coroutines.launch
  */
 abstract class BaseLPagingModel<M> : BaseViewModel() {
 
-    lateinit var mDataSource: PageKeyedDataSource<Int, M>
+    private lateinit var mDataSource: PageKeyedDataSource<Int, M>
 
     val mBoundaryData = MutableLiveData(false)//控制页面显示状态
 
+    val refreshState = MutableLiveData(false)
+
     val loadMoreState = MutableLiveData(false)
 
-    var loadMoreRetry: (() -> Unit)? = null
+    private var loadMoreRetry: (() -> Unit)? = null
 
     val pagedList: LiveData<PagedList<M>> by lazy {
         LivePagedListBuilder<Int, M>(
@@ -43,17 +45,23 @@ abstract class BaseLPagingModel<M> : BaseViewModel() {
             params: LoadInitialParams<Int>,
             callback: LoadInitialCallback<Int, M>
         ) {
-            launch {
-                val list = getDataList(1)
-                mBoundaryData.postValue(list.isNotEmpty())
-                callback.onResult(list, null, 2)
+            viewModelScope.launch {
+                try {
+                    val list = getDataList(1)
+                    mBoundaryData.postValue(list.isNotEmpty())
+                    callback.onResult(list, null, 2)
+                    mStateLiveData.value = SuccessState
+                    refreshState.postValue(false)
+                } catch (e: Exception) {
+                    refreshState.postValue(true)
+                    mStateLiveData.value = ErrorState(e.message)
+                }
             }
         }
 
         override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, M>) {
             viewModelScope.launch {
                 try {
-                    mStateLiveData.value = LoadState
                     val list = getDataList(params.key)
                     callback.onResult(
                         list,
@@ -65,7 +73,7 @@ abstract class BaseLPagingModel<M> : BaseViewModel() {
                     mStateLiveData.value = ErrorState(e.message)
                     loadMoreState.postValue(true)
                     loadMoreRetry = {
-                        //保存加载更多失败时的场景
+                        //保存加载更多失败时的场景,防止第一次加载失败后，后续无法再次调用loadAfter
                         loadMoreFail(params, callback)
                     }
                 }
@@ -83,7 +91,7 @@ abstract class BaseLPagingModel<M> : BaseViewModel() {
         loadMoreRetry?.invoke()
     }
 
-    fun loadMoreFail(//加载更多失败时调用
+    private fun loadMoreFail(//加载更多失败时调用
         params: PageKeyedDataSource.LoadParams<Int>,
         callback: PageKeyedDataSource.LoadCallback<Int, M>
     ) {

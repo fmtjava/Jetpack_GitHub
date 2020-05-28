@@ -69,6 +69,7 @@
                     android:id="@+id/mTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:tabBackground="@color/colorPrimary"
                     app:tabTextColor="@android:color/white"
                     app:tabIndicatorColor="@android:color/white"
                     app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"/>

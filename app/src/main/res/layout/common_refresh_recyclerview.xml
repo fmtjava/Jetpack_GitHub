@@ -11,13 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:msv_emptyView="@layout/layout_empty"
+        app:msv_loadingView="@layout/layout_loading"
+        app:msv_errorView="@layout/layout_refresh_retyr"
         app:msv_viewState="empty">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
     </com.kennyc.view.MultiStateView>
 
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>
