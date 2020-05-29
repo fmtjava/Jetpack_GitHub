@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 /**
  * 基于Paging封装通用ViewModel
  */
-abstract class BaseLPagingModel<M> : BaseViewModel() {
+abstract class BaseLPagingViewModel<M> : BaseViewModel() {
 
     private lateinit var mDataSource: PageKeyedDataSource<Int, M>
 

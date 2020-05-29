@@ -1,11 +1,11 @@
 package com.fmt.github.home.viewmodel
 
-import com.fmt.github.base.viewmodel.BaseLPagingModel
+import com.fmt.github.base.viewmodel.BaseLPagingViewModel
 import com.fmt.github.home.model.ReceivedEventModel
 import com.fmt.github.user.repository.UserRepository
 
 class ReceivedEventViewModel(private val mUserRepository: UserRepository) :
-    BaseLPagingModel<ReceivedEventModel>() {
+    BaseLPagingViewModel<ReceivedEventModel>() {
 
     var user = ""
 
