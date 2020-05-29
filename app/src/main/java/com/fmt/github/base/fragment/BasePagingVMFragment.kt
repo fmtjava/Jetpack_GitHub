@@ -6,7 +6,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fmt.github.R
-import com.fmt.github.base.viewmodel.BaseLPagingModel
+import com.fmt.github.base.viewmodel.BaseLPagingViewModel
 import com.fmt.github.ext.yes
 import com.google.android.material.button.MaterialButton
 import com.kennyc.view.MultiStateView
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
 /**
  * 基于Paging封装通用分页列表
  */
-abstract class BasePagingVMFragment<M, VM : BaseLPagingModel<M>, VH : RecyclerView.ViewHolder> :
+abstract class BasePagingVMFragment<M, VM : BaseLPagingViewModel<M>, VH : RecyclerView.ViewHolder> :
     BaseVMFragment(), OnRefreshListener,
     OnLoadMoreListener {
 
