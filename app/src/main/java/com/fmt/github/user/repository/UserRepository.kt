@@ -20,7 +20,7 @@ class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDa
     ) =
         mUserApi.createOrGetAuthorization(authorizationReqModel, client_id, fingerprint)
 
-    suspend fun deleteAuthorization(id: Int) = mUserApi.deleteAuthorization(id)
+    suspend fun getAccessToken(url: String) = mUserApi.getAccessToken(url)
 
     suspend fun getUser(): UserModel = mUserApi.getUser()
 

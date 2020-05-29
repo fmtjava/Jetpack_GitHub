@@ -163,15 +163,11 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     private fun logout() {
-        mViewModel.deleteAuthorization(mUser.uid).observe(this, Observer {
-            if (it) {
-                Preference.clear()
-                mViewModel.deleteUser()
-                Intent(this, LoginActivity::class.java).run {
-                    startActivity(this)
-                    finish()
-                }
-            }
-        })
+        Preference.clear()
+        mViewModel.deleteUser()
+        Intent(this, LoginActivity::class.java).run {
+            startActivity(this)
+            finish()
+        }
     }
 }

@@ -91,5 +91,24 @@
             android:layout_marginTop="@dimen/dp_35"
             android:visibility="gone" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mOAuthLoginIv"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_weight="1"
+            android:scaleType="fitEnd"
+            android:src="@mipmap/icon_browser" />
+
+        <ProgressBar
+            android:id="@+id/mOAuthProgress"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_weight="1"
+            android:visibility="gone" />
+
     </LinearLayout>
 </layout>

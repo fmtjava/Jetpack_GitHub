@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.fmt.github.config.Configs
 import com.fmt.github.databinding.LayoutReceivedEventBinding
 import com.fmt.github.home.model.ReceivedEventModel
 import com.fmt.github.repos.activity.go2ReposDetailActivity
 import com.fmt.github.user.activity.go2UserInfoActivity
 import com.fmt.github.user.model.UserModel
-
-const val BASE_WEB_URL = "https://github.com/"
 
 class HomeAdapter(private val mContext: Activity) :
     PagedListAdapter<ReceivedEventModel, HomeAdapter.ViewHolder>(object :
@@ -40,7 +39,7 @@ class HomeAdapter(private val mContext: Activity) :
             holder.bindData(receivedEventModel)
             holder.itemView.setOnClickListener {
                 val splitArr = receivedEventModel.repo.name.split("/")
-                go2ReposDetailActivity(mContext,"${BASE_WEB_URL}${receivedEventModel.repo.name}",
+                go2ReposDetailActivity(mContext,"${Configs.GITHUB_BASE_URL}${receivedEventModel.repo.name}",
                     splitArr[1],splitArr[0])
             }
         }

@@ -84,6 +84,9 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    Glide相比起Fresco要轻量很多，api调用起来也很简洁，对图片加载要求不是很高的话建议使用Glide。
    
 # 更新日志
+### v2.3
+  * 新增OAuth2授权登录方式，旧版登录方式官方不再推荐(官方2020/11后废弃旧版登录方式)
+  * 调整项目结构，优化代码
 ### v2.2
   * 接入Navigation改写动态页面
   * 调整项目结构，优化代码

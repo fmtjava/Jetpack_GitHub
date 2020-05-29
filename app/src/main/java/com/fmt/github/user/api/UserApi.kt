@@ -18,8 +18,11 @@ interface UserApi {
         ) fingerprint: String
     ): AuthorizationRespModel
 
-    @DELETE("authorizations/{id}")
-    suspend fun deleteAuthorization(@Path("id") id: Int): Response<ResponseBody>
+    @POST
+    @Headers("Accept: application/json")
+    suspend fun getAccessToken(
+        @Url url: String
+    ): OauthTokenModel
 
     @GET("user")
     suspend fun getUser(): UserModel
