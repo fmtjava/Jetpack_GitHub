@@ -1,6 +1,6 @@
 package com.fmt.github.home.fragment
 
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import com.fmt.github.base.fragment.BasePagingVMFragment
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.config.Settings
@@ -20,6 +20,6 @@ class ReceivedEventFragment :
         mViewModel.user = Settings.Account.loginUser
     }
 
-    override fun getAdapter(): PagedListAdapter<ReceivedEventModel, HomeAdapter.ViewHolder> =
+    override fun getAdapter(): PagingDataAdapter<ReceivedEventModel, HomeAdapter.ViewHolder> =
         HomeAdapter(mActivity)
 }

@@ -14,7 +14,7 @@ inline fun <T> Boolean.yes(block: () -> T): BooleanExt<T> =//inline提升性能
         else -> OtherWise
     }
 
-fun <T> Boolean.no(block: () -> T): BooleanExt<T> = when {
+inline fun <T> Boolean.no(block: () -> T): BooleanExt<T> = when {
     this -> OtherWise
     else -> Success(block())
 }

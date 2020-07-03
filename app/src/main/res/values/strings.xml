@@ -60,6 +60,7 @@
     <string name="about">About</string>
     <string name="logout">Logout</string>
     <string name="retry_load">retry load</string>
+    <string name="load_fail">Load Failed</string>
 
     <string name="no_browser_clients">There are no browser clients installed.</string>
 

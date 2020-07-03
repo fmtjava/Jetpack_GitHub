@@ -27,5 +27,5 @@ object Configs {
     const val BUGLY_APP_ID = "8a37e3b7c7"
 
     //分页数量
-    const val PAGE_SIZE = 10
+    const val PAGE_SIZE = 20
 }

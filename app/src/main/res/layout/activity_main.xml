@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:title="@string/app_name"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="@android:color/white"
+            />
 
         <fragment
             android:id="@+id/nav_home_fragment"

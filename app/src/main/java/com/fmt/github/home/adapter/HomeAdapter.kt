@@ -4,7 +4,7 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fmt.github.config.Configs
@@ -15,17 +15,19 @@ import com.fmt.github.user.activity.go2UserInfoActivity
 import com.fmt.github.user.model.UserModel
 
 class HomeAdapter(private val mContext: Activity) :
-    PagedListAdapter<ReceivedEventModel, HomeAdapter.ViewHolder>(object :
-        DiffUtil.ItemCallback<ReceivedEventModel>() {
-        override fun areItemsTheSame(oldItem: ReceivedEventModel, newItem: ReceivedEventModel) =
-            oldItem.id == newItem.id
+    PagingDataAdapter<ReceivedEventModel, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-        override fun areContentsTheSame(
-            oldItem: ReceivedEventModel,
-            newItem: ReceivedEventModel
-        ) =
-            oldItem == newItem
-    }) {
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ReceivedEventModel>() {
+            override fun areItemsTheSame(oldItem: ReceivedEventModel, newItem: ReceivedEventModel) =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(
+                oldItem: ReceivedEventModel,
+                newItem: ReceivedEventModel
+            ) = oldItem == newItem
+        }
+    }
 
     private val mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
 
@@ -39,8 +41,10 @@ class HomeAdapter(private val mContext: Activity) :
             holder.bindData(receivedEventModel)
             holder.itemView.setOnClickListener {
                 val splitArr = receivedEventModel.repo.name.split("/")
-                go2ReposDetailActivity(mContext,"${Configs.GITHUB_BASE_URL}${receivedEventModel.repo.name}",
-                    splitArr[1],splitArr[0])
+                go2ReposDetailActivity(
+                    mContext, "${Configs.GITHUB_BASE_URL}${receivedEventModel.repo.name}",
+                    splitArr[1], splitArr[0]
+                )
             }
         }
     }
