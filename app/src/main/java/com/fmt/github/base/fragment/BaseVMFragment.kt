@@ -2,6 +2,7 @@ package com.fmt.github.base.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ abstract class BaseVMFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         if (mRootView == null) {
-            mRootView = View.inflate(container?.context, getLayoutRes(), null)
+            mRootView = View.inflate(mActivity, getLayoutRes(), null)
         }
         return mRootView
     }

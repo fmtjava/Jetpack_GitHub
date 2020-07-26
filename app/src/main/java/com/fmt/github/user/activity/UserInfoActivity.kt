@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.View
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentStatePagerAdapter
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityUserInfoBinding
@@ -13,9 +12,12 @@ import com.fmt.github.user.adapter.UserInfoPagerAdapter
 import com.fmt.github.user.fragment.UserInfoFragment
 import com.fmt.github.user.fragment.UserReposFragment
 import com.fmt.github.user.model.UserModel
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_user_info.*
 
 class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
+
+    private val mTitles = listOf("Info", "Repos", "Favor")
 
     lateinit var mUserModel: UserModel
 
@@ -50,14 +52,14 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
             add(UserInfoFragment())
             add(UserReposFragment.newInstance(mUserModel.login))
             add(UserReposFragment.newInstance(mUserModel.login, true))
-        }.apply {
-            mViewPager.adapter = UserInfoPagerAdapter(
-                supportFragmentManager, this,
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-            )
-            mViewPager.offscreenPageLimit = 2
-            mTabLayout.setupWithViewPager(mViewPager)
+        }.also { fragmentList ->
+            mViewPager.adapter = UserInfoPagerAdapter(this, fragmentList)
         }
+        //绑定TabLayout和ViewPager2
+        TabLayoutMediator(mTabLayout, mViewPager,
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                tab.text = mTitles[position]
+            }).attach()
     }
 
     override fun onBackPressed() {

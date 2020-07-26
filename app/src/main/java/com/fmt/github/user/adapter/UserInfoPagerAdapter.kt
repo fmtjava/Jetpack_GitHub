@@ -1,20 +1,15 @@
 package com.fmt.github.user.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class UserInfoPagerAdapter(
-    fm: FragmentManager,
-    private val mFragmentList: List<Fragment>,
-    behavior: Int
-) : FragmentStatePagerAdapter(fm, behavior) {//Behavior实现Fragment的懒加载
+    fragmentActivity: FragmentActivity,
+    private val mFragmentList: List<Fragment>
+) : FragmentStateAdapter(fragmentActivity) {//FragmentStateAdapter在Fragment可见时进入onResume,不可间时进入onStart
 
-    private val mTitles = listOf("Info", "Repos", "Favor")
+    override fun getItemCount(): Int = mFragmentList.size
 
-    override fun getItem(position: Int): Fragment = mFragmentList[position]
-
-    override fun getCount(): Int = mFragmentList.size
-
-    override fun getPageTitle(position: Int): CharSequence = mTitles[position]
+    override fun createFragment(position: Int): Fragment = mFragmentList[position]
 }
