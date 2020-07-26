@@ -14,7 +14,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 12
-        versionName "2.4"
+        versionName "2.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -66,7 +66,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6'
 
     //Android KTX 是一组 Kotlin 扩展程序，属于 Android Jetpack 系列
-    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
@@ -87,10 +87,10 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
 
     //paging
-    implementation "androidx.paging:paging-runtime:3.0.0-alpha02"
+    implementation "androidx.paging:paging-runtime:3.0.0-alpha03"
 
     //WorkManager
-    implementation "androidx.work:work-runtime-ktx:2.3.4"
+    implementation "androidx.work:work-runtime-ktx:2.4.0"
 
     //koin(依赖注入)
     implementation "org.koin:koin-androidx-scope:2.0.1"
@@ -119,7 +119,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0@aar'
 
     //bugly捕获异常
-    implementation 'com.tencent.bugly:crashreport:3.2.3'
+    implementation 'com.tencent.bugly:crashreport:3.2.33'
     implementation project(path: ':LaunchStarter')
 
 }
