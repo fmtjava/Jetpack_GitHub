@@ -25,7 +25,7 @@ object AppOpener {
 
     private fun createActivityChooserIntent(
         context: Context, intent: Intent,
-        uri: Uri, ignorPackageList: List<String>?
+        uri: Uri, ignorePackageList: List<String>?
     ): Intent? {
         val pm = context.packageManager
         val activities = pm.queryIntentActivities(
@@ -45,7 +45,7 @@ object AppOpener {
             if (info.packageName == ourPackageName) {
                 continue
             }
-            if (ignorPackageList != null && ignorPackageList.contains(info.packageName)) {
+            if (ignorePackageList != null && ignorePackageList.contains(info.packageName)) {
                 continue
             }
 

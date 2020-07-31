@@ -46,7 +46,7 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
     override fun initRecyclerView() {
         val type = Type<LayoutReposBinding>(R.layout.layout_repos)
             .onClick {
-                val reposItemModel = mListData[it.adapterPosition]
+                val reposItemModel = mListData[it.bindingAdapterPosition]
                 go2ReposDetailActivity(mActivity,reposItemModel.html_url,reposItemModel.name,reposItemModel.owner.login)
             }
         LastAdapter(mListData, BR.item)

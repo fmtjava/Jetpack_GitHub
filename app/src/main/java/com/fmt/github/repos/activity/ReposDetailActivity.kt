@@ -1,7 +1,7 @@
 package com.fmt.github.repos.activity
 
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
+import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.widget.LinearLayout
@@ -11,10 +11,8 @@ import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.constant.Constant
-import com.fmt.github.ext.no
-import com.fmt.github.ext.otherwise
-import com.fmt.github.ext.successToast
-import com.fmt.github.ext.yes
+import com.fmt.github.ext.*
+import com.fmt.github.ext.startActivity
 import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.viewmodel.ReposViewModel
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -128,12 +126,11 @@ class ReposDetailActivity : BaseVMActivity() {
         }
 }
 
-fun go2ReposDetailActivity(context: Context, webUrl: String, repo: String, owner: String) {
-    with(Intent(context, ReposDetailActivity::class.java)) {
-        putExtra(ReposDetailActivity.WEB_URL, webUrl)
-        putExtra(ReposDetailActivity.REPO, repo)
-        putExtra(ReposDetailActivity.OWNER, owner)
-    }.run {
-        context.startActivity(this)
+fun go2ReposDetailActivity(activity: Activity, webUrl: String, repo: String, owner: String) {
+    Bundle().run {
+        putString(ReposDetailActivity.WEB_URL, webUrl)
+        putString(ReposDetailActivity.REPO, repo)
+        putString(ReposDetailActivity.OWNER, owner)
+        activity.startActivity<ReposDetailActivity>(this)
     }
 }

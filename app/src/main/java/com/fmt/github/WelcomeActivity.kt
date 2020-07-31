@@ -1,6 +1,5 @@
 package com.fmt.github
 
-import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import com.afollestad.assent.*
 import com.fmt.github.base.activity.BaseDataBindActivity
@@ -54,18 +53,11 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
             delay(500)//挂起,但不会阻塞,后续通过resumeWith恢复执行
             val userList = mUserDao.getAll()
             (userList.isEmpty()).yes {
-                go2Activity(LoginActivity::class.java)
+                startActivity<LoginActivity>()
             }.otherwise {
                 Settings.Account.loginUser = userList[0].login
-                go2Activity(HomeActivity::class.java)
+                startActivity<HomeActivity>()
             }
-        }
-    }
-
-    private fun go2Activity(clazz: Class<*>) {
-        Intent(this@WelcomeActivity, clazz).run {
-            startActivity(this)
-            finish()
         }
     }
 }

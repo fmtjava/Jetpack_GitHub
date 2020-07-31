@@ -1,10 +1,11 @@
 package com.fmt.github.user.activity
 
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
+import android.os.Bundle
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityPhotoPreviewBinding
+import com.fmt.github.ext.startActivity
 import kotlinx.android.synthetic.main.activity_photo_preview.*
 
 class PhotoPreviewActivity : BaseDataBindActivity<ActivityPhotoPreviewBinding>() {
@@ -12,10 +13,11 @@ class PhotoPreviewActivity : BaseDataBindActivity<ActivityPhotoPreviewBinding>()
     companion object {
         private const val IMAGE_URL = "image_url"
 
-        fun go2PhotoPreviewActivity(context: Context, url: String) {
-            val intent = Intent(context, PhotoPreviewActivity::class.java)
-            intent.putExtra(IMAGE_URL, url)
-            context.startActivity(intent)
+        fun go2PhotoPreviewActivity(activity: Activity, url: String) {
+            Bundle().run {
+                putString(IMAGE_URL, url)
+                activity.startActivity<PhotoPreviewActivity>(this)
+            }
         }
     }
 

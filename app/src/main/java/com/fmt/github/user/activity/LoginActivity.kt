@@ -10,6 +10,7 @@ import com.fmt.github.config.Configs
 import com.fmt.github.config.Settings
 import com.fmt.github.databinding.ActivityLoginBinding
 import com.fmt.github.ext.otherwise
+import com.fmt.github.ext.startActivity
 import com.fmt.github.ext.yes
 import com.fmt.github.home.activity.HomeActivity
 import com.fmt.github.user.model.AuthorizationRespModel
@@ -119,14 +120,7 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
         User(userModel.id, userModel.login, userModel.avatar_url).apply {
             Settings.Account.loginUser = this.login
             mViewModel.saveLocalUser(this@apply)
-            go2MainActivity()
-        }
-    }
-
-    private fun go2MainActivity() {
-        Intent(this, HomeActivity::class.java).run {
-            startActivity(this)
-            finish()
+            startActivity<HomeActivity>()
         }
     }
 

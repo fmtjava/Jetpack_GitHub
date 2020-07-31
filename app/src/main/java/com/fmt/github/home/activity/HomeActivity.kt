@@ -1,6 +1,6 @@
 package com.fmt.github.home.activity
 
-import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -16,6 +16,7 @@ import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
 import com.fmt.github.ext.getVersionName
 import com.fmt.github.ext.showConfirmPopup
+import com.fmt.github.ext.startActivity
 import com.fmt.github.ext.yes
 import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.home.work.DownLoadWork
@@ -93,7 +94,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
         when (menuItem.itemId) {
             R.id.item_user -> go2UserInfoActivity(mUser.login, mUser.avatar_url)
 
-            R.id.item_about -> Intent(this, AboutActivity::class.java).run { startActivity(this) }
+            R.id.item_about -> startActivity<AboutActivity>(false)
 
             R.id.item_logout -> showLogoutPopup()
         }
@@ -102,11 +103,10 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     private fun go2UserInfoActivity(login: String, avatar_url: String) {
-        val userModel = UserModel(login, avatar_url)
-        with(Intent(this, UserInfoActivity::class.java)) {
-            putExtra(UserInfoActivity.USER_INFO, userModel)
-        }.run {
-            startActivity(this)
+        Bundle().run {
+            val userModel = UserModel(login, avatar_url)
+            putSerializable(UserInfoActivity.USER_INFO, userModel)
+            startActivity<UserInfoActivity>(this)
         }
     }
 
@@ -124,9 +124,9 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     private fun go2SearchActivity(fromSearchRepos: Boolean) {
-        Intent(this, CommonSearchActivity::class.java).run {
-            putExtra(CommonSearchActivity.FROM_SEARCH_REPOS, fromSearchRepos)
-            startActivity(this)
+        Bundle().run {
+            putBoolean(CommonSearchActivity.FROM_SEARCH_REPOS, fromSearchRepos)
+            startActivity<CommonSearchActivity>(this)
         }
     }
 
@@ -165,9 +165,6 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     private fun logout() {
         Preference.clear()
         mViewModel.deleteUser()
-        Intent(this, LoginActivity::class.java).run {
-            startActivity(this)
-            finish()
-        }
+        startActivity<LoginActivity>()
     }
 }
