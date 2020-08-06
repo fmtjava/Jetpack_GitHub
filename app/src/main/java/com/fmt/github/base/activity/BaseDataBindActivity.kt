@@ -16,7 +16,9 @@ abstract class BaseDataBindActivity<DB : ViewDataBinding> : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mDataBind.unbind()
+        //判断延迟属性是否初始化了
+        if (::mDataBind.isInitialized)
+            mDataBind.unbind()
     }
 
 }

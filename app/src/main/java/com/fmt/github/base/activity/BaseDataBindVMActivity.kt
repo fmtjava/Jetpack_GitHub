@@ -21,7 +21,8 @@ abstract class BaseDataBindVMActivity<DB : ViewDataBinding> : BaseVMActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mDataBind.unbind()
+        if (::mDataBind.isInitialized)
+            mDataBind.unbind()
     }
 
 }
