@@ -2,7 +2,6 @@ package com.fmt.github.base.activity
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import kotlinx.coroutines.cancel
 
 abstract class BaseDataBindActivity<DB : ViewDataBinding> : BaseActivity() {
 

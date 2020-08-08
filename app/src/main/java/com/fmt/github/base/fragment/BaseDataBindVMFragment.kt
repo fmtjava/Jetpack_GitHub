@@ -30,6 +30,7 @@ abstract class BaseDataBindVMFragment<DB : ViewDataBinding> : BaseVMFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mDataBind.unbind()
+        if (::mDataBind.isInitialized)
+            mDataBind.unbind()
     }
 }

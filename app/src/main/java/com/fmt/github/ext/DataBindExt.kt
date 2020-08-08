@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
+import androidx.databinding.ViewDataBinding
 import com.fmt.github.AppContext
 import com.fmt.github.GlideApp
 import com.fmt.github.R

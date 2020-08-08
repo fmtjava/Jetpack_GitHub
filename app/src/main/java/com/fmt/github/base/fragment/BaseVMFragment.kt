@@ -17,6 +17,7 @@ import com.fmt.github.ext.errorToast
 
 /**
  * Fragment懒加载
+ * 采用ViewPager2 + FragmentStateAdapter + onResume方法实现
  */
 abstract class BaseVMFragment : Fragment() {
 
@@ -52,6 +53,7 @@ abstract class BaseVMFragment : Fragment() {
         initView()
     }
 
+    //onResume方法判断是否已经加载过数据
     override fun onResume() {
         super.onResume()
         lazyLoadData()
@@ -63,7 +65,7 @@ abstract class BaseVMFragment : Fragment() {
             initData()
         }
     }
-
+    //监听页面的三种状态：加载中、加载成功、加载失败
     private fun initViewModelAction() {
         this.getViewModel().let { baseViewModel ->
             baseViewModel.mStateLiveData.observe(this, Observer { stateActionState ->
