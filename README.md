@@ -86,8 +86,8 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
 # 更新日志
 ### v2.6
   * 添加趋势模块，该模块使用Flutter编写，主要学习Android与Flutter的混合开发模式以及消息通信方法，
-    趋势模块对应的Flutter工程代码地址：https://github.com/fmtjava/flutter_module，
-    不熟悉混合开发的小伙伴可参考：https://www.jianshu.com/p/1317aed6cd8c
+    趋势模块对应的Flutter工程代码地址：https://github.com/fmtjava/flutter_module
+    ,不熟悉混合开发的小伙伴可参考：https://www.jianshu.com/p/1317aed6cd8c
 ### v2.5
   * 使用ViewPager2替换ViewPager
 ### v2.4
