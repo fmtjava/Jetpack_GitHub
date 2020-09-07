@@ -2,10 +2,7 @@ package com.fmt.github
 
 import android.app.Application
 import android.content.ContextWrapper
-import com.fmt.github.tasks.InitBuGlyTask
-import com.fmt.github.tasks.InitKoInTask
-import com.fmt.github.tasks.InitLiveEventBusTask
-import com.fmt.github.tasks.InitSmartRefreshLayoutTask
+import com.fmt.github.tasks.*
 import com.fmt.launch.starter.TaskDispatcher
 
 lateinit var mApplication: Application

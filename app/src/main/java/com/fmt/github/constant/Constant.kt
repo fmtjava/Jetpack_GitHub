@@ -9,5 +9,9 @@ object Constant {
     const val AUTHORIZATIONS = "authorizations"
     const val AUTHORIZATION = "Authorization"
     const val DOWNLOAD = "download"
-    const val STAR_EVENT_KEY= "star_event"
+    const val STAR_EVENT_KEY = "star_event"
+
+    object Router {
+        const val ROUTER_TREND = "trend"
+    }
 }

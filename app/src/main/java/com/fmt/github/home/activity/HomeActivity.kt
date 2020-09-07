@@ -9,9 +9,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.fmt.github.FlutterAppActivity
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
+import com.fmt.github.constant.Constant
 import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
 import com.fmt.github.ext.getVersionName
@@ -95,6 +97,13 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
             R.id.item_user -> go2UserInfoActivity(mUser.login, mUser.avatar_url)
 
             R.id.item_about -> startActivity<AboutActivity>(false)
+
+            R.id.item_trend -> {
+                Bundle().run {
+                    putString(FlutterAppActivity.INIT_PARAMS, Constant.Router.ROUTER_TREND)
+                    startActivity<FlutterAppActivity>(this)
+                }
+            }
 
             R.id.item_logout -> showLogoutPopup()
         }

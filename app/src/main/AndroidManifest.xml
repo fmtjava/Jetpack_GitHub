@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+            android:value="true" />
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/SplashTheme">
@@ -52,11 +55,9 @@
             android:name=".home.activity.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ToolBarTheme" />
-
         <activity
             android:name=".home.activity.CommonSearchActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".repos.activity.ReposDetailActivity"
             android:screenOrientation="portrait" />
@@ -69,9 +70,16 @@
         <activity
             android:name=".user.activity.PhotoPreviewActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/FullScreenTheme" />
-
-        <!-- Android 7.0以上 照片、APK等下载保存路径-->
+            android:theme="@style/FullScreenTheme" /> <!-- Android 7.0以上 照片、APK等下载保存路径 -->
+        <activity
+            android:name=".FlutterAppActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize"
+            />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
