@@ -2,7 +2,7 @@
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://github.com/fmtjava/OpenGitHub)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Release Version](https://img.shields.io/badge/version-2.5-red.svg)](https://fir.im/8jw7)
+[![Release Version](https://img.shields.io/badge/version-2.6-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
 [![](https://img.shields.io/badge/QQ-2694746499-orange.svg)](https://github.com/fmtjava)<br />
 基于Kotlin + Jetpack全家桶 + Coroutines(协程) 等架构实现的一款精简版Github客户端项目。<br />
