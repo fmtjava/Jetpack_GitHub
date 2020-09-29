@@ -4,8 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
@@ -14,9 +12,9 @@ import com.fmt.github.constant.Constant
 import com.fmt.github.ext.*
 import com.fmt.github.ext.startActivity
 import com.fmt.github.home.event.ReposStarEvent
+import com.fmt.github.repos.delegate.WebDelegate
 import com.fmt.github.repos.viewmodel.ReposViewModel
 import com.jeremyliao.liveeventbus.LiveEventBus
-import com.just.agentweb.AgentWeb
 import com.like.LikeButton
 import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.activity_repos_detail.*
@@ -25,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ReposDetailActivity : BaseVMActivity() {
 
     private val mViewModel: ReposViewModel by viewModel()
-    private lateinit var mAgentWeb: AgentWeb
+    private lateinit var mWebDelegate: WebDelegate
     private lateinit var mOwner: String
     private lateinit var mRepos: String
     private lateinit var mWebUrl: String
@@ -42,24 +40,16 @@ class ReposDetailActivity : BaseVMActivity() {
         mOwner = intent.getStringExtra(OWNER)
         mRepos = intent.getStringExtra(REPO)
         mWebUrl = intent.getStringExtra(WEB_URL)
-        initAgentWeb()
+        mWebDelegate = WebDelegate.create(this, mRootView, mWebUrl)
+        mWebDelegate.onCreate()
         initListener()
     }
 
     override fun getViewModel(): BaseViewModel = mViewModel
 
-    private fun initAgentWeb() {
-        mAgentWeb = AgentWeb.with(this)
-            .setAgentWebParent(mRootView, LinearLayout.LayoutParams(-1, -1))
-            .useDefaultIndicator(ContextCompat.getColor(this, R.color.indicator_color))
-            .createAgentWeb()
-            .ready()
-            .go(mWebUrl)
-    }
-
     private fun initListener() {
         mBackIB.setOnClickListener {
-            mAgentWeb.back().no {
+            mWebDelegate.back().no {
                 finish()
             }
         }
@@ -104,22 +94,22 @@ class ReposDetailActivity : BaseVMActivity() {
     }
 
     override fun onPause() {
-        mAgentWeb.webLifeCycle.onPause()
+        mWebDelegate.onPause()
         super.onPause()
     }
 
     override fun onResume() {
-        mAgentWeb.webLifeCycle.onResume()
+        mWebDelegate.onResume()
         super.onResume()
     }
 
     override fun onDestroy() {
-        mAgentWeb.webLifeCycle.onDestroy()
+        mWebDelegate.onDestroy()
         super.onDestroy()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean =
-        (mAgentWeb.handleKeyEvent(keyCode, event)).yes {
+        (mWebDelegate.handleKeyEvent(keyCode, event)).yes {
             true
         }.otherwise {
             super.onKeyDown(keyCode, event)
