@@ -56,10 +56,11 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
             mViewPager.adapter = UserInfoPagerAdapter(this, fragmentList)
         }
         //绑定TabLayout和ViewPager2
-        TabLayoutMediator(mTabLayout, mViewPager,
-            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-                tab.text = mTitles[position]
-            }).attach()
+        TabLayoutMediator(
+            mTabLayout, mViewPager
+        ) { tab, position ->
+            tab.text = mTitles[position]
+        }.attach()
     }
 
     override fun onBackPressed() {
