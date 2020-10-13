@@ -28,7 +28,7 @@
 <div style="float:right">
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1771574405820_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
   <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1781574405821_.pic.jpg" width="270"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1291564044993_.pic.jpg" width="270"/>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/1291564044993_.pic.jpg" width="260"/>
 </div>
 
 <div style="float:right">
