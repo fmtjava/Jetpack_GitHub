@@ -1,6 +1,5 @@
 package com.fmt.github.base.fragment
 
-import androidx.lifecycle.Observer
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.paging.PagingDataAdapter
@@ -38,16 +37,13 @@ abstract class BasePagingVMFragment<M : Any, VM : BaseLPagingViewModel<M>, VH : 
                 is LoadState.Error -> mSwipeRefreshLayout.isRefreshing = false
             }
         }
-        mAdapter.addDataRefreshListener {
-            mSwipeRefreshLayout.isRefreshing = false
-        }
 
         mViewModel = getViewModel() as VM
         afterViewCreated()
     }
 
     override fun initData() {
-        mViewModel.pagedList.observe(this, Observer {
+        mViewModel.pagedList.observe(this, {
             mAdapter.submitData(lifecycle, it)
         })
     }
