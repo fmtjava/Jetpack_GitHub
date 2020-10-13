@@ -42,6 +42,11 @@
  - 下方二维码下载(每日上限100次，如达到上限，还是 clone 源码吧！✧(≖ ◡ ≖✿))）<br/>
    <img src="https://www.pgyer.com/app/qrcode/3oGy"/>
 
+# 核心功能
+<div>
+  <img src="https://github.com/fmtjava/OpenGitHub/blob/master/image/function.png"/>
+</div>
+
 # 核心技术栈
 ## Kotlin语言
   听说Android开发与Kotlin更配哦！Kotlin语言100%兼容Java,并且具有数据类、空安全、延迟加载、属性代理、拓展方法、函数表达式、高级函数等高级特性，极大
