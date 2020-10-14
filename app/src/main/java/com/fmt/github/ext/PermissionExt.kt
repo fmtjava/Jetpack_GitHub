@@ -1,25 +1,21 @@
 package com.fmt.github.ext
 
 import android.app.Activity
-import android.content.pm.PackageManager.PERMISSION_GRANTED
 import com.afollestad.assent.*
 import com.afollestad.assent.rationale.RationaleHandler
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
 //拓展Assent动态申请权限
-fun Activity.runWithPermissions(
+suspend fun Activity.runWithPermissions(
     vararg permissions: Permission,
     requestCode: Int = 40,
     rationaleHandler: RationaleHandler? = null,
-    granted: Callback,
-    denied: Callback
-) {
+): Boolean = suspendCancellableCoroutine { continuation ->
+
+    //这里注意：permissions可变参数，传递要加*，如果不太明白，可以反编译Kotlin查看编译后的Java类
     isAllGranted(*permissions).yes {
-        val permissionList = permissions.asList()
-        val grantResultList = IntArray(permissions.size)
-        permissionList.forEachIndexed { index, _ ->
-            grantResultList[index] = PERMISSION_GRANTED
-        }
-        granted.invoke(AssentResult(permissionList, grantResultList))
+        continuation.resume(true)
     }.otherwise {
         askForPermissions(
             *permissions,
@@ -27,9 +23,10 @@ fun Activity.runWithPermissions(
             rationaleHandler = rationaleHandler
         ) {
             it.isAllGranted(*permissions).yes {
-                granted.invoke(it)
+                //granted.invoke(it)
+                continuation.resume(true)
             }.otherwise {
-                denied.invoke(it)
+                continuation.resume(false)
             }
         }
     }

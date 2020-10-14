@@ -140,7 +140,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     private fun checkVersionUpdate() {
-        mViewModel.getReleases().observe(this, Observer {
+        mViewModel.getReleases().observe(this, {
             (it.tag_name != getVersionName()).yes {
                 showVersionUpdatePopup(it.assets[0].browser_download_url)
             }

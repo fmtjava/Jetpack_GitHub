@@ -79,7 +79,7 @@ class ReposDetailActivity : BaseVMActivity() {
 
     private fun starRepo() {
         mViewModel.starRepo(mOwner, mRepos)
-            .observe(this@ReposDetailActivity, Observer {
+            .observe(this@ReposDetailActivity, {
                 successToast(getString(R.string.stared))
                 LiveEventBus.get().with(Constant.STAR_EVENT_KEY).post(ReposStarEvent())
             })
@@ -87,7 +87,7 @@ class ReposDetailActivity : BaseVMActivity() {
 
     private fun unStarRepo() {
         mViewModel.unStarRepo(mOwner, mRepos)
-            .observe(this@ReposDetailActivity, Observer {
+            .observe(this@ReposDetailActivity, {
                 successToast(getString(R.string.un_stared))
                 LiveEventBus.get().with(Constant.STAR_EVENT_KEY).post(ReposStarEvent())
             })

@@ -3,7 +3,6 @@ package com.fmt.github.home.activity
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseDataBindActivity
 import com.fmt.github.databinding.ActivityCommonSearchBinding
@@ -68,11 +67,11 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
 
     private fun showPopupView() {
         mIsSearchRepos.yes {
-            createSortReposPopup(this).observe(this, Observer {
+            createSortReposPopup(this).observe(this, {
                 searchReposOrUsersBySortOption(it)
             })
         }.otherwise {
-            createSortUsesPopup(this).observe(this, Observer {
+            createSortUsesPopup(this).observe(this, {
                 searchReposOrUsersBySortOption(it)
             })
         }
