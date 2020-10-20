@@ -63,6 +63,13 @@
     <string name="retry_load">retry load</string>
     <string name="load_fail">Load Failed</string>
 
+    <string name="options">options</string>
+    <string name="save_picture">save picture</string>
+    <string name="save_picture_fail">save picture fail</string>
+    <string name="save_picture_success">save picture success</string>
+    <string name="save_picture_path">save picture success</string>
+    <string name="share_picture">share picture</string>
+
     <string name="no_browser_clients">There are no browser clients installed.</string>
 
     <string-array name="github_glyph_strings">

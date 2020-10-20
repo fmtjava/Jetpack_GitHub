@@ -9,5 +9,9 @@
         <external-files-path
             name="external-files-path"
             path="apk_download/"/>
+
+        <external-files-path
+            name="external-files-path"
+            path="img_download/"/>
     </paths>
 </resource>

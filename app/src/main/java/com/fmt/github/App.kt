@@ -18,6 +18,7 @@ class App : Application() {
         TaskDispatcher.createInstance()
             .addTask(InitBuGlyTask())
             .addTask(InitKoInTask())
+            .addTask(InitImageLoaderTask())
             .addTask(InitLiveEventBusTask())
             .addTask(InitSmartRefreshLayoutTask())
             .start()
