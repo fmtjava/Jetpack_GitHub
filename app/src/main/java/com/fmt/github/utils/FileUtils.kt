@@ -24,6 +24,7 @@ object FileUtils {
             val values = ContentValues()
             values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
             values.put(MediaStore.MediaColumns.MIME_TYPE, "image/JPEG")
+            //该属性只有Android Q以上才支持
             values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM + "/")
             val contentResolver: ContentResolver = AppContext.contentResolver
             val uri: Uri? =

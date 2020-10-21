@@ -53,8 +53,7 @@
         </activity>
         <activity
             android:name=".home.activity.HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ToolBarTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.activity.CommonSearchActivity"
             android:screenOrientation="portrait" />
@@ -70,7 +69,7 @@
         <activity
             android:name=".user.activity.PhotoPreviewActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/FullScreenTheme" /> <!-- Android 7.0以上 照片、APK等下载保存路径 -->
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".FlutterAppActivity"
             android:screenOrientation="portrait" />
@@ -80,6 +79,7 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize"
             />
+        <!-- Android 7.0以上 照片、APK等下载保存路径 -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

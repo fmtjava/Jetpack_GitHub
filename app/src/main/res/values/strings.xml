@@ -69,8 +69,14 @@
     <string name="save_picture_success">save picture success</string>
     <string name="save_picture_path">save picture success</string>
     <string name="share_picture">share picture</string>
+    <string name="browser_open">Browser open</string>
+    <string name="copy_link">Copy link</string>
+    <string name="share">Share</string>
+    <string name="copied_to_pasteboard">Copied to pasteboard</string>
 
     <string name="no_browser_clients">There are no browser clients installed.</string>
+    <string name="context_not_null_tip">please init context field in LoaderOptions</string>
+    <string name="url_not_null_tips">please init url field in LoaderOptions</string>
 
     <string-array name="github_glyph_strings">
         <item>M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4

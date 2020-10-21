@@ -1,14 +1,18 @@
 package com.fmt.github.tasks
 
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
+import com.fmt.github.AppContext
+import com.fmt.github.R
 import com.fmt.github.common.image.ImageLoadStrategyManager
-import com.fmt.github.common.image.ImageLoader
+import com.fmt.github.common.image.ImageLoaderOptions
 import com.fmt.launch.starter.task.MainTask
 
 class InitImageLoaderTask : MainTask() {
@@ -17,9 +21,12 @@ class InitImageLoaderTask : MainTask() {
         ImageLoadStrategyManager.init(GlideLoadStrategy())
     }
 
+    /**
+     * Glide加载图片策略
+     */
     class GlideLoadStrategy : ImageLoadStrategyManager.ILoaderStrategy {
 
-        override fun loadImage(options: ImageLoader.LoaderOptions) {
+        override fun loadImage(options: ImageLoaderOptions) {
 
             var requestOptions = RequestOptions()
             if (options.placeholderId != null) {
@@ -48,6 +55,32 @@ class InitImageLoaderTask : MainTask() {
                     })
                 }
             }
+        }
+
+        override fun getImageBitMap(
+            options: ImageLoaderOptions,
+            callBack: ImageLoadStrategyManager.ILoadBitmapCallBack
+        ) {
+            require(options.context != null) {
+                AppContext.getString(R.string.context_not_null_tip)
+            }
+
+            require(options.url != null) {
+                AppContext.getString(R.string.url_not_null_tips)
+            }
+
+            Glide.with(options.context!!).asBitmap().load(options.url)
+                .into(object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        callBack.loaderBitmapSuccess(resource)
+                    }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {
+                    }
+                })
         }
     }
 }

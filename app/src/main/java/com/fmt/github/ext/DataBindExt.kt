@@ -11,15 +11,15 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import com.fmt.github.AppContext
 import com.fmt.github.R
-import com.fmt.github.common.image.ImageLoader
+import com.fmt.github.common.image.ImageLoaderOptions
 import com.fmt.github.home.model.ReceivedEventModel
 import com.fmt.github.repos.model.ReposItemModel
 
 //DataBinding自定义属性
 @BindingAdapter("url")
 fun loadImage(imageView: ImageView, url: String) {
-    ImageLoader.LoaderOptions().setImageUrl(url).setPlaceholderId(R.mipmap.ic_github)
-        .setTargetView(imageView).build().load()
+    ImageLoaderOptions().setImageUrl(url).setPlaceholderId(R.mipmap.ic_github)
+        .setTargetView(imageView).load()
 }
 
 //DataBinding类型转换

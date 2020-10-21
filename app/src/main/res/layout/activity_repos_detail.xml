@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/mRootView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/mRootView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/mBackIB"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mToolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:paddingStart="@dimen/dp_15"
-            android:src="@mipmap/icon_back" />
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@android:color/white" />
+    </LinearLayout>
+
+    <!--
+        1.在5.0版本以上，任意的ViewGroup组件,只需要加入三个属性即可实现阴影效果：
+            android:elevation="3dp"
+            android:outlineProvider="bounds"
+            android:translationZ="3dp"
+
+        2.android:outlineProvider来指定轮廓的判定方式：
+            none 即使设置了Z属性，也不会显示阴影
+            background 会按照背景来设置阴影形状
+            bounds 会按照View的大小来描绘阴影
+            paddedBounds 和bounds类似，不过阴影会稍微向右偏移一点
+    -->
+    <FrameLayout
+        android:id="@+id/fl_favor"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@drawable/shape_like_button_bg"
+        android:elevation="@dimen/dp_5"
+        android:outlineProvider="background"
+        android:visibility="gone"
+        android:translationZ="@dimen/dp_5">
 
         <com.like.LikeButton
             android:id="@+id/mFavorIb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone"
+            android:layout_gravity="center"
             app:icon_size="@dimen/dp_20"
             app:icon_type="heart"
             app:like_drawable="@mipmap/icon_favorite_check"
             app:unlike_drawable="@mipmap/icon_favorite_uncheck" />
 
-        <TextView
-            android:id="@+id/mReposNameTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_toStartOf="@id/mFavorIb"
-            android:layout_toEndOf="@id/mBackIB"
-            android:ellipsize="start"
-            android:gravity="center"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/sp_20" />
+    </FrameLayout>
 
-
-    </RelativeLayout>
-
-
-</LinearLayout>
+</FrameLayout>

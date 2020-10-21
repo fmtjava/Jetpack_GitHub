@@ -3,8 +3,9 @@ package com.fmt.github.repos.activity
 import android.app.Activity
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
@@ -12,8 +13,10 @@ import com.fmt.github.constant.Constant
 import com.fmt.github.ext.*
 import com.fmt.github.ext.startActivity
 import com.fmt.github.home.event.ReposStarEvent
+import com.fmt.github.repos.delegate.AgentWebContainer
 import com.fmt.github.repos.delegate.WebDelegate
 import com.fmt.github.repos.viewmodel.ReposViewModel
+import com.fmt.github.utils.ShareUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.like.LikeButton
 import com.like.OnLikeListener
@@ -40,15 +43,21 @@ class ReposDetailActivity : BaseVMActivity() {
         mOwner = intent.getStringExtra(OWNER)
         mRepos = intent.getStringExtra(REPO)
         mWebUrl = intent.getStringExtra(WEB_URL)
-        mWebDelegate = WebDelegate.create(this, mRootView, mWebUrl)
+        mWebDelegate = WebDelegate.create(AgentWebContainer(), this, mRootView, mWebUrl)
         mWebDelegate.onCreate()
+        setSupportActionBar(mToolbar)
+        supportActionBar?.let { actionBar ->
+            actionBar.setDisplayHomeAsUpEnabled(true)//添加默认的返回图标
+            actionBar.setHomeButtonEnabled(true)//设置返回键可用
+            actionBar.title = mRepos//设置标题
+        }
         initListener()
     }
 
     override fun getViewModel(): BaseViewModel = mViewModel
 
     private fun initListener() {
-        mBackIB.setOnClickListener {
+        mToolbar.setNavigationOnClickListener {
             mWebDelegate.back().no {
                 finish()
             }
@@ -64,15 +73,28 @@ class ReposDetailActivity : BaseVMActivity() {
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_repos_detail_toolbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_browser_open -> ShareUtils.openUrl(this, mWebUrl)
+            R.id.item_copy_link -> ShareUtils.copyClipboard(this, mWebUrl)
+            R.id.item_share -> ShareUtils.shareText(this, mWebUrl)
+        }
+        return true
+    }
+
     override fun initData() {
-        mReposNameTv.text = mRepos
         checkRepoStarred()
     }
 
     private fun checkRepoStarred() {
         mViewModel.checkRepoStarred(mOwner, mRepos)
-            .observe(this, Observer {
-                mFavorIb.visibility = View.VISIBLE
+            .observe(this, {
+                fl_favor.visibility = View.VISIBLE
                 mFavorIb.isLiked = it
             })
     }
