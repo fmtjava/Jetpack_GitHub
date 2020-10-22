@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.fmt.github.common.ui.icfont.IconFontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_100"
-        android:src="@mipmap/icon_empty" />
+        android:text="@string/ic_font_empty"
+        android:textSize="@dimen/dp_80" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -23,12 +23,13 @@
             app:title="@string/go_to_login"
             app:titleTextColor="@android:color/white" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.fmt.github.common.ui.icfont.IconFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_80"
-            android:src="@mipmap/ic_github" />
+            android:layout_marginTop="@dimen/dp_100"
+            android:text="@string/ic_font_github"
+            android:textSize="@dimen/dp_100" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/mUserNameInputLayout"
@@ -91,15 +92,17 @@
             android:layout_marginTop="@dimen/dp_35"
             android:visibility="gone" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.fmt.github.common.ui.icfont.IconFontTextView
             android:id="@+id/mOAuthLoginIv"
-            android:layout_width="@dimen/dp_35"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="@dimen/dp_20"
             android:layout_weight="1"
-            android:scaleType="fitEnd"
-            android:src="@mipmap/icon_browser" />
+            android:gravity="bottom"
+            android:text="@string/ic_font_browser"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_40" />
 
         <ProgressBar
             android:id="@+id/mOAuthProgress"

@@ -11,6 +11,7 @@
 	<color name="email_text_color">#00EE00</color>
 	<color name="indicator_color">#3473e0</color>
 	<color name="version_text_color">#C8C8C8</color>
+	<color name="repos_info_text_color">#707070</color>
 	<color name="repos_time_color">#aaaaaa</color>
 
 	<integer-array name="github_glyph_colors">
