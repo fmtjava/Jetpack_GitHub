@@ -1,7 +1,6 @@
 package com.fmt.github.repos.delegate
 
 import android.app.Activity
-import android.util.Log
 import android.view.KeyEvent
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
@@ -28,25 +27,21 @@ class WebDelegate(
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
         webContainer.onCreate(mActivity, mViewGroup, mWebUrl)
-        Log.e("fmt", "onCreate")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause() {
         webContainer.onPause()
-        Log.e("fmt", "onPause")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
         webContainer.onResume()
-        Log.e("fmt", "onResume")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         webContainer.onDestroy()
-        Log.e("fmt", "onDestroy")
     }
 
     fun back() = webContainer.back()
