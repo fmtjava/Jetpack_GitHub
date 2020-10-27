@@ -44,7 +44,7 @@ class ReposDetailActivity : BaseVMActivity() {
         mRepos = intent.getStringExtra(REPO)
         mWebUrl = intent.getStringExtra(WEB_URL)
         mWebDelegate = WebDelegate.create(AgentWebContainer(), this, mRootView, mWebUrl)
-        mWebDelegate.onCreate()
+        lifecycle.addObserver(mWebDelegate)
         setSupportActionBar(mToolbar)
         supportActionBar?.let { actionBar ->
             actionBar.setDisplayHomeAsUpEnabled(true)//添加默认的返回图标
@@ -113,21 +113,6 @@ class ReposDetailActivity : BaseVMActivity() {
                 successToast(getString(R.string.un_stared))
                 LiveEventBus.get().with(Constant.STAR_EVENT_KEY).post(ReposStarEvent())
             })
-    }
-
-    override fun onPause() {
-        mWebDelegate.onPause()
-        super.onPause()
-    }
-
-    override fun onResume() {
-        mWebDelegate.onResume()
-        super.onResume()
-    }
-
-    override fun onDestroy() {
-        mWebDelegate.onDestroy()
-        super.onDestroy()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean =
