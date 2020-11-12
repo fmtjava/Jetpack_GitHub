@@ -3,16 +3,15 @@ package com.fmt.github.repos.delegate
 import android.app.Activity
 import android.view.KeyEvent
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 
 class WebDelegate(
     private val webContainer: WebContainer,
     private val mActivity: Activity,
     private val mViewGroup: ViewGroup,
     private val mWebUrl: String
-) : LifecycleObserver {
+) : DefaultLifecycleObserver {
 
     companion object {
         fun create(
@@ -24,23 +23,19 @@ class WebDelegate(
             WebDelegate(webContainer, activity, viewGroup, webUrl)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate() {
+    override fun onCreate(owner: LifecycleOwner) {
         webContainer.onCreate(mActivity, mViewGroup, mWebUrl)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause() {
+    override fun onPause(owner: LifecycleOwner) {
         webContainer.onPause()
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() {
+    override fun onResume(owner: LifecycleOwner) {
         webContainer.onResume()
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
+    override fun onDestroy(owner: LifecycleOwner) {
         webContainer.onDestroy()
     }
 
