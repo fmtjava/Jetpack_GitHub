@@ -5,7 +5,7 @@
 [![Release Version](https://img.shields.io/badge/version-2.6-red.svg)](https://fir.im/8jw7)
 [![](https://img.shields.io/badge/Author-fmtjava-blue.svg)](https://github.com/fmtjava)
 [![](https://img.shields.io/badge/QQ-2694746499-orange.svg)](https://github.com/fmtjava)<br /><br />
-基于Kotlin + Jetpack全家桶 + Coroutines(协程) + Flutter 等架构实现的一款精简版Github客户端项目。<br />
+基于Kotlin + Jetpack全家桶 + Coroutines(协程) + Flutter 等架构实现的一款精简版Github客户端项目。<br /><br />
 新开源项目：[Kotlin_Eyepetizer](https://github.com/fmtjava/Kotlin_Eyepetizer)<br /> 
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[LiveDataBus](https://github.com/fmtjava/LiveDataBus)
 
