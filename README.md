@@ -159,7 +159,6 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
   - [AnimatedSvgView](https://github.com/jaredrummler/AnimatedSvgView)
   - [MultiStateView](https://github.com/Kennyc1012/MultiStateView)
   - [XPopup](https://github.com/li-xiaojun/XPopup)
-  - [LiveEventBus](https://github.com/JeremyLiao/LiveEventBus)
   - [simple-view-behavior](https://github.com/zoonooz/simple-view-behavior)
   - [Okhttp](https://github.com/square/okhttp)
   - [Retrofit](https://github.com/square/retrofit)
