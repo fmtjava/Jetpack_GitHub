@@ -19,7 +19,6 @@ class App : Application() {
             .addTask(InitBuGlyTask())
             .addTask(InitKoInTask())
             .addTask(InitImageLoaderTask())
-            .addTask(InitLiveEventBusTask())
             .addTask(InitSmartRefreshLayoutTask())
             .start()
     }

@@ -1,7 +1,6 @@
 package com.fmt.github.user.fragment
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fmt.github.BR
 import com.fmt.github.R
@@ -14,13 +13,13 @@ import com.fmt.github.home.event.ReposStarEvent
 import com.fmt.github.repos.activity.go2ReposDetailActivity
 import com.fmt.github.repos.model.ReposItemModel
 import com.fmt.github.user.viewmodel.UserViewModel
+import com.fmt.livedatabus.LiveDataBus
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
-import com.jeremyliao.liveeventbus.LiveEventBus
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
+class UserReposFragment : BaseListMVFragment<ReposItemModel>() {
 
     private val mViewModel: UserViewModel by viewModel()
     private var mUserName = ""
@@ -47,7 +46,12 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
         val type = Type<LayoutReposBinding>(R.layout.layout_repos)
             .onClick {
                 val reposItemModel = mListData[it.bindingAdapterPosition]
-                go2ReposDetailActivity(mActivity,reposItemModel.html_url,reposItemModel.name,reposItemModel.owner.login)
+                go2ReposDetailActivity(
+                    mActivity,
+                    reposItemModel.html_url,
+                    reposItemModel.name,
+                    reposItemModel.owner.login
+                )
             }
         LastAdapter(mListData, BR.item)
             .map<ReposItemModel>(type)
@@ -75,9 +79,8 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>(){
 
     //LiveEventBus实现Android消息总线
     private fun initStarEvent() {
-        LiveEventBus.get()
-            .with(Constant.STAR_EVENT_KEY, ReposStarEvent::class.java)
-            .observe(this, Observer {
+        LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY)
+            .observe(this, {
                 onRefresh(mRefreshLayout)
             })
     }

@@ -17,7 +17,7 @@ import com.fmt.github.repos.delegate.AgentWebContainer
 import com.fmt.github.repos.delegate.WebDelegate
 import com.fmt.github.repos.viewmodel.ReposViewModel
 import com.fmt.github.utils.ShareUtils
-import com.jeremyliao.liveeventbus.LiveEventBus
+import com.fmt.livedatabus.LiveDataBus
 import com.like.LikeButton
 import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.activity_repos_detail.*
@@ -103,7 +103,7 @@ class ReposDetailActivity : BaseVMActivity() {
         mViewModel.starRepo(mOwner, mRepos)
             .observe(this@ReposDetailActivity, {
                 successToast(getString(R.string.stared))
-                LiveEventBus.get().with(Constant.STAR_EVENT_KEY).post(ReposStarEvent())
+                LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY).postData(ReposStarEvent())
             })
     }
 
@@ -111,7 +111,7 @@ class ReposDetailActivity : BaseVMActivity() {
         mViewModel.unStarRepo(mOwner, mRepos)
             .observe(this@ReposDetailActivity, {
                 successToast(getString(R.string.un_stared))
-                LiveEventBus.get().with(Constant.STAR_EVENT_KEY).post(ReposStarEvent())
+                LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY).postData(ReposStarEvent())
             })
     }
 
