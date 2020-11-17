@@ -82,7 +82,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    - 协程调度器代替Handler、AsyncTask、Rxjava更优雅的处理线程切换
 
 ## LiveEventBus
-   LiveEventBus是一款Android消息总线，基于LiveData，具有生命周期感知能力，支持Sticky，支持AndroidX，支持跨进程，支持跨APP
+   基于LiveData实现的一款不用反注册，不会内存泄露的轻量级消息总线框架，支持订阅普通事件消息和粘性事件
    
 ## Assent
    轻便且灵活的Android动态权限申请框架，支持Kotlin和AndroidX
