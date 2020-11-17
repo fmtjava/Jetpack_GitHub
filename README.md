@@ -81,7 +81,7 @@ Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面�
    - 异步编程时无需编写大量的回调接口，Coroutines的“黑魔法“特性让你用同步的方式编写代码，增强代码可读性
    - 协程调度器代替Handler、AsyncTask、Rxjava更优雅的处理线程切换
 
-## LiveEventBus
+## LiveDataBus
    基于LiveData实现的一款不用反注册，不会内存泄露的轻量级消息总线框架，支持订阅普通事件消息和粘性事件
    
 ## Assent
