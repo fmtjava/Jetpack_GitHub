@@ -78,6 +78,8 @@
     <string name="context_not_null_tip">please init context field in LoaderOptions</string>
     <string name="url_not_null_tips">please init url field in LoaderOptions</string>
 
+    <string name="bottom_button_login">Please use the bottom button to login</string>
+
     <string name="ic_font_email">&#xe607;</string>
     <string name="ic_font_link">&#xe932;</string>
     <string name="ic_font_browser">&#xe606;</string>

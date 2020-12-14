@@ -45,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
-                android:hint="@string/username"
+                android:enabled="false"
+                android:hint="@string/bottom_button_login"
                 android:singleLine="true"
                 android:text="@={userLoginModel.username}" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -65,7 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
-                android:hint="@string/password"
+                android:enabled="false"
+                android:hint="@string/bottom_button_login"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:text="@={userLoginModel.password}" />
@@ -79,6 +81,7 @@
             android:layout_marginTop="@dimen/dp_35"
             android:layout_marginEnd="20dp"
             android:background="@drawable/selector_login_bg"
+            android:enabled="false"
             android:text="@string/sign_in"
             android:textAllCaps="false"
             android:textColor="@drawable/selector_login_text_color"
