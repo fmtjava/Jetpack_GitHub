@@ -1,65 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="searchModel" type="com.fmt.github.home.model.SearchModel"/>
+
+        <variable
+            name="searchModel"
+            type="com.fmt.github.home.model.SearchModel" />
     </data>
 
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_48"
-                android:background="@color/colorPrimary">
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:background="@color/colorPrimary">
 
-            <ImageButton
-                    android:id="@+id/iv_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_back"
-                    android:layout_gravity="center_vertical"
-                    android:paddingStart="@dimen/dp_15"
-                    android:background="@null"/>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:paddingStart="@dimen/dp_15"
+                android:src="@mipmap/icon_back" />
 
-            <EditText
-                    android:id="@+id/mSearchEt"
-                    android:layout_width="@dimen/dp_0"
-                    android:layout_weight="1"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="@dimen/dp_10"
-                    android:layout_marginEnd="@dimen/dp_10"
-                    android:singleLine="true"
-                    android:textColorHint="@color/repos_search_text_color"
-                    android:textColor="@color/repos_search_text_color"
-                    android:background="@drawable/selector_search_exittext_bg"
-                    android:imeOptions="actionSearch"
-                    android:maxLines="1"
-                    android:text="@={searchModel.searchKey}"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/mSearchEt"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/selector_search_exittext_bg"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@={searchModel.searchKey}"
+                android:textColor="@color/repos_search_text_color"
+                android:textColorHint="@color/repos_search_text_color" />
 
             <TextView
-                    android:id="@+id/mSortTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="@android:color/white"
-                    android:gravity="center_vertical"
-                    android:text="@string/sort"
-                    android:textSize="@dimen/sp_18"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/dp_15"
-                    android:visibility="gone"
-                    tools:ignore="RtlSymmetry" />
+                android:id="@+id/mSortTv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingEnd="@dimen/dp_15"
+                android:text="@string/sort"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_20"
+                android:visibility="gone"
+                tools:ignore="RtlSymmetry" />
 
         </LinearLayout>
 
         <FrameLayout
-                android:id="@+id/frameLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
 
     </LinearLayout>
