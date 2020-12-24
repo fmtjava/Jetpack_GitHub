@@ -1,3 +1,3 @@
 package com.fmt.github.home.event
 
-class ReposStarEvent
+class ReposStarEvent(val isFromFavor:Boolean)

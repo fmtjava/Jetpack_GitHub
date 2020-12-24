@@ -50,7 +50,7 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>() {
                     mActivity,
                     reposItemModel.html_url,
                     reposItemModel.name,
-                    reposItemModel.owner.login
+                    reposItemModel.owner.login,
                 )
             }
         LastAdapter(mListData, BR.item)
@@ -65,7 +65,7 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>() {
             mUserName = it.getString(KEY).toString()
             mIsFavor = it.getBoolean(IS_FAVOR)
             initViewModelAction()
-            if (mIsFavor) initStarEvent()
+            initStarEvent()
         }
     }
 
@@ -77,10 +77,10 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>() {
         }
     }
 
-    //LiveEventBus实现Android消息总线
+    //LiveDataBus实现Android消息总线
     private fun initStarEvent() {
         LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY)
-            .observe(this, {
+            .observe(this, { reposStarEvent ->
                 onRefresh(mRefreshLayout)
             })
     }

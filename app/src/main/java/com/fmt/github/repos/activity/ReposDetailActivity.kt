@@ -30,6 +30,7 @@ class ReposDetailActivity : BaseVMActivity() {
     private lateinit var mOwner: String
     private lateinit var mRepos: String
     private lateinit var mWebUrl: String
+    private var mIsFromFavor: Boolean = false
 
     override fun getLayoutId(): Int = R.layout.activity_repos_detail
 
@@ -103,7 +104,8 @@ class ReposDetailActivity : BaseVMActivity() {
         mViewModel.starRepo(mOwner, mRepos)
             .observe(this@ReposDetailActivity, {
                 successToast(getString(R.string.stared))
-                LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY).postData(ReposStarEvent())
+                LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY)
+                    .setData(ReposStarEvent(mIsFromFavor))
             })
     }
 
@@ -111,7 +113,8 @@ class ReposDetailActivity : BaseVMActivity() {
         mViewModel.unStarRepo(mOwner, mRepos)
             .observe(this@ReposDetailActivity, {
                 successToast(getString(R.string.un_stared))
-                LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY).postData(ReposStarEvent())
+                LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY)
+                    .setData(ReposStarEvent(mIsFromFavor))
             })
     }
 
@@ -123,7 +126,12 @@ class ReposDetailActivity : BaseVMActivity() {
         }
 }
 
-fun go2ReposDetailActivity(activity: Activity, webUrl: String, repo: String, owner: String) {
+fun go2ReposDetailActivity(
+    activity: Activity,
+    webUrl: String,
+    repo: String,
+    owner: String,
+) {
     Bundle().run {
         putString(ReposDetailActivity.WEB_URL, webUrl)
         putString(ReposDetailActivity.REPO, repo)
