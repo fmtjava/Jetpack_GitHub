@@ -80,7 +80,7 @@ class UserReposFragment : BaseListMVFragment<ReposItemModel>() {
     //LiveDataBus实现Android消息总线
     private fun initStarEvent() {
         LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY)
-            .observe(this, { reposStarEvent ->
+            .observe(this, {
                 onRefresh(mRefreshLayout)
             })
     }
