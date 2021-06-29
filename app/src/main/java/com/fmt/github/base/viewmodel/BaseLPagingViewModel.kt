@@ -32,6 +32,8 @@ abstract class BaseLPagingViewModel<M : Any> : BaseViewModel() {
                 LoadResult.Error(e)
             }
         }
+
+        override fun getRefreshKey(state: PagingState<Int, M>): Int? = null
     }
 
     abstract suspend fun getDataList(page: Int): List<M>

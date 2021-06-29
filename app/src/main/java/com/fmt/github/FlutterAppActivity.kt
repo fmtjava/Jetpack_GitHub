@@ -6,7 +6,7 @@ import io.flutter.embedding.android.FlutterActivity
 
 class FlutterAppActivity : FlutterActivity() {
 
-    var mInitParam: String? = null
+    private var mInitParam: String? = null
 
     companion object {
         const val INIT_PARAMS = "initParams"
@@ -20,5 +20,5 @@ class FlutterAppActivity : FlutterActivity() {
 
     //设置显示Flutter对应页面的路由
     override fun getInitialRoute(): String =
-        if (mInitParam.isNullOrEmpty()) super.getInitialRoute() else mInitParam!!
+        if (mInitParam.isNullOrEmpty()) super.getInitialRoute().toString() else mInitParam!!
 }

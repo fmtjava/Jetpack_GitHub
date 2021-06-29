@@ -1,6 +1,5 @@
 package com.fmt.github.base.fragment
 
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +21,6 @@ abstract class BasePagingVMFragment<M : Any, VM : BaseLPagingViewModel<M>, VH : 
 
     override fun getLayoutRes(): Int = R.layout.common_recyclerview
 
-    @ExperimentalPagingApi
     override fun initView() {
         mSwipeRefreshLayout.setOnRefreshListener {
             mAdapter.refresh()
