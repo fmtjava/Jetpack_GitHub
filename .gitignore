@@ -11,3 +11,10 @@
 /build
 /captures
 .externalNativeBuild
+/flutter_module/.android/
+/flutter_module/.dart_tool/
+/flutter_module/.idea/
+/flutter_module/.ios/
+/flutter_module/.flutter-plugins
+/flutter_module/.flutter-plugins-dependencies
+/flutter_module/.packages
