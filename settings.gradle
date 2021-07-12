@@ -1,7 +1,7 @@
 include ':common'
-include ':app', ':simplebehavior', ':LaunchStarter'
+include ':app', ':simplebehavior', ':LaunchStarter',':Jetpeck_Flutter_Trend'
 setBinding(new Binding([gradle: this]))
 evaluate(new File(
-        settingsDir.parentFile,
+        settingsDir.absolutePath,
         'Jetpeck_Flutter_Trend/.android/include_flutter.groovy'
 ))
