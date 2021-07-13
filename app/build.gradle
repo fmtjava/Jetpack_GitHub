@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: '../channel.gradle'
-apply from: '../jenkins_package.gradle'
 
 kapt {
     generateStubs = true
