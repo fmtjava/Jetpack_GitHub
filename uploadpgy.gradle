@@ -1,0 +1,118 @@
+// 打包apk上传蒲公英
+task packageApk(group: 'upload') {
+
+    File apkDir = null
+    //判断是否开启多渠道打包
+    if (BUILD_MULTI_FLAVOR.toBoolean()) {
+        def reBuildChannel = tasks.findByName("reBuildChannel")
+        //先打多渠道包并加固
+        reBuildChannel.dependsOn("protectApp")
+        //再对加固后的包重新进行多渠道打包
+        dependsOn("reBuildChannel")
+        apkDir = new File(project.buildDir, "outputs/rebuildChannel/release")
+    } else {
+        // 让packageApk 依赖于assembleRelease包构建成功后，才会执行uploadApk()
+        dependsOn("protectApp")
+        apkDir = new File(project.buildDir, "outputs/apk/release")
+    }
+    doLast {
+        uploadApk(apkDir)
+    }
+}
+
+def uploadApk(File apkDir) {
+    // 查找上传的 apk 文件, 这里需要换成自己 apk 路径"
+    def apk = null
+    for (int i = apkDir.listFiles().length - 1; i >= 0; i--) {
+        File file = apkDir.listFiles()[i]
+        if (file.name.endsWith(".apk")) {
+            apk = file
+            break
+        }
+    }
+    if (apk == null || !apk.exists()) {
+        throw new RuntimeException("apk file not exists!")
+    }
+    println "*************** upload start ***************"
+
+    String BOUNDARY = UUID.randomUUID().toString(); // 边界标识 随机生成
+    String PREFIX = "--", LINE_END = "\r\n";
+    String CONTENT_TYPE = "multipart/form-data"; // 内容类型
+
+    try {
+        URL url = new URL("https://www.pgyer.com/apiv2/app/upload");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(30000);
+        conn.setConnectTimeout(30000);
+        conn.setDoInput(true); // 允许输入流
+        conn.setDoOutput(true); // 允许输出流
+        conn.setUseCaches(false); // 不允许使用缓存
+        conn.setRequestMethod("POST"); // 请求方式
+        conn.setRequestProperty("Charset", "UTF-8"); // 设置编码
+        conn.setRequestProperty("connection", "keep-alive");
+        conn.setRequestProperty("Content-Type", CONTENT_TYPE + ";boundary=" + BOUNDARY);
+        DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+
+        StringBuffer sb = new StringBuffer();
+        sb.append(PREFIX).append(BOUNDARY).append(LINE_END);//分界符
+        sb.append("Content-Disposition: form-data; name=\"" + "_api_key" + "\"" + LINE_END);
+        sb.append("Content-Type: text/plain; charset=UTF-8" + LINE_END);
+        //sb.append("Content-Transfer-Encoding: 8bit" + LINE_END);
+        sb.append(LINE_END);
+        sb.append("你自己的蒲公英key");
+        sb.append(LINE_END);//换行！
+
+
+        if (apk != null) {
+            /**
+             * 当文件不为空，把文件包装并且上传
+             */
+
+            sb.append(PREFIX);
+            sb.append(BOUNDARY);
+            sb.append(LINE_END);
+            /**
+             * 这里重点注意： name里面的值为服务器端需要key 只有这个key 才可以得到对应的文件
+             * filename是文件的名字，包含后缀名的 比如:abc.png
+             */
+            sb.append("Content-Disposition: form-data; name=\"file\"; filename=\"" + apk.getName() + "\"" + LINE_END);
+            sb.append("Content-Type: application/octet-stream; charset=UTF-8" + LINE_END);
+            sb.append(LINE_END);
+            dos.write(sb.toString().getBytes())
+
+            InputStream is = new FileInputStream(apk)
+            byte[] bytes = new byte[1024];
+            int len = 0;
+            while ((len = is.read(bytes)) != -1) {
+                dos.write(bytes, 0, len);
+            }
+            is.close();
+            dos.write(LINE_END.getBytes());
+            byte[] end_data = (PREFIX + BOUNDARY + PREFIX + LINE_END).getBytes();
+
+            dos.write(end_data);
+            dos.flush();
+            /**
+             * 获取响应码 200=成功 当响应成功，获取响应的流
+             */
+            int res = conn.getResponseCode();
+            if (res == 200) {
+                println("Upload request success");
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))
+                StringBuffer ret = new StringBuffer();
+                String line
+                while ((line = br.readLine()) != null) {
+                    ret.append(line)
+                }
+                String result = ret.toString();
+                println("Upload result : " + result);
+                println "*************** upload finish ***************"
+            }
+        }
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+

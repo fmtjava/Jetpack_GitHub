@@ -5,6 +5,7 @@ dependencies {
     //多渠道
     api 'com.leon.channel:helper:2.0.3'
 }
+//直接编译生成多渠道包
 channel {
     //指定渠道文件
     channelFile = file("../channel.txt")
@@ -16,6 +17,19 @@ channel {
     isFastMode = false
     //buildTime的时间格式，默认格式：yyyyMMdd-HHmmss
     buildTimeDateFormat = 'yyyyMMdd-HH:mm:ss'
+    //低内存模式（仅针对V2签名，默认为false）：只把签名块、中央目录和EOCD读取到内存，不把最大头的内容块读取到内存，在手机上合成APK时，可以使用该模式
+    lowMemory = false
+}
+//根据已有基础包重新生成多渠道包
+rebuildChannel {
+    //指定渠道文件
+    channelFile = new File("../channel.txt")
+    //baseDebugApk = new File(project.buildDir, "outputs/packers/app-release_10_jiagu_sign.apk")
+    baseReleaseApk = new File(project.buildDir, "outputs/packers/app-release_28_jiagu_sign.apk")
+    //debugOutputDir = new File(project.buildDir, "outputs/rebuildChannel/debug")
+    releaseOutputDir = new File(project.buildDir, "outputs/rebuildChannel/release")
+    //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上，默认为false）
+    isFastMode = false
     //低内存模式（仅针对V2签名，默认为false）：只把签名块、中央目录和EOCD读取到内存，不把最大头的内容块读取到内存，在手机上合成APK时，可以使用该模式
     lowMemory = false
 }

@@ -1,0 +1,62 @@
+ext {
+// app相关的配置
+    app = [
+            //默认release apk的文件路径，因为加固是基于release包的
+            releasePath: "${project.buildDir}/outputs/apk/release",
+            //对release apk 加固后产生的加固apk地址
+            packersPath: "${project.buildDir}/outputs/packers",
+    ]
+
+// 360加固配置
+    packers = [account : '360加固包账号', //账号
+               password: '360加固包密码',  //密码
+               jarPath : "../jiagu/jiagu.jar",  //执行命令的jar包路径
+    ]
+}
+
+task protectApp() {
+    dependsOn("assembleRelease")
+    doLast {
+        println 'packers===beginning 360 jiagu'
+        def releaseApkDir = file(app["releasePath"])
+        def releaseApk = null
+        releaseApkDir.eachFile { file ->
+            if (file.isFile() && file.name.endsWith(".apk")) {
+                releaseApk = file
+                return
+            }
+        }
+        def packerDir = new File(app["packersPath"])
+        if (!packerDir.exists()) {
+            packerDir.mkdirs()
+        }
+        exec {
+            // 登录360加固保
+            executable = 'java'
+            args = ['-jar', packers["jarPath"], '-login', packers["account"], packers["password"]]
+        }
+        exec {
+            // 导入签名信息
+            executable = 'java'
+            args = ['-jar', packers["jarPath"], '-importsign', signing["storeFile"], signing["storePassword"], signing["keyAlias"], signing["keyPassword"]]
+        }
+        exec {
+            // 查看360加固签名信息
+            executable = 'java'
+            args = ['-jar', packers["jarPath"], '-showsign']
+        }
+        exec {
+            // 初始化加固服务配置
+            executable = 'java'
+            args = ['-jar', packers["jarPath"], '-config']
+        }
+        exec {
+            // 执行加固，然后自动签名，若不采取自动签名，需要自己通过build-tools命令自己签名
+            executable = 'java'
+            args = ['-jar', packers["jarPath"], '-jiagu', releaseApk.absolutePath, app["packersPath"], '-autosign']
+        }
+        println 'packers===360 jiagu finished'
+        println "packers===360 jiagu path ${app["packersPath"]}"
+    }
+}
+

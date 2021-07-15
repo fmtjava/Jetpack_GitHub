@@ -1,0 +1,154 @@
+<p>
+    <font size="14px" color="black"><strong>一、登陆问题</strong></font>
+</p>
+<p>
+    <font size="14px" color="black">Q：Mac版加固助手打不开怎么办？
+	<br/>A：请参考mac打不开解决办法：<a href="https://pan.baidu.com/s/17JmukyIUK89Z86v-B3t0OQ"> https://pan.baidu.com/s/17JmukyIUK89Z86v-B3t0OQ</a>&nbsp;&nbsp;提取码：2yhc
+	</font><br/>
+</p>
+<p>
+	<br/>
+</p>
+
+<p>
+    <font size="14px" color="black"><strong>二、签名问题</strong></font>
+</p>
+<p>
+    <font size="14px" color="black">Q：签名失败怎么办？
+	<br/>A：请检查以下情况：
+	<br/>（1）签名文件是否完好，可以删掉原签名，重新导入试试
+	<br/>（2）密码是否正确
+	<br/>（3）WinXP系统下运行可能会出错，请使用尽量使用WIN7操作系统
+	<br/>（4）Mac电脑，请尝试给签名所在文件夹开放777权限试下
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:加固后的签名方式是V1还是V2？
+	<br/>A:（1）启用自动签名，加固会自动匹配原包签名方式
+	<br/>&nbsp;（2）使用签名apk工具：有两个签名方式供选择，其中V2（full APKsignature）相当于选择v1+v2方式
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q: 签名失败的原因大致有哪些？
+	<br/>A:签名失败时请确认下面三种情况是否正确：
+	<br/>（1）签名文件是否完好 
+	<br/>（2）密码是否正确 
+	<br/>（3）WinXP系统下运行可能会出错，请使用尽量使用WIN7操作系统 
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:加固保会上传开发者的的签名文件吗?
+	<br/>A:不会，请开发者放心使用。
+	</font><br/>
+</p>
+
+<p>
+    <font size="14px" color="black"><strong>三、多渠道打包问题</strong></font>
+</p>
+<p>
+    <font size="14px" color="black">Q:为什么我选了两个渠道，出来3个包？
+	<br/>A:两个渠道包，还有一个是360加固完的包。
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:多渠道配置里“统计平台”、“市场名称”、“渠道编号”分别代表什么意思？
+	<br/>A:统计平台：即android name,应用中集成的数据分析sdk的公司名称，例：umeng_channel(下拉列表里提供了若干选项);
+   <br/>&nbsp;市场名称：各大安卓应用分发市场(下拉列表里提供了Top20的市场供选择)，以帮助开发者区分不同渠道包特征上传相对应市场;
+   <br/>&nbsp;渠道编号：即android value，一般填写相关channel id。用户可自行定义区分各大市场的关键字，可以是英文、数字、汉字等。
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:打渠道包失败提示insert xml into zip failed或者modify xml failed？
+	<br/>A:网络不稳定，请更换网络或者连接4G热点多渠道试试。
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black"><strong>四、错误码解释</strong></font>
+</p>
+<p>
+    <font size="14px" color="black">Q:109-重试3次后，上传仍然失败
+	<br/>A:（1）请检查公司网络是否有限制yunpan.360.cn；如果没有限制，请去加固保官网下载新版加固助手可以解决此问题
+	<br/>&nbsp;（2）如果没有限制，请去加固保官网下载新版加固助手可以解决此问题
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:错误码：20001/20002
+	<br/>A:IP异常登录失败超限/账户登录失败超限
+	<br/>&nbsp;反馈此问题，请附上截图，发邮件至官方邮箱：360jiagubao@360.cn
+
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:错误码：13000
+	<br/>A:登录鉴权失败,请尝试重新登录
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:上传风险apk多次，账号被封
+	<br/>A:请将apk发送至shoujijiance@360.cn 并抄送360jiagubao@360.cn 检测无误后，即可解封
+	</font><br/>
+</p>
+
+<p>
+    <font size="14px" color="black">Q:错误码：11101/11102/11103/11105/11106
+	<br/>A:main异常1/2/3/5/6，反馈此问题，请附上截图，发邮件至官方邮箱：360jiagubao@360.cn
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:11104-main异常4
+	<br/>分包问题，如果使用的自动分包，请将自动分包改成手动分包
+	</font><br/>
+</p>
+
+<p>
+    <font size="14px" color="black">Q:错误码：11011/11013
+	<br/>A:获取签名失败/更新解析信息失败，反馈此问题，请附上截图，发邮件至官方邮箱：360jiagubao@360.cn
+	</font><br/>
+</p>
+
+<p>
+    <font size="14px" color="black">Q:错误码：11030/11032
+	<br/>加固结果包丢失/加固包bodyHash获取失败，反馈此问题，请附上截图，发邮件至官方邮箱：360jiagubao@360.cn
+	</font><br/>
+</p>
+
+<p>
+    <font size="14px" color="black">Q:错误码：11040
+	<br/>解析appInfoKey失败，反馈此问题，请附上截图，发邮件至官方邮箱：360jiagubao@360.cn
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:错误码：11041/11042
+	<br/>获取加固数据失败/获取加固过程状态失败，反馈此问题，请附上截图，发邮件至官方邮箱：360jiagubao@360.cn
+	</font><br/>
+</p>
+
+<p>
+    <font size="14px" color="black">Q:错误码：11012
+	<br/>aapt解析失败，请检查AndroidMainfest.xml文件里application：label、application：icon等信息是否完整或者android:name、android:versionName类型是否是string类型
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:错误码：11020/11021
+	<br/>安检DANGER/安检CAUTION，请将apk发送至shoujijiance@360.cn 检测，检测通过后重新提交加固
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:签名解析为空/签名解析失败
+	<br/>加固后没有二次签名，请给加固后的包再次签名/请检查再次签名文件是否与原包签名一致
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:11011-获取签名失败
+	<br/>首先，请稍后重新加固试试，查看是否可以加固成功；其次，如果不成功，请检查原包是否可以正常安装，自检原包问题
+	</font><br/>
+</p>
+<p>
+    <font size="14px" color="black">Q:11031-加固包存储失败/11043-下载原包失败
+	<br/>网络不稳定导致的加固包存储失败，请稍后删除原加固记录，重试
+	</font><br/>
+</p>
+
+<p>
+	<br/>
+</p>
