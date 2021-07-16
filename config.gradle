@@ -16,8 +16,8 @@ ext {
     ]
 
 // 360加固配置
-    packers = [account : '15112453213', //账号
-               password: 'fmt123456',  //密码
+    packers = [account : '你的360加固账号', //账号
+               password: '你的360加固密码',  //密码
                jarPath : "../jiagu/jiagu.jar",  //执行命令的jar包路径
     ]
 }
