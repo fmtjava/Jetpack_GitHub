@@ -107,6 +107,9 @@ def uploadApk(File apkDir) {
                 String result = ret.toString();
                 println("Upload result : " + result);
                 println "*************** upload finish ***************"
+                //企业项目开发时，一般会结合webhook技术添加企业微信机器人/钉钉机器人，从而实现传成功消息的分享，附上开放链接，可自行拓展
+                //企业微信群机器人：https://work.weixin.qq.com/api/doc/90000/90136/91770
+                //钉钉群机器人：https://developers.dingtalk.com/document/app/custom-robot-access
             }
         }
     } catch (MalformedURLException e) {
