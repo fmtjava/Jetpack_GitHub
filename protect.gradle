@@ -13,7 +13,7 @@ ext {
                jarPath : "../jiagu/jiagu.jar",  //执行命令的jar包路径
     ]
 }
-
+//使用360加固命名结合Task进行打包
 task protectApp() {
     dependsOn("assembleRelease")
     doLast {

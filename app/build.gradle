@@ -72,8 +72,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
 
     //协程
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+    //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
 
     //Android KTX 是一组 Kotlin 扩展程序，属于 Android Jetpack 系列
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -128,11 +128,14 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0@aar'
 
     //bugly捕获异常
-    implementation 'com.tencent.bugly:crashreport:3.2.33'
+    implementation 'com.tencent.bugly:crashreport:3.3.92'
     implementation project(path: ':LaunchStarter')
 
     //aspectj
     implementation 'org.aspectj:aspectjrt:1.9.5'//需要使用aspectJ能力的模块
+
+    //aspectJ
+    implementation 'org.aspectj:aspectjrt:1.9.5'
 
     //flutter
     implementation project(':flutter')

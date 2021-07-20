@@ -22,7 +22,7 @@ class AspectJHandle {
         val className = signature.declaringType.canonicalName
         //获取注解的方法名称
         val methodName = signature.name
-
+        //计算方法的耗时
         val startTime = System.currentTimeMillis()
         joinPoint.proceed()
         Log.e(TAG, "$className:$methodName cost=${(System.currentTimeMillis() - startTime)}")
