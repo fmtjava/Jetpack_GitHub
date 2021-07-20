@@ -2,9 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'android-aspectjx'
 apply from: '../channel.gradle'
 apply from: '../protect.gradle'
 apply from: '../uploadpgy.gradle'
+
+aspectjx {
+    //排除所有特定class文件
+    exclude 'module-info', 'kotlinx.coroutines', 'androidx.paging', 'com.lxj.xpopup', 'com.just.agentweb'
+}
 
 kapt {
     generateStubs = true
@@ -124,6 +130,9 @@ dependencies {
     //bugly捕获异常
     implementation 'com.tencent.bugly:crashreport:3.2.33'
     implementation project(path: ':LaunchStarter')
+
+    //aspectj
+    implementation 'org.aspectj:aspectjrt:1.9.5'//需要使用aspectJ能力的模块
 
     //flutter
     implementation project(':flutter')
