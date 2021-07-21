@@ -126,6 +126,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.lxj:xpopup:1.8.10-x'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0@aar'
+    implementation 'com.kyleduo.switchbutton:library:2.1.0'
 
     //bugly捕获异常
     implementation 'com.tencent.bugly:crashreport:3.3.92'
@@ -133,9 +134,6 @@ dependencies {
 
     //aspectj
     implementation 'org.aspectj:aspectjrt:1.9.5'//需要使用aspectJ能力的模块
-
-    //aspectJ
-    implementation 'org.aspectj:aspectjrt:1.9.5'
 
     //flutter
     implementation project(':flutter')

@@ -87,6 +87,8 @@
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_3"
                 android:layout_marginEnd="@dimen/dp_5"
+                android:ellipsize="end"
+                android:maxLines="5"
                 android:text="@{item.description}"
                 android:textColor="@color/repos_common_text_color"
                 android:textSize="@dimen/sp_14"

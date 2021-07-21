@@ -59,6 +59,8 @@
     <string name="profile">Profile</string>
     <string name="about">About</string>
     <string name="trend">Trend</string>
+    <string name="setting">Setting</string>
+    <string name="open_fps_monitor">Open Fps Monitor</string>
     <string name="logout">Logout</string>
     <string name="retry_load">retry load</string>
     <string name="load_fail">Load Failed</string>
@@ -73,6 +75,7 @@
     <string name="copy_link">Copy link</string>
     <string name="share">Share</string>
     <string name="copied_to_pasteboard">Copied to pasteboard</string>
+    <string name="open_overlay_tip">Please open the floating window permission first</string>
 
     <string name="no_browser_clients">There are no browser clients installed.</string>
     <string name="context_not_null_tip">please init context field in LoaderOptions</string>

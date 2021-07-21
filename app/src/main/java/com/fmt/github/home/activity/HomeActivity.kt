@@ -23,6 +23,7 @@ import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.home.work.DownLoadWork
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
+import com.fmt.github.user.activity.SettingActivity
 import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.dao.UserDao
 import com.fmt.github.user.model.UserModel
@@ -96,6 +97,8 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
             R.id.item_user -> go2UserInfoActivity(mUser.login, mUser.avatar_url)
 
             R.id.item_about -> startActivity<AboutActivity>(false)
+
+            R.id.item_setting -> startActivity<SettingActivity>(false)
 
             R.id.item_trend -> {
                 Bundle().run {
