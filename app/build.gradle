@@ -103,9 +103,9 @@ dependencies {
     implementation "androidx.work:work-runtime-ktx:2.6.0-beta01"
 
     //koin(依赖注入)
-    implementation "org.koin:koin-androidx-scope:2.0.1"
-    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
-    implementation "org.koin:koin-androidx-ext:2.0.1"
+    implementation "org.koin:koin-androidx-scope:2.2.2"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
+    implementation "org.koin:koin-androidx-ext:2.2.2"
 
     //动态权限
     implementation 'com.afollestad.assent:core:3.0.0-RC4'
@@ -133,9 +133,6 @@ dependencies {
 
     //aspectj
     implementation 'org.aspectj:aspectjrt:1.9.5'//需要使用aspectJ能力的模块
-
-    //aspectJ
-    implementation 'org.aspectj:aspectjrt:1.9.5'
 
     //flutter
     implementation project(':flutter')
