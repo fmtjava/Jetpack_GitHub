@@ -1,13 +1,15 @@
 package com.fmt.github.tasks
 
+import android.content.Context
 import com.didichuxing.doraemonkit.DoraemonKit
 import com.fmt.github.mApplication
-import com.fmt.launch.starter.task.MainTask
+import com.rousetime.android_startup.AndroidStartup
 
-class InitDoKitTask : MainTask() {
+class InitDoKitTask : AndroidStartup<Unit>() {
 
-    override fun run() {
-        //因为滴滴平台暂时注册不了，productId后续会替换,暂时使用不了平台工具
-        DoraemonKit.install(mApplication,"")
-    }
+    override fun callCreateOnMainThread(): Boolean = true
+
+    override fun waitOnMainThread(): Boolean = true
+
+    override fun create(context: Context): Unit = DoraemonKit.install(mApplication, "")
 }

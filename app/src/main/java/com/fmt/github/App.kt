@@ -3,7 +3,7 @@ package com.fmt.github
 import android.app.Application
 import android.content.ContextWrapper
 import com.fmt.github.tasks.*
-import com.fmt.launch.starter.TaskDispatcher
+import com.rousetime.android_startup.StartupManager
 
 lateinit var mApplication: Application
 
@@ -14,14 +14,15 @@ class App : Application() {
         mApplication = this
 
         //启动器进行异步初始化
-        TaskDispatcher.init(this)
-        TaskDispatcher.createInstance()
-            .addTask(InitBuGlyTask())
-            .addTask(InitKoInTask())
-            .addTask(InitDoKitTask())
-            .addTask(InitImageLoaderTask())
-            .addTask(InitSmartRefreshLayoutTask())
+        StartupManager.Builder()
+            .addStartup(InitBuGlyTask())
+            .addStartup(InitKoInTask())
+            .addStartup(InitDoKitTask())
+            .addStartup(InitImageLoaderTask())
+            .addStartup(InitSmartRefreshLayoutTask())
+            .build(this)
             .start()
+            .await()
     }
 }
 
