@@ -4,9 +4,16 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'android-aspectjx'
 apply plugin: 'com.didi.dokit'
+apply plugin: 'image-compress-plugin'
 apply from: '../channel.gradle'
 apply from: '../protect.gradle'
 apply from: '../uploadpgy.gradle'
+
+compressOption {
+    apiKey '8PyvN9g9jxjVjS1B86bnv2pKC8cRD43p'
+    limitSize 1024
+    suffix "_opt"
+}
 
 aspectjx {
     //排除所有特定class文件
@@ -122,7 +129,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'com.github.fmtjava:LiveDataBus:1.0.0'
+    implementation 'com.github.fmtjava:LiveDataBus:1.0.1'
 
     //okhttp + retrofit(2.6.0以后支持协程)
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
@@ -142,7 +149,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:3.1.0-alpha02"
 
     //WorkManager
-    implementation "androidx.work:work-runtime-ktx:2.6.0-beta01"
+    implementation "androidx.work:work-runtime-ktx:2.6.0-beta02"
 
     //koin(依赖注入)
     implementation "org.koin:koin-androidx-scope:2.2.2"
@@ -171,7 +178,7 @@ dependencies {
     implementation 'io.github.idisfkj:android-startup:1.0.7'
 
     //bugly捕获异常
-    implementation 'com.tencent.bugly:crashreport:3.3.92'
+    implementation 'com.tencent.bugly:crashreport:3.4.4'
 
     //aspectj
     implementation 'org.aspectj:aspectjrt:1.9.5'//需要使用aspectJ能力的模块
@@ -179,6 +186,7 @@ dependencies {
     //DoKit
     debugImplementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
     releaseImplementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit-leakcanary:3.1.5'
 
     //flutter
     implementation project(':flutter')

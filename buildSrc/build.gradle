@@ -1,0 +1,20 @@
+//引入groovy插件
+apply plugin: 'groovy'
+
+//添加远程依赖
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+}
+
+dependencies {
+    //工具包
+    implementation 'com.android.tools.build:gradle:3.4.2'
+    //相当于android sdk
+    implementation gradleApi()
+    //本地Groovy
+    implementation localGroovy()
+    //TinyPng压缩 -->https://tinypng.com/developers(开发网址)
+    implementation 'com.tinify:tinify:1.6.4'
+}
