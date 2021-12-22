@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boost/flutter_boost.dart';
 import 'package:flutter_module/color/color.dart';
 import 'package:flutter_module/model/trend_model.dart';
-import 'package:flutter_module/plugin/plugin_manager.dart';
 
 class TrendPageItem extends StatelessWidget {
   final TrendModel trendModel;
@@ -14,8 +14,13 @@ class TrendPageItem extends StatelessWidget {
     return Card(
       margin: EdgeInsets.fromLTRB(8, 8, 8, 4),
       child: InkWell(
-        onTap: () => PluginManager.go2ReposDetail(
-            trendModel.url, trendModel.reposName, trendModel.name),
+        onTap: () {
+          BoostNavigator.instance.push("reposDetail", arguments: {
+            "web_url": trendModel.url,
+            "owner": trendModel.name,
+            "repo": trendModel.reposName
+          });
+        },
         child: Padding(
           padding: EdgeInsets.all(8),
           child: Row(

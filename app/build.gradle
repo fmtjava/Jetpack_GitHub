@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'android-aspectjx'
 apply plugin: 'com.didi.dokit'
 apply plugin: 'image-compress-plugin'
@@ -20,9 +20,9 @@ aspectjx {
     exclude 'module-info', 'kotlinx.coroutines', 'androidx.paging', 'com.lxj.xpopup', 'com.just.agentweb'
 }
 
-kapt {
-    generateStubs = true
-}
+//kapt {
+//    generateStubs = true
+//}
 
 android {
     compileSdkVersion 29
@@ -190,5 +190,7 @@ dependencies {
 
     //flutter
     implementation project(':flutter')
+    //flutter_boost
+    implementation project(':flutter_boost')
 
 }

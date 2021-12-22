@@ -5,4 +5,3 @@ evaluate(new File(
         settingsDir.absolutePath,
         'flutter_module/.android/include_flutter.groovy'
 ))
-include ':buildSrc'
