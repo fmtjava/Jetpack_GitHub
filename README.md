@@ -57,7 +57,7 @@
     
 ## AAC架构
    还在为MVP内存泄露而烦恼吗？还在苦恼App架构选型吗？Googel官方AAC架构来袭，让你的App架构更加清晰，不在为内存泄露而烦恼。架构图如下
-   <img src="https://camo.githubusercontent.com/2b3ff9b3a5f99c5480b612aa8f4f678dc696987a/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323031392f342f31352f313661323130313664663963373663353f773d39363026683d37323026663d7765627026733d3135333832"/>
+   <img src="https://img-blog.csdnimg.cn/2020071017545212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5namlubGFuZ3pp,size_16,color_FFFFFF,t_70#pic_center"/>
 &#8195;
 Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面显示，不负责任何业务逻辑和数据处理。Model 指的是 Repository 包含的部分，主要负责数据获取，来组本地数据库或者远程服务器。ViewModel 指的是图中蓝色部分，主要负责业务逻辑和数据处理，本身不持有 View 层引用，通过 LiveData 向 View 层发送数据。Repository 统一了数据入口，不管来自数据库，还是服务器，统一打包给 ViewModel。
 ### 核心组件
