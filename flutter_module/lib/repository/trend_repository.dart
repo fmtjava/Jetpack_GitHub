@@ -8,7 +8,7 @@ class TrendRepository {
     dynamic data = await HttpManager.request(url);
     List<dynamic> list = data;
     list.forEach((element) {
-      trendList.add(TrendModel.fromJsonMap(element));
+      trendList.add(TrendModel.fromJson(element));
     });
     return trendList;
   }

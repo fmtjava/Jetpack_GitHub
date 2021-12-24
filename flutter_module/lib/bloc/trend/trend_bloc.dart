@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_module/bloc/trend_event.dart';
-import 'package:flutter_module/bloc/trend_state.dart';
+import 'package:flutter_module/bloc/trend/trend_event.dart';
+import 'package:flutter_module/bloc/trend/trend_state.dart';
 import 'package:flutter_module/model/trend_model.dart';
 import 'package:flutter_module/repository/trend_repository.dart';
 

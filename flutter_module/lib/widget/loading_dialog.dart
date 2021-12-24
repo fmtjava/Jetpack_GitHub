@@ -12,8 +12,9 @@ class LoadingDialog extends Dialog {
         child: Container(
           width: 100,
           height: 100,
-          decoration:
-              BoxDecoration(color: Colors.black38,borderRadius: BorderRadius.all(Radius.circular(5))),
+          decoration: BoxDecoration(
+              color: Colors.black38,
+              borderRadius: BorderRadius.all(Radius.circular(5))),
           child: SpinKitCircle(color: Colors.white), //指示器
         ),
       ),

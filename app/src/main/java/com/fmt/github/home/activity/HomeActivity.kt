@@ -25,9 +25,9 @@ import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.dao.UserDao
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.model.db.User
+import com.fmt.github.utils.NavigationUtil
+import com.fmt.github.utils.TREND_PAGE
 import com.google.android.material.navigation.NavigationView
-import com.idlefish.flutterboost.FlutterBoost
-import com.idlefish.flutterboost.FlutterBoostRouteOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -97,12 +97,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
 
             R.id.item_about -> startActivity<AboutActivity>(false)
 
-            R.id.item_trend -> {
-                FlutterBoost.instance().open(FlutterBoostRouteOptions.Builder()
-                    .pageName("trendPage")
-                    .arguments(mapOf())
-                    .build())
-            }
+            R.id.item_trend -> NavigationUtil.go(TREND_PAGE)
 
             R.id.item_logout -> showLogoutPopup()
         }
@@ -112,8 +107,8 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
 
     private fun go2UserInfoActivity(login: String, avatar_url: String) {
         Bundle().run {
-            val userModel = UserModel(login, avatar_url)
-            putSerializable(UserInfoActivity.USER_INFO, userModel)
+            putString(UserInfoActivity.USER_NAME, login)
+            putString(UserInfoActivity.USER_AVATAR, avatar_url)
             startActivity<UserInfoActivity>(this)
         }
     }

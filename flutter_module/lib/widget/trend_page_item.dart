@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boost/flutter_boost.dart';
 import 'package:flutter_module/color/color.dart';
+import 'package:flutter_module/congigure/page_configure.dart';
 import 'package:flutter_module/model/trend_model.dart';
+import 'package:flutter_module/util/navigation_util.dart';
 
 class TrendPageItem extends StatelessWidget {
   final TrendModel trendModel;
@@ -14,13 +15,11 @@ class TrendPageItem extends StatelessWidget {
     return Card(
       margin: EdgeInsets.fromLTRB(8, 8, 8, 4),
       child: InkWell(
-        onTap: () {
-          BoostNavigator.instance.push("reposDetail", arguments: {
-            "web_url": trendModel.url,
-            "owner": trendModel.name,
-            "repo": trendModel.reposName
-          });
-        },
+        onTap: () => NavigationUtil.push(REPOS_DETAIL_PAGE, arguments: {
+          "web_url": trendModel.url,
+          "owner": trendModel.name,
+          "repo": trendModel.reposName
+        }),
         child: Padding(
           padding: EdgeInsets.all(8),
           child: Row(
@@ -76,12 +75,12 @@ class TrendPageItem extends StatelessWidget {
                             children: <Widget>[
                               Icon(
                                 Icons.star_border,
-                                color: DColor.startTextColor,
+                                color: DColor.desTextColor,
                                 size: 20,
                               ),
                               Text(
                                 trendModel.starCount,
-                                style: TextStyle(color: DColor.startTextColor),
+                                style: TextStyle(color: DColor.desTextColor),
                               )
                             ],
                           ),
@@ -90,12 +89,12 @@ class TrendPageItem extends StatelessWidget {
                             children: <Widget>[
                               Icon(
                                 Icons.device_hub,
-                                color: DColor.startTextColor,
+                                color: DColor.desTextColor,
                                 size: 20,
                               ),
                               Text(
                                 trendModel.forkCount,
-                                style: TextStyle(color: DColor.startTextColor),
+                                style: TextStyle(color: DColor.desTextColor),
                               )
                             ],
                           ),
@@ -104,12 +103,12 @@ class TrendPageItem extends StatelessWidget {
                             children: <Widget>[
                               Icon(
                                 Icons.remove_red_eye,
-                                color: DColor.startTextColor,
+                                color: DColor.desTextColor,
                                 size: 20,
                               ),
                               Text(
                                 trendModel.meta,
-                                style: TextStyle(color: DColor.startTextColor),
+                                style: TextStyle(color: DColor.desTextColor),
                               )
                             ],
                           )

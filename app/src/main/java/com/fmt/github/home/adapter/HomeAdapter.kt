@@ -12,7 +12,6 @@ import com.fmt.github.databinding.LayoutReceivedEventBinding
 import com.fmt.github.home.model.ReceivedEventModel
 import com.fmt.github.repos.activity.go2ReposDetailActivity
 import com.fmt.github.user.activity.go2UserInfoActivity
-import com.fmt.github.user.model.UserModel
 
 class HomeAdapter(private val mContext: Activity) :
     PagingDataAdapter<ReceivedEventModel, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -58,7 +57,8 @@ class HomeAdapter(private val mContext: Activity) :
                 go2UserInfoActivity(
                     mContext,
                     binding.ivHead,
-                    UserModel(receivedEventModel.actor.login, receivedEventModel.actor.avatar_url)
+                    receivedEventModel.actor.login,
+                    receivedEventModel.actor.avatar_url
                 )
             }
         }

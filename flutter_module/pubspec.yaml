@@ -37,6 +37,7 @@ dependencies:
   cached_network_image: ^2.2.0
   flutter_bloc: ^6.0.5
   equatable: ^1.2.5
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:

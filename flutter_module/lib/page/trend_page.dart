@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_module/bloc/trend_bloc.dart';
-import 'package:flutter_module/bloc/trend_event.dart';
-import 'package:flutter_module/bloc/trend_state.dart';
+import 'package:flutter_module/bloc/trend/trend_bloc.dart';
+import 'package:flutter_module/bloc/trend/trend_event.dart';
+import 'package:flutter_module/bloc/trend/trend_state.dart';
 import 'package:flutter_module/color/color.dart';
 import 'package:flutter_module/string/string.dart';
 import 'package:flutter_module/util/toast_util.dart';
@@ -39,7 +37,7 @@ class TrendListPage extends StatelessWidget {
                 onSelected: (action) {
                   context.read<TrendBloc>().add(GetTrendEvent(since: action));
                 },
-                offset: Offset(0, 28),
+                offset: Offset(0, 45),
                 itemBuilder: (context) => <PopupMenuItem<String>>[
                       PopupMenuItem(
                           child: Text(DString.DAILY), value: DString.DAILY),
