@@ -14,35 +14,37 @@ class FollowPageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.fromLTRB(8, 8, 8, 4),
-      child: InkWell(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Row(
-            children: [
-              ClipOval(
-                child: CachedNetworkImage(
-                    imageUrl: followModel.avatarUrl,
-                    height: 40,
-                    width: 40,
-                    fit: BoxFit.cover),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  followModel.login,
-                  style: TextStyle(
-                      color: DColor.themeColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
+      child: Material(
+        child: InkWell(
+          child: Padding(
+            padding: EdgeInsets.all(15),
+            child: Row(
+              children: [
+                ClipOval(
+                  child: CachedNetworkImage(
+                      imageUrl: followModel.avatarUrl,
+                      height: 40,
+                      width: 40,
+                      fit: BoxFit.cover),
                 ),
-              )
-            ],
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    followModel.login,
+                    style: TextStyle(
+                        color: DColor.themeColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            ),
           ),
+          onTap: () => NavigationUtil.push(USER_INFO_PAGE, arguments: {
+            "user_name": followModel.login,
+            "user_avatar": followModel.avatarUrl,
+          }),
         ),
-        onTap: ()=>NavigationUtil.push(USER_INFO_PAGE, arguments: {
-          "user_name": followModel.login,
-          "user_avatar": followModel.avatarUrl,
-        }),
       ),
     );
   }

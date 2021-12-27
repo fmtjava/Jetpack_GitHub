@@ -9,7 +9,7 @@ import com.fmt.github.user.api.UserApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "https://api.github.com/"
@@ -35,7 +35,7 @@ val okHttpClient = OkHttpClient.Builder()
     }.build()
 
 val retrofit: Retrofit = Retrofit.Builder()
-    .addConverterFactory(GsonConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create())
     .client(okHttpClient)
     .baseUrl(BASE_URL)
     .build()
