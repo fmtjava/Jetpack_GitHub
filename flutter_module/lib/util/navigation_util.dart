@@ -8,4 +8,8 @@ class NavigationUtil {
     BoostNavigator.instance.push(name,
         arguments: arguments, withContainer: withContainer, opaque: opaque);
   }
+
+  static Future<bool> pop<T extends Object>([T result]) {
+    return BoostNavigator.instance.pop(result);
+  }
 }

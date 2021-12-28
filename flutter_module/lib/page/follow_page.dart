@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/bloc/follow/follow_bloc.dart';
 import 'package:flutter_module/bloc/follow/follow_event.dart';
 import 'package:flutter_module/bloc/follow/follow_state.dart';
 import 'package:flutter_module/color/color.dart';
 import 'package:flutter_module/string/string.dart';
-import 'package:flutter_module/util/toast_util.dart';
+import 'package:flutter_module/util/navigation_util.dart';
 import 'package:flutter_module/widget/follow_page_item.dart';
 import 'package:flutter_module/widget/loading_dialog.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -42,7 +41,7 @@ class FollowListPage extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () => SystemNavigator.pop()),
+              onPressed: () => NavigationUtil.pop()),
           backgroundColor: DColor.themeColor,
           title: Text(type == DString.FOLLOWERS_TYPE
               ? DString.FOLLOWER

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_module/bloc/trend/trend_bloc.dart';
 import 'package:flutter_module/bloc/trend/trend_event.dart';
 import 'package:flutter_module/bloc/trend/trend_state.dart';
 import 'package:flutter_module/color/color.dart';
 import 'package:flutter_module/string/string.dart';
+import 'package:flutter_module/util/navigation_util.dart';
 import 'package:flutter_module/util/toast_util.dart';
 import 'package:flutter_module/widget/loading_dialog.dart';
 import 'package:flutter_module/widget/trend_page_item.dart';
@@ -28,7 +28,7 @@ class TrendListPage extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () => SystemNavigator.pop()),
+              onPressed: () => NavigationUtil.pop()),
           backgroundColor: DColor.themeColor,
           title: Text(DString.TREND),
           actions: <Widget>[
