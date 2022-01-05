@@ -14,6 +14,7 @@ class TrendBloc extends Bloc<TrendEvent, TrendState> {
   Stream<TrendState> mapEventToState(TrendEvent event) async* {
     if (event is GetTrendEvent) {
       since = event.since;
+      yield state.copyWith(pageStatus: PageStatus.LOADING);
       try {
         List<TrendModel> trendList =
             await TrendRepository.getTrendList(since: since);

@@ -5,6 +5,7 @@ import 'package:flutter_module/bloc/follow/follow_event.dart';
 import 'package:flutter_module/bloc/follow/follow_state.dart';
 import 'package:flutter_module/color/color.dart';
 import 'package:flutter_module/common/common_page_status.dart';
+import 'package:flutter_module/model/follow_model.dart';
 import 'package:flutter_module/string/string.dart';
 import 'package:flutter_module/util/navigation_util.dart';
 import 'package:flutter_module/widget/follow_page_item.dart';
@@ -64,14 +65,14 @@ class FollowListPage extends StatelessWidget {
                 state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
               _refreshController.loadFailed();
             }
-            return _contentWidget(context);
+            return _contentWidget(context, state.followList);
           } else {
             return _errorWidget(context);
           }
         }));
   }
 
-  Widget _contentWidget(BuildContext context) {
+  Widget _contentWidget(BuildContext context, List<FollowModel> followList) {
     return SmartRefresher(
       enablePullDown: true,
       enablePullUp: true,
@@ -82,9 +83,8 @@ class FollowListPage extends StatelessWidget {
       onLoading: () => context.read<FollowBloc>().add(GetFollowersEvent(
           userName, type, context.read<FollowBloc>().page + 1)),
       child: ListView.builder(
-        itemBuilder: (context, index) =>
-            FollowPageItem(context.read<FollowBloc>().mFollowList[index]),
-        itemCount: context.read<FollowBloc>().mFollowList.length,
+        itemBuilder: (context, index) => FollowPageItem(followList[index]),
+        itemCount: followList.length,
       ),
     );
   }

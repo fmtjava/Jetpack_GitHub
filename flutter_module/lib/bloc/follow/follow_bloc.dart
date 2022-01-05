@@ -8,7 +8,6 @@ import 'package:flutter_module/util/toast_util.dart';
 
 class FollowBloc extends Bloc<FollowersEvent, FollowersState> {
   int page;
-  List<FollowModel> mFollowList = [];
 
   FollowBloc() : super(FollowersState());
 
@@ -16,13 +15,17 @@ class FollowBloc extends Bloc<FollowersEvent, FollowersState> {
   Stream<FollowersState> mapEventToState(FollowersEvent event) async* {
     if (event is GetFollowersEvent) {
       page = event.page;
+      if (page == 1 && !event.isRefresh) {
+        yield state.copyWith(pageStatus: PageStatus.LOADING);
+      }
       try {
         List<FollowModel> followList = await FollowRepository.getFollowList(
             event.userName, event.type, page);
         if (page > 1) {
           followList.insertAll(0, state.followList);
         }
-        state.copyWith(pageStatus: PageStatus.SUCCESS, followList: followList);
+        yield state.copyWith(
+            pageStatus: PageStatus.SUCCESS, followList: followList);
       } catch (e) {
         ToastUtil.showError(e.toString());
         if (page == 1 && !event.isRefresh) {
