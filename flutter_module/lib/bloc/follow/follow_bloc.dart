@@ -15,6 +15,7 @@ class FollowBloc extends Bloc<FollowersEvent, FollowersState> {
   Stream<FollowersState> mapEventToState(FollowersEvent event) async* {
     if (event is GetFollowersEvent) {
       page = event.page;
+      print("page=$page");
       if (page == 1 && !event.isRefresh) {
         yield state.copyWith(pageStatus: PageStatus.LOADING);
       }

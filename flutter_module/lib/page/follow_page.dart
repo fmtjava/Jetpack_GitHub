@@ -61,8 +61,7 @@ class FollowListPage extends StatelessWidget {
             } else {
               _refreshController.footerMode.value = LoadStatus.canLoading;
             }
-            if (context.read<FollowBloc>().page > 1 &&
-                state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
+            if (state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
               _refreshController.loadFailed();
             }
             return _contentWidget(context, state.followList);
