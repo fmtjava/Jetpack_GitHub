@@ -1,5 +1,6 @@
 package com.fmt.github.tasks
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
@@ -13,13 +14,15 @@ import com.fmt.github.AppContext
 import com.fmt.github.R
 import com.fmt.github.common.image.ImageLoadStrategyManager
 import com.fmt.github.common.image.ImageLoaderOptions
-import com.fmt.launch.starter.task.MainTask
+import com.rousetime.android_startup.AndroidStartup
 
-class InitImageLoaderTask : MainTask() {
+class InitImageLoaderTask : AndroidStartup<Unit>() {
 
-    override fun run() {
-        ImageLoadStrategyManager.init(GlideLoadStrategy())
-    }
+    override fun callCreateOnMainThread(): Boolean = true
+
+    override fun waitOnMainThread(): Boolean = false
+
+    override fun create(context: Context): Unit = ImageLoadStrategyManager.init(GlideLoadStrategy())
 
     /**
      * Glide加载图片策略
@@ -83,4 +86,5 @@ class InitImageLoaderTask : MainTask() {
                 })
         }
     }
+
 }

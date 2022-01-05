@@ -13,30 +13,30 @@
 
 # 项目截图
 <div style="float:right">
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcfljHq0m6EeBfrpICby5e.GZuqtVhgtTIUoGaftjnepkzTHsZB0Hb*yJh3Z7JgLYInq6xuFyqqQEg3gnq2sq9rQ!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBaKauJvZq*8IjCbM3HsBAYjf8qF2Ep383XyRr.zZwDYUmfL5wrLo5V8VE.5uqYoP04!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mccIFNBe88DdUTKs6r2NBRV90fEOvindkoBZnMkrHNtVNjpU2TtBjF278klnKELzn*SlFU64Kdm0UOi3LaqHdW6o!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcfljHq0m6EeBfrpICby5e.GZuqtVhgtTIUoGaftjnepkzTHsZB0Hb*yJh3Z7JgLYInq6xuFyqqQEg3gnq2sq9rQ!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBaKauJvZq*8IjCbM3HsBAYjf8qF2Ep383XyRr.zZwDYUmfL5wrLo5V8VE.5uqYoP04!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mccIFNBe88DdUTKs6r2NBRV90fEOvindkoBZnMkrHNtVNjpU2TtBjF278klnKELzn*SlFU64Kdm0UOi3LaqHdW6o!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>
 </div>
 
 <br/>
 
 <div style="float:right">
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mccIFNBe88DdUTKs6r2NBRV8Wryn0kyXrH7rDNLP0n3DJ*Xnrq7tJSOPxqtXS8oFheUvC8sgNaFlL47.ciW21aN8!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcfljHq0m6EeBfrpICby5e.FlnaTW*owZthGBakrdXZwz3ar1yzuWHAijN8ynkJkDExRCc44K2EEpoiekP8wMhOU!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcfljHq0m6EeBfrpICby5e.F47XkMWlixdpXPQgD7hwfFfQTDq7Sbh*ehPwLCm6nKolFzRrqITNR.OTbftaSlIl4!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mccIFNBe88DdUTKs6r2NBRV8Wryn0kyXrH7rDNLP0n3DJ*Xnrq7tJSOPxqtXS8oFheUvC8sgNaFlL47.ciW21aN8!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcfljHq0m6EeBfrpICby5e.FlnaTW*owZthGBakrdXZwz3ar1yzuWHAijN8ynkJkDExRCc44K2EEpoiekP8wMhOU!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcfljHq0m6EeBfrpICby5e.F47XkMWlixdpXPQgD7hwfFfQTDq7Sbh*ehPwLCm6nKolFzRrqITNR.OTbftaSlIl4!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>
 </div>
 <br/>
 
 <div style="float:right">
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBZzRWDwArhpovs07iPAnwL002Z6TT71iglIpkfeiz0NtjfEiq6mXoBaeUwx*ZpqCD0!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBZRgiImEiyW0Gki9FfgvLFWHYfaKNRam.C*UPWL7pzB*.0xy5qJfda5vaMD9si4SSk!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-   <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcSnH3EocaUonZoaAtNV6aXx2ihUg*VQyNC2.6nGamZsaGxuXYyp7CmUB1msjd*G41ICMBYa3aRf.IysOULvaGmw!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBZzRWDwArhpovs07iPAnwL002Z6TT71iglIpkfeiz0NtjfEiq6mXoBaeUwx*ZpqCD0!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBZRgiImEiyW0Gki9FfgvLFWHYfaKNRam.C*UPWL7pzB*.0xy5qJfda5vaMD9si4SSk!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+   <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcSnH3EocaUonZoaAtNV6aXx2ihUg*VQyNC2.6nGamZsaGxuXYyp7CmUB1msjd*G41ICMBYa3aRf.IysOULvaGmw!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>
 </div>
 
 <div style="float:right">
-  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcbBLGm6RDtBKHc5zo8p0bN8R4BDFE0UYPf*oYtQzBbx3dQXvgchpS86LA*0uzSr74xZJhh7k4CiBwktX6IFgXAQ!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-  <img src=http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBZMMSzN8QnRgwIMMOMKtAj3xjuplZflZyGwvj4JYlj0R0swfYbtXr2Sfhsu4m7kcH4!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="265"/>&nbsp;&nbsp;&nbsp;
-  <img src="https://www.wanandroid.com/blogimgs/73209f9b-dff6-41d9-98b0-12e80724eb43.jpg" width="265"/>
+  <img src="http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcbBLGm6RDtBKHc5zo8p0bN8R4BDFE0UYPf*oYtQzBbx3dQXvgchpS86LA*0uzSr74xZJhh7k4CiBwktX6IFgXAQ!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+  <img src=http://m.qpic.cn/psc?/V526iEgm3HgG9w0K6aQL2X9HJE4OnV96/45NBuzDIW489QBoVep5mcULj7WWATSWsTr.aT1RSCBZMMSzN8QnRgwIMMOMKtAj3xjuplZflZyGwvj4JYlj0R0swfYbtXr2Sfhsu4m7kcH4!/b&bo=OARwCAAAAAABF3Q!&rf=viewer_4" width="255"/>&nbsp;&nbsp;&nbsp;
+  <img src="https://www.wanandroid.com/blogimgs/73209f9b-dff6-41d9-98b0-12e80724eb43.jpg" width="255"/>
 </div>
 
 # 下载体验 
@@ -57,7 +57,7 @@
     
 ## AAC架构
    还在为MVP内存泄露而烦恼吗？还在苦恼App架构选型吗？Googel官方AAC架构来袭，让你的App架构更加清晰，不在为内存泄露而烦恼。架构图如下
-   <img src="https://camo.githubusercontent.com/2b3ff9b3a5f99c5480b612aa8f4f678dc696987a/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323031392f342f31352f313661323130313664663963373663353f773d39363026683d37323026663d7765627026733d3135333832"/>
+   <img src="https://img-blog.csdnimg.cn/2020071017545212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5namlubGFuZ3pp,size_16,color_FFFFFF,t_70#pic_center"/>
 &#8195;
 Model-View-ViewModel，View 指绿色的 Activity/Fragment，主要负责界面显示，不负责任何业务逻辑和数据处理。Model 指的是 Repository 包含的部分，主要负责数据获取，来组本地数据库或者远程服务器。ViewModel 指的是图中蓝色部分，主要负责业务逻辑和数据处理，本身不持有 View 层引用，通过 LiveData 向 View 层发送数据。Repository 统一了数据入口，不管来自数据库，还是服务器，统一打包给 ViewModel。
 ### 核心组件

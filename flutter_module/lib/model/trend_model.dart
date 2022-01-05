@@ -13,7 +13,7 @@ class TrendModel {
   String name;
   String reposName;
 
-	TrendModel.fromJsonMap(Map<String, dynamic> map):
+	TrendModel.fromJson(Map<String, dynamic> map):
 		fullName = map["fullName"],
 		url = map["url"],
 		description = map["description"],

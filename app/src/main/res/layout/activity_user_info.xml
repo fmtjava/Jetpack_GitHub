@@ -4,8 +4,11 @@
 
     <data>
         <variable
-            name="userModel"
-            type="com.fmt.github.user.model.UserModel" />
+            name="userName"
+            type="java.lang.String" />
+        <variable
+            name="userAvatar"
+            type="java.lang.String" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -50,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
-                        android:text="@{@string/introduce(userModel.login)}"
+                        android:text="@{@string/introduce(userName)}"
                         android:textColor="@android:color/white"
                         android:textSize="16sp" />
 
@@ -99,7 +102,7 @@
             app:behavior_targetX="50dp"
             app:behavior_targetY="8dp"
             app:layout_behavior="@string/simple_view_behavior"
-            app:url="@{userModel.avatar_url}" />
+            app:url="@{userAvatar}" />
 
         <TextView
             android:id="@+id/mUserNameTv"
@@ -110,7 +113,7 @@
             android:alpha="0"
             android:elevation="10dp"
             android:gravity="center_vertical"
-            android:text="@{userModel.login}"
+            android:text="@{userName}"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:behavior_dependTarget="-206dp"

@@ -8,11 +8,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import com.fmt.github.FlutterAppActivity
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
-import com.fmt.github.constant.Constant
 import com.fmt.github.data.storage.Preference
 import com.fmt.github.databinding.LayoutNavHeaderBinding
 import com.fmt.github.ext.getVersionName
@@ -23,11 +21,12 @@ import com.fmt.github.home.viewmodel.HomeViewModel
 import com.fmt.github.home.work.DownLoadWork
 import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
-import com.fmt.github.user.activity.SettingActivity
 import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.dao.UserDao
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.model.db.User
+import com.fmt.github.utils.NavigationUtil
+import com.fmt.github.utils.TREND_PAGE
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
@@ -98,14 +97,7 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
 
             R.id.item_about -> startActivity<AboutActivity>(false)
 
-            R.id.item_setting -> startActivity<SettingActivity>(false)
-
-            R.id.item_trend -> {
-                Bundle().run {
-                    putString(FlutterAppActivity.INIT_PARAMS, Constant.Router.ROUTER_TREND)
-                    startActivity<FlutterAppActivity>(this)
-                }
-            }
+            R.id.item_trend -> NavigationUtil.go(TREND_PAGE)
 
             R.id.item_logout -> showLogoutPopup()
         }
@@ -115,8 +107,8 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
 
     private fun go2UserInfoActivity(login: String, avatar_url: String) {
         Bundle().run {
-            val userModel = UserModel(login, avatar_url)
-            putSerializable(UserInfoActivity.USER_INFO, userModel)
+            putString(UserInfoActivity.USER_NAME, login)
+            putString(UserInfoActivity.USER_AVATAR, avatar_url)
             startActivity<UserInfoActivity>(this)
         }
     }

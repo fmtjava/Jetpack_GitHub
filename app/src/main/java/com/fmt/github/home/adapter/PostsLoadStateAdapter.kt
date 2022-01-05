@@ -10,7 +10,7 @@ import com.fmt.github.R
 import kotlinx.android.synthetic.main.layout_network_state.view.*
 
 /**
- * 设置底部加载进度或者加载出错时候的布局
+ * 为Paging底部设置的加载进度、加载出错时候的多状态布局
  */
 class PostsLoadStateAdapter(
     private val retryCallback: () -> Unit
@@ -32,7 +32,6 @@ class NetworkStateItemViewHolder(
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.layout_network_state, parent, false)
 ) {
-
     init {
         itemView.mRetryLL.setOnClickListener {
             retryCallback.invoke()

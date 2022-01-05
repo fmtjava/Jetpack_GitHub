@@ -1,19 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'android-aspectjx'
+apply plugin: 'com.didi.dokit'
+apply plugin: 'image-compress-plugin'
 apply from: '../channel.gradle'
 apply from: '../protect.gradle'
 apply from: '../uploadpgy.gradle'
 
+compressOption {
+    apiKey '8PyvN9g9jxjVjS1B86bnv2pKC8cRD43p'
+    limitSize 1024
+    suffix "_opt"
+}
+
 aspectjx {
     //排除所有特定class文件
     exclude 'module-info', 'kotlinx.coroutines', 'androidx.paging', 'com.lxj.xpopup', 'com.just.agentweb'
-}
-
-kapt {
-    generateStubs = true
 }
 
 android {
@@ -22,9 +26,12 @@ android {
         applicationId "com.fmt.github"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 13
-        versionName "2.8"
+        versionCode 14
+        versionName "3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
     }
     signingConfigs {
         release {
@@ -58,6 +65,47 @@ android {
     }
 }
 
+dokitExt {
+    //通用设置
+    comm {
+        //地图经纬度开关
+        gpsSwitch true
+        //网络开关
+        networkSwitch true
+        //大图开关
+        bigImgSwitch true
+        //webView js 抓包
+        webViewSwitch true
+    }
+
+    slowMethod {
+        //0:默认模式 打印函数调用栈 需添加指定入口  默认为application onCreate 和attachBaseContext
+        //1:普通模式 运行时打印某个函数的耗时 全局业务代码函数插入
+        strategy 0
+        //函数功能开关
+        methodSwitch true
+
+        //调用栈模式配置
+        stackMethod {
+            //默认值为 5ms 小于该值的函数在调用栈中不显示
+            thresholdTime 10
+            //调用栈函数入口
+            enterMethods = ["com.didichuxing.doraemondemo.MainDebugActivity.test1"]
+            //黑名单 粒度最小到类 暂不支持到方法
+            methodBlacklist = ["com.facebook.drawee.backends.pipeline.Fresco"]
+        }
+        //普通模式配置
+        normalMethod {
+            //默认值为 500ms 小于该值的函数在运行时不会在控制台中被打印
+            thresholdTime 500
+            //需要针对函数插装的包名
+            packageNames = ["com.didichuxing.doraemondemo"]
+            //不需要针对函数插装的包名&类名
+            methodBlacklist = ["com.didichuxing.doraemondemo.dokit"]
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -80,12 +128,12 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'com.github.fmtjava:LiveDataBus:1.0.0'
+    implementation 'com.github.fmtjava:LiveDataBus:1.0.1'
 
     //okhttp + retrofit(2.6.0以后支持协程)
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
 
     //协程 + room
     implementation "androidx.room:room-runtime:2.3.0"
@@ -100,12 +148,12 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:3.1.0-alpha02"
 
     //WorkManager
-    implementation "androidx.work:work-runtime-ktx:2.6.0-beta01"
+    implementation "androidx.work:work-runtime-ktx:2.6.0-beta02"
 
     //koin(依赖注入)
-    implementation "org.koin:koin-androidx-scope:2.0.1"
-    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
-    implementation "org.koin:koin-androidx-ext:2.0.1"
+    implementation "org.koin:koin-androidx-scope:2.2.2"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
+    implementation "org.koin:koin-androidx-ext:2.2.2"
 
     //动态权限
     implementation 'com.afollestad.assent:core:3.0.0-RC4'
@@ -126,16 +174,22 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.lxj:xpopup:1.8.10-x'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0@aar'
-    implementation 'com.kyleduo.switchbutton:library:2.1.0'
+    implementation 'io.github.idisfkj:android-startup:1.0.7'
 
     //bugly捕获异常
-    implementation 'com.tencent.bugly:crashreport:3.3.92'
-    implementation project(path: ':LaunchStarter')
+    implementation 'com.tencent.bugly:crashreport:3.4.4'
 
     //aspectj
     implementation 'org.aspectj:aspectjrt:1.9.5'//需要使用aspectJ能力的模块
 
+    //DoKit
+    debugImplementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
+    releaseImplementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit-leakcanary:3.1.5'
+
     //flutter
     implementation project(':flutter')
+    //flutter_boost
+    implementation project(':flutter_boost')
 
 }

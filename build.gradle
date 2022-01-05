@@ -4,21 +4,28 @@ apply from: './config.gradle'
 buildscript {
     ext.kotlin_version = '1.5.10'
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.leon.channel:plugin:2.0.3'
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
+        classpath 'com.didichuxing.doraemonkit:dokitx-plugin:3.3.5'
     }
 }
 
 allprojects {
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
         google()
         jcenter()
+        mavenCentral()
         maven { url "https://jitpack.io" }
     }
 }

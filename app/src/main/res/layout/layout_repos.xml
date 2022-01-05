@@ -99,44 +99,50 @@
 
             <TextView
                 android:id="@+id/tv_start_num"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginStart="@dimen/dp_58"
                 android:layout_marginTop="@dimen/dp_5"
                 android:drawableStart="@mipmap/icon_start"
                 android:drawablePadding="@dimen/dp_5"
                 android:text="@{String.valueOf(item.stargazers_count)}"
                 android:textColor="@color/repos_common_text_color"
                 android:textSize="@dimen/sp_12"
-                app:layout_constraintLeft_toRightOf="@id/iv_head"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_fork_num"
                 app:layout_constraintTop_toBottomOf="@id/tv_repos_des" />
 
             <TextView
                 android:id="@+id/tv_fork_num"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_5"
                 android:drawableStart="@mipmap/icon_fork"
                 android:drawablePadding="@dimen/dp_5"
                 android:text="@{String.valueOf(item.forks)}"
                 android:textColor="@color/repos_common_text_color"
                 android:textSize="@dimen/sp_12"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/tv_start_num"
+                app:layout_constraintRight_toLeftOf="@id/tv_author"
                 app:layout_constraintTop_toBottomOf="@id/tv_repos_des" />
 
             <TextView
                 android:id="@+id/tv_author"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_5"
                 android:drawableStart="@mipmap/icon_author"
                 android:drawablePadding="@dimen/dp_5"
                 android:text="@{item.owner.login}"
                 android:textColor="@color/repos_common_text_color"
                 android:textSize="@dimen/sp_12"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/tv_fork_num"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_repos_des" />
 
 

@@ -3,42 +3,71 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_boost/flutter_boost.dart';
+import 'package:flutter_module/page/follow_page.dart';
 import 'package:flutter_module/page/trend_page.dart';
 import 'color/color.dart';
 
 void main() {
-  runApp(MyApp(window.defaultRouteName));
-  if (Platform.isAndroid) {
-    // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
-    SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-  }
+  //这里的CustomFlutterBinding调用务必不可缺少，用于控制Boost状态的resume和pause
+  CustomFlutterBinding();
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  final String defaultRoute;
+///4.创建一个自定义的Binding，继承和with的关系如下，里面什么都不用写
+class CustomFlutterBinding extends WidgetsFlutterBinding
+    with BoostFlutterBinding {}
 
-  const MyApp(this.defaultRoute, {Key key}) : super(key: key);
+class MyApp extends StatelessWidget {
+
+  const MyApp({Key key}) : super(key: key);
+
+  //1.配置路由表
+  static Map<String, FlutterBoostRouteFactory> routerMap = {
+    'trendPage': (settings, uniqueId) {
+      return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (_, __, ___) {
+            return TrendPage();
+          });
+    },
+    'followPage': (settings, uniqueId) {
+      return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (_, __, ___) {
+            String userName = '';
+            String type = '';
+            if (settings.arguments != null) {
+              Map<String, Object> arguments = settings.arguments;
+              userName = arguments['userName'];
+              type = arguments['type'];
+            }
+            return FollowPage(userName, type);
+          });
+    }
+  };
+
+  //2.创建路由工厂
+  Route<dynamic> routeFactory(RouteSettings settings, String uniqueId) {
+    FlutterBoostRouteFactory func = routerMap[settings.name];
+    if (func == null) {
+      return null;
+    }
+    return func(settings, uniqueId);
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    }
     return MaterialApp(
         title: 'GitHub',
         theme: ThemeData(
           primarySwatch: createMaterialColor(DColor.themeColor),
         ),
-        home: _widgetForRoute(defaultRoute));
-  }
-}
-
-Widget _widgetForRoute(String route) {
-  //根据不同的路由显示不同的界面
-  switch (route) {
-    case "trend":
-      return TrendPage();
-    default:
-      return Center(child: Text('Unknown route: $route'));
+        //3.通过FlutterBoostApp启动Flutter
+        home: FlutterBoostApp(routeFactory));
   }
 }
 

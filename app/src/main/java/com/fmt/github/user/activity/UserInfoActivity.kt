@@ -18,11 +18,12 @@ import kotlinx.android.synthetic.main.activity_user_info.*
 class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
 
     private val mTitles = listOf("Info", "Repos", "Favor")
-
-    lateinit var mUserModel: UserModel
+    lateinit var mUserName:String
+    private lateinit var mUserAvatar:String
 
     companion object {
-        const val USER_INFO = "user_info"
+        const val USER_NAME = "user_name"
+        const val USER_AVATAR = "user_avatar"
     }
 
     override fun getLayoutId(): Int = R.layout.activity_user_info
@@ -34,10 +35,13 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
     }
 
     private fun initUserInfo() {
-        mUserModel = intent.getSerializableExtra(USER_INFO) as UserModel
-        mDataBind.userModel = mUserModel
+        mUserName = intent.getStringExtra(USER_NAME)!!
+        mUserAvatar = intent.getStringExtra(USER_AVATAR)!!
+
+        mDataBind.userName = mUserName
+        mDataBind.userAvatar = mUserAvatar
         mUserIconIv.setOnClickListener {
-            PhotoPreviewActivity.go2PhotoPreviewActivity(this, mUserModel.avatar_url)
+            PhotoPreviewActivity.go2PhotoPreviewActivity(this, mUserAvatar)
         }
     }
 
@@ -50,8 +54,8 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
     private fun initViewPager() {
         mutableListOf<Fragment>().apply {
             add(UserInfoFragment())
-            add(UserReposFragment.newInstance(mUserModel.login))
-            add(UserReposFragment.newInstance(mUserModel.login, true))
+            add(UserReposFragment.newInstance(mUserName))
+            add(UserReposFragment.newInstance(mUserName, true))
         }.also { fragmentList ->
             mViewPager.adapter = UserInfoPagerAdapter(this, fragmentList)
         }
@@ -68,9 +72,10 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
     }
 }
 
-fun go2UserInfoActivity(activity: Activity, view: View, userModel: UserModel) {
+fun go2UserInfoActivity(activity: Activity, view: View, userName: String,userAvatar:String) {
     with(Intent(activity, UserInfoActivity::class.java)) {
-        putExtra(UserInfoActivity.USER_INFO, userModel)
+        putExtra(UserInfoActivity.USER_NAME, userName)
+        putExtra(UserInfoActivity.USER_AVATAR, userAvatar)
     }.run {
         //共享元素共享动画
         ActivityOptionsCompat.makeSceneTransitionAnimation(

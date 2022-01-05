@@ -11,7 +11,6 @@ import com.fmt.github.user.activity.LoginActivity
 import com.fmt.github.user.dao.UserDao
 import com.jaredrummler.android.widget.AnimatedSvgView
 import kotlinx.android.synthetic.main.activity_welcome.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -50,7 +49,6 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
 
     private fun checkIsLogin() {
         lifecycleScope.launch {
-            delay(500)//挂起,但不会阻塞,后续通过resumeWith恢复执行
             val userList = mUserDao.getAll()
             (userList.isEmpty()).yes {
                 startActivity<LoginActivity>()

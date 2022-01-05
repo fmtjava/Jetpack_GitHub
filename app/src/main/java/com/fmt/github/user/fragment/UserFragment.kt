@@ -26,7 +26,7 @@ class UserFragment : BaseListMVFragment<UserModel>() {
     override fun initRecyclerView() {
         val type = Type<LayoutUsersBinding>(R.layout.layout_users)
             .onClick {
-                go2UserInfoActivity(mActivity,it.binding.ivHead, mListData[it.bindingAdapterPosition])
+                go2UserInfoActivity(mActivity,it.binding.ivHead, mListData[it.bindingAdapterPosition].login,mListData[it.bindingAdapterPosition].avatar_url)
             }
         LastAdapter(mListData, BR.item)//基于DataBinding封装简化RecyclerView.Adapter
             .map<UserModel>(type)

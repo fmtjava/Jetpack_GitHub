@@ -1,13 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_module/bloc/trend_bloc.dart';
-import 'package:flutter_module/bloc/trend_event.dart';
-import 'package:flutter_module/bloc/trend_state.dart';
+import 'package:flutter_module/bloc/trend/trend_bloc.dart';
+import 'package:flutter_module/bloc/trend/trend_event.dart';
+import 'package:flutter_module/bloc/trend/trend_state.dart';
 import 'package:flutter_module/color/color.dart';
 import 'package:flutter_module/string/string.dart';
+import 'package:flutter_module/util/navigation_util.dart';
 import 'package:flutter_module/util/toast_util.dart';
 import 'package:flutter_module/widget/loading_dialog.dart';
 import 'package:flutter_module/widget/trend_page_item.dart';
@@ -30,7 +28,7 @@ class TrendListPage extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () => SystemNavigator.pop()),
+              onPressed: () => NavigationUtil.pop()),
           backgroundColor: DColor.themeColor,
           title: Text(DString.TREND),
           actions: <Widget>[
@@ -39,7 +37,7 @@ class TrendListPage extends StatelessWidget {
                 onSelected: (action) {
                   context.read<TrendBloc>().add(GetTrendEvent(since: action));
                 },
-                offset: Offset(0, 28),
+                offset: Offset(0, 45),
                 itemBuilder: (context) => <PopupMenuItem<String>>[
                       PopupMenuItem(
                           child: Text(DString.DAILY), value: DString.DAILY),

@@ -29,6 +29,9 @@
         <meta-data
             android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
             android:value="true" />
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2"/>
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/SplashTheme">
@@ -76,14 +79,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
         <activity
-            android:name=".FlutterAppActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="io.flutter.embedding.android.FlutterActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:name="com.idlefish.flutterboost.containers.FlutterBoostActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize"
-            />
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustResize"/>
         <!-- Android 7.0以上 照片、APK等下载保存路径 -->
         <provider
             android:name="androidx.core.content.FileProvider"

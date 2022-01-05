@@ -1,5 +1,5 @@
 include ':common'
-include ':app', ':simplebehavior', ':LaunchStarter',':flutter_module'
+include ':app', ':simplebehavior',':flutter_module'
 setBinding(new Binding([gradle: this]))
 evaluate(new File(
         settingsDir.absolutePath,

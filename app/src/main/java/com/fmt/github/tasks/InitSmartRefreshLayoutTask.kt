@@ -1,22 +1,26 @@
 package com.fmt.github.tasks
 
+import android.content.Context
 import androidx.core.content.ContextCompat
 import com.fmt.github.R
-import com.fmt.launch.starter.task.Task
+import com.rousetime.android_startup.AndroidStartup
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 
-class InitSmartRefreshLayoutTask : Task() {
+class InitSmartRefreshLayoutTask : AndroidStartup<Unit>() {
 
-    override fun run() {
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
+    override fun callCreateOnMainThread(): Boolean = false
+
+    override fun waitOnMainThread(): Boolean = false
+
+    override fun create(context: Context): Unit =
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator { c, layout ->
             layout.setEnableHeaderTranslationContent(false)
-            MaterialHeader(context).setColorSchemeColors(
+            MaterialHeader(c).setColorSchemeColors(
                 ContextCompat.getColor(
-                    context,
+                    c,
                     R.color.colorPrimary
                 )
             )
         }
-    }
 }
