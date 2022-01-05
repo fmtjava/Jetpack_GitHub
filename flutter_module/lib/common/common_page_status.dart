@@ -1,0 +1,1 @@
+enum PageStatus { LOADING, SUCCESS, LOAD_MORE_FAIL, FAIL }

@@ -4,6 +4,7 @@ import 'package:flutter_module/bloc/follow/follow_bloc.dart';
 import 'package:flutter_module/bloc/follow/follow_event.dart';
 import 'package:flutter_module/bloc/follow/follow_state.dart';
 import 'package:flutter_module/color/color.dart';
+import 'package:flutter_module/common/common_page_status.dart';
 import 'package:flutter_module/string/string.dart';
 import 'package:flutter_module/util/navigation_util.dart';
 import 'package:flutter_module/widget/follow_page_item.dart';
@@ -19,8 +20,7 @@ class FollowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<FollowBloc>(
-      create: (c) =>
-          FollowBloc(LoadingState())..add(GetFollowersEvent(userName, type, 1)),
+      create: (c) => FollowBloc()..add(GetFollowersEvent(userName, type, 1)),
       child: FollowListPage(userName, type),
     );
   }
@@ -49,22 +49,20 @@ class FollowListPage extends StatelessWidget {
         ),
         body:
             BlocBuilder<FollowBloc, FollowersState>(builder: (context, state) {
-          if (state is LoadingState) {
+          if (state.pageStatus == PageStatus.LOADING) {
             return LoadingDialog();
           }
           _loadComplete();
-          if (state is SuccessState) {
+          if (state.pageStatus == PageStatus.SUCCESS ||
+              state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
             if (state.followList.isEmpty) {
               _refreshController.loadNoData();
             } else {
               _refreshController.footerMode.value = LoadStatus.canLoading;
             }
-            return _contentWidget(context);
-          } else if (state is LoadDataFailState) {
-            if (context.read<FollowBloc>().page > 1) {
+            if (context.read<FollowBloc>().page > 1 &&
+                state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
               _refreshController.loadFailed();
-              context.read<FollowBloc>().page =
-                  context.read<FollowBloc>().page - 1;
             }
             return _contentWidget(context);
           } else {

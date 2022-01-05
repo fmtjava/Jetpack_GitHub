@@ -4,6 +4,7 @@ import 'package:flutter_module/bloc/trend/trend_bloc.dart';
 import 'package:flutter_module/bloc/trend/trend_event.dart';
 import 'package:flutter_module/bloc/trend/trend_state.dart';
 import 'package:flutter_module/color/color.dart';
+import 'package:flutter_module/common/common_page_status.dart';
 import 'package:flutter_module/string/string.dart';
 import 'package:flutter_module/util/navigation_util.dart';
 import 'package:flutter_module/util/toast_util.dart';
@@ -15,7 +16,7 @@ class TrendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TrendBloc>(
-      create: (c) => TrendBloc(LoadingState())..add(GetTrendEvent()),
+      create: (c) => TrendBloc()..add(GetTrendEvent()),
       child: TrendListPage(),
     );
   }
@@ -49,10 +50,10 @@ class TrendListPage extends StatelessWidget {
           ],
         ),
         body: BlocBuilder<TrendBloc, TrendState>(builder: (context, state) {
-          if (state is LoadingState) {
+          if (state.pageStatus == PageStatus.LOADING) {
             return LoadingDialog();
           }
-          if (state is SuccessState) {
+          if (state.pageStatus == PageStatus.SUCCESS) {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return TrendPageItem(state.trendList[index]);
@@ -60,8 +61,7 @@ class TrendListPage extends StatelessWidget {
               itemCount: state.trendList.length,
             );
           } else {
-            FailState failState = state;
-            ToastUtil.showError(failState.message);
+            ToastUtil.showError(state.errorMsg);
             return Center(
               child: OutlinedButton(
                 onPressed: () {

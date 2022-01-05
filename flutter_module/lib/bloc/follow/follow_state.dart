@@ -1,38 +1,25 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_module/common/common_page_status.dart';
 import 'package:flutter_module/model/follow_model.dart';
 
-abstract class FollowersState extends Equatable {
-  const FollowersState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class LoadingState extends FollowersState {}
-
-class SuccessState extends FollowersState {
+class FollowersState extends Equatable {
+  final PageStatus pageStatus;
   final List<FollowModel> followList;
+  final String errorMsg;
 
-  SuccessState(this.followList);
+  const FollowersState(
+      {this.pageStatus = PageStatus.LOADING,
+      this.followList = const [],
+      this.errorMsg = ''});
 
-  @override
-  List<Object> get props => [followList];
-}
-
-class LoadDataFailState extends FollowersState{
-  final Object error;
-
-  LoadDataFailState(this.error);
-
-  @override
-  List<Object> get props => [error];
-}
-
-class LoadFailState extends FollowersState {
-  final String message;
-
-  LoadFailState(this.message);
+  FollowersState copyWith(
+      {PageStatus pageStatus, List<FollowModel> followList, String errorMsg}) {
+    return FollowersState(
+        pageStatus: pageStatus ?? this.pageStatus,
+        followList: followList ?? this.followList,
+        errorMsg: errorMsg ?? this.errorMsg);
+  }
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [pageStatus, followList, errorMsg];
 }

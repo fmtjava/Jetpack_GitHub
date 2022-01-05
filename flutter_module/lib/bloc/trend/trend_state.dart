@@ -1,30 +1,25 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_module/common/common_page_status.dart';
 import 'package:flutter_module/model/trend_model.dart';
 
-abstract class TrendState extends Equatable {
-
-  const TrendState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class LoadingState extends TrendState {}
-
-class SuccessState extends TrendState {
+class TrendState extends Equatable {
+  final PageStatus pageStatus;
   final List<TrendModel> trendList;
+  final String errorMsg;
 
-  SuccessState(this.trendList);
+  const TrendState(
+      {this.pageStatus = PageStatus.LOADING,
+      this.trendList = const [],
+      this.errorMsg = ''});
+
+  TrendState copyWith(
+      {PageStatus pageStatus, List<TrendModel> trendList, String errorMsg}) {
+    return TrendState(
+        pageStatus: pageStatus ?? this.pageStatus,
+        trendList: trendList ?? this.trendList,
+        errorMsg: errorMsg ?? this.errorMsg);
+  }
 
   @override
-  List<Object> get props => [trendList];
-}
-
-class FailState extends TrendState {
-  final String message;
-
-  FailState(this.message);
-
-  @override
-  List<Object> get props => [message];
+  List<Object> get props => [pageStatus, trendList, errorMsg];
 }
