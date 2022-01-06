@@ -12,7 +12,6 @@ import com.fmt.github.ext.startActivity
 import com.fmt.github.utils.FileUtils
 import com.fmt.github.utils.ShareUtils
 import com.lxj.xpopup.XPopup
-import kotlinx.android.synthetic.main.activity_photo_preview.*
 import java.io.File
 import java.io.FileOutputStream
 
@@ -40,11 +39,11 @@ class PhotoPreviewActivity : BaseDataBindActivity<ActivityPhotoPreviewBinding>()
     override fun initView() {
         mImageUrl = intent.getStringExtra(IMAGE_URL)
         mDataBind.url = mImageUrl
-        mPhotoView.setOnLongClickListener {
+        mDataBind.mPhotoView.setOnLongClickListener {
             showBottomDialog()
             false
         }
-        mPhotoView.setOnClickListener {
+        mDataBind.mPhotoView.setOnClickListener {
             finish()
         }
     }

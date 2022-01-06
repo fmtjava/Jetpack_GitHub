@@ -1,6 +1,7 @@
 package com.fmt.github.data.http.interceptor
 
 import android.util.Base64
+import android.util.Log
 import com.fmt.github.config.Settings
 import com.fmt.github.constant.Constant
 import com.fmt.github.ext.isLogin
@@ -31,6 +32,7 @@ class AuthorizationInterceptor : Interceptor {
                     }
                     isLogin() -> {//权限接口
                         val auth = "Token ${Settings.Account.token}"
+                        Log.d("fmt","auth=$auth")
                         addHeader(Constant.AUTHORIZATION, auth)
                     }
                 }

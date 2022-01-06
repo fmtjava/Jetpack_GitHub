@@ -11,9 +11,7 @@ import com.fmt.github.databinding.ActivityUserInfoBinding
 import com.fmt.github.user.adapter.UserInfoPagerAdapter
 import com.fmt.github.user.fragment.UserInfoFragment
 import com.fmt.github.user.fragment.UserReposFragment
-import com.fmt.github.user.model.UserModel
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_user_info.*
 
 class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
 
@@ -40,13 +38,13 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
 
         mDataBind.userName = mUserName
         mDataBind.userAvatar = mUserAvatar
-        mUserIconIv.setOnClickListener {
+        mDataBind.mUserIconIv.setOnClickListener {
             PhotoPreviewActivity.go2PhotoPreviewActivity(this, mUserAvatar)
         }
     }
 
     private fun initToolbar() {
-        mToolbar.setNavigationOnClickListener {
+        mDataBind.mToolbar.setNavigationOnClickListener {
             supportFinishAfterTransition()//支持转场过渡
         }
     }
@@ -57,11 +55,11 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
             add(UserReposFragment.newInstance(mUserName))
             add(UserReposFragment.newInstance(mUserName, true))
         }.also { fragmentList ->
-            mViewPager.adapter = UserInfoPagerAdapter(this, fragmentList)
+            mDataBind.mViewPager.adapter = UserInfoPagerAdapter(this, fragmentList)
         }
         //绑定TabLayout和ViewPager2
         TabLayoutMediator(
-            mTabLayout, mViewPager
+            mDataBind.mTabLayout, mDataBind.mViewPager
         ) { tab, position ->
             tab.text = mTitles[position]
         }.attach()

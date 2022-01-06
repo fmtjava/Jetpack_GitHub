@@ -19,7 +19,6 @@ import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.model.db.User
 import com.fmt.github.user.viewmodel.UserViewModel
 import com.fmt.github.utils.AppOpener
-import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -34,10 +33,10 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
     override fun getViewModel(): BaseViewModel = mViewModel
 
     override fun initView() {
-        mSignInBt.setOnClickListener {
+        mDataBind.mSignInBt.setOnClickListener {
             login()
         }
-        mOAuthLoginIv.setOnClickListener {
+        mDataBind.mOAuthLoginIv.setOnClickListener {
             loginByOAuth()
         }
     }
@@ -50,17 +49,17 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
         val username = mUserLoginModel.username.get().toString()
         val password = mUserLoginModel.password.get().toString()
         username.isEmpty().yes {
-            mUserNameInputLayout.error = getString(R.string.username_not_null)
-            mUserNameInputLayout.isErrorEnabled = true
+            mDataBind.mUserNameInputLayout.error = getString(R.string.username_not_null)
+            mDataBind.mUserNameInputLayout.isErrorEnabled = true
         }.otherwise {
-            mUserNameInputLayout.isErrorEnabled = false
+            mDataBind.mUserNameInputLayout.isErrorEnabled = false
             password.isEmpty().yes {
-                mPasswordInputLayout.error = getString(R.string.password_not_null)
-                mPasswordInputLayout.isErrorEnabled = true
+                mDataBind.mPasswordInputLayout.error = getString(R.string.password_not_null)
+                mDataBind.mPasswordInputLayout.isErrorEnabled = true
             }.otherwise {
-                mPasswordInputLayout.isErrorEnabled = false
-                mSignInBt.visibility = View.GONE
-                mProgressBar.visibility = View.VISIBLE
+                mDataBind.mPasswordInputLayout.isErrorEnabled = false
+                mDataBind.mSignInBt.visibility = View.GONE
+                mDataBind.mProgressBar.visibility = View.VISIBLE
                 Settings.Account.userName = username
                 Settings.Account.password = password
                 createOrGetAuthorization()
@@ -101,8 +100,8 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
 
     private fun getToken(code: String?, state: String?) {
         if (code != null && state != null) {
-            mOAuthProgress.visibility = View.VISIBLE
-            mOAuthLoginIv.visibility = View.GONE
+            mDataBind.mOAuthProgress.visibility = View.VISIBLE
+            mDataBind.mOAuthLoginIv.visibility = View.GONE
             mViewModel.getAccessToken(code, state).observe(this, Observer {
                 Settings.Account.token = it.access_token
                 getUserInfo()
@@ -125,9 +124,9 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
     }
 
     override fun handleError() {
-        mSignInBt.visibility = View.VISIBLE
-        mProgressBar.visibility = View.GONE
-        mOAuthLoginIv.visibility = View.VISIBLE
-        mOAuthProgress.visibility = View.GONE
+        mDataBind.mSignInBt.visibility = View.VISIBLE
+        mDataBind.mProgressBar.visibility = View.GONE
+        mDataBind.mOAuthLoginIv.visibility = View.VISIBLE
+        mDataBind.mOAuthProgress.visibility = View.GONE
     }
 }

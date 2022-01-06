@@ -8,7 +8,6 @@ import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.viewmodel.UserViewModel
 import com.fmt.github.utils.FOLLOW_PAGE
 import com.fmt.github.utils.NavigationUtil
-import kotlinx.android.synthetic.main.fragment_user_info.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserInfoFragment : BaseDataBindVMFragment<FragmentUserInfoBinding>() {
@@ -28,7 +27,7 @@ class UserInfoFragment : BaseDataBindVMFragment<FragmentUserInfoBinding>() {
 
     override fun initView() {
         mUser = (activity as UserInfoActivity).mUserName
-        mSwipeRefreshLayout.setOnRefreshListener {
+        mDataBind.mSwipeRefreshLayout.setOnRefreshListener {
             initData()
         }
         mDataBind.llFollowers.setOnClickListener {
@@ -44,11 +43,11 @@ class UserInfoFragment : BaseDataBindVMFragment<FragmentUserInfoBinding>() {
     }
 
     override fun showLoading() {
-        mSwipeRefreshLayout.isRefreshing = true
+        mDataBind.mSwipeRefreshLayout.isRefreshing = true
     }
 
     override fun dismissLoading() {
-        mSwipeRefreshLayout.isRefreshing = false
+        mDataBind.mSwipeRefreshLayout.isRefreshing = false
     }
 
     override fun initData() {

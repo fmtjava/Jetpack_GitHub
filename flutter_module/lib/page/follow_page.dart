@@ -53,17 +53,19 @@ class FollowListPage extends StatelessWidget {
           if (state.pageStatus == PageStatus.LOADING) {
             return LoadingDialog();
           }
-          _loadComplete();
-          if (state.pageStatus == PageStatus.SUCCESS ||
-              state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
+          if (state.pageStatus == PageStatus.SUCCESS) {
+            _loadComplete();
             if (state.followList.isEmpty) {
               _refreshController.loadNoData();
             } else {
               _refreshController.footerMode.value = LoadStatus.canLoading;
             }
-            if (state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
-              _refreshController.loadFailed();
-            }
+            return _contentWidget(context, state.followList);
+          } else if (state.pageStatus == PageStatus.REFRESH_DATA_FAIL) {
+            _refreshController.refreshFailed();
+            return _contentWidget(context, state.followList);
+          } else if (state.pageStatus == PageStatus.LOAD_MORE_FAIL) {
+            _refreshController.loadFailed();
             return _contentWidget(context, state.followList);
           } else {
             return _errorWidget(context);
@@ -79,8 +81,11 @@ class FollowListPage extends StatelessWidget {
       onRefresh: () => context
           .read<FollowBloc>()
           .add(GetFollowersEvent(userName, type, 1, isRefresh: true)),
-      onLoading: () => context.read<FollowBloc>().add(GetFollowersEvent(
-          userName, type, context.read<FollowBloc>().page + 1)),
+      onLoading: () {
+        print("onLoading,page=${context.read<FollowBloc>().page}");
+        context.read<FollowBloc>().add(GetFollowersEvent(
+            userName, type, context.read<FollowBloc>().page + 1));
+      },
       child: ListView.builder(
         itemBuilder: (context, index) => FollowPageItem(followList[index]),
         itemCount: followList.length,

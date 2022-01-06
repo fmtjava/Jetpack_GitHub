@@ -14,28 +14,35 @@ class FollowBloc extends Bloc<FollowersEvent, FollowersState> {
   @override
   Stream<FollowersState> mapEventToState(FollowersEvent event) async* {
     if (event is GetFollowersEvent) {
-      page = event.page;
-      print("page=$page");
-      if (page == 1 && !event.isRefresh) {
+      if (!event.isRefresh) {
+        page = event.page;
+      }
+      print("page=${event.page}");
+      if (event.page == 1 && !event.isRefresh) {
         yield state.copyWith(pageStatus: PageStatus.LOADING);
       }
       try {
         List<FollowModel> followList = await FollowRepository.getFollowList(
-            event.userName, event.type, page);
-        if (page > 1) {
+            event.userName, event.type, event.page);
+        if (event.page > 1) {
           followList.insertAll(0, state.followList);
         }
         yield state.copyWith(
             pageStatus: PageStatus.SUCCESS, followList: followList);
       } catch (e) {
         ToastUtil.showError(e.toString());
-        if (page == 1 && !event.isRefresh) {
+        if (event.page == 1 && !event.isRefresh) {
           yield state.copyWith(
               pageStatus: PageStatus.FAIL, errorMsg: e.toString());
         } else {
-          page -= 1;
+          if (event.page > 1) {
+            page -= 1;
+          }
           yield state.copyWith(
-              pageStatus: PageStatus.LOAD_MORE_FAIL, errorMsg: e.toString());
+              pageStatus: event.isRefresh
+                  ? PageStatus.REFRESH_DATA_FAIL
+                  : PageStatus.LOAD_MORE_FAIL,
+              error: e);
         }
       }
     }

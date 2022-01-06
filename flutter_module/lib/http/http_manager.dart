@@ -10,9 +10,10 @@ class HttpManager {
       BaseOptions(headers: {"api-token": "4d65e2a5626103f92a71867d7b49fea0"});
   static Dio _dio = Dio(_baseOptions);
 
-  static get(String url, SuccessCallback success, ErrorCallback error,{Map<String, dynamic> queryParameters}) async {
+  static get(String url, SuccessCallback success, ErrorCallback error,
+      {Map<String, dynamic> queryParameters}) async {
     try {
-      Response response = await _dio.get(url,queryParameters: queryParameters);
+      Response response = await _dio.get(url, queryParameters: queryParameters);
       if (response.statusCode != 200) {
         throw Exception(
             "statusCode=${response.statusCode},statusMessage=${response.statusMessage}");
@@ -25,9 +26,10 @@ class HttpManager {
   }
 
   static Future request(String url,
-      {Map<String, dynamic> queryParameters}) async {
+      {Map<String, dynamic> queryParameters, Options options}) async {
     try {
-      Response response = await _dio.get(url, queryParameters: queryParameters);
+      Response response = await _dio.get(url,
+          queryParameters: queryParameters, options: options);
       if (response.statusCode != 200) {
         throw Exception(
             "statusCode=${response.statusCode},statusMessage=${response.statusMessage}");

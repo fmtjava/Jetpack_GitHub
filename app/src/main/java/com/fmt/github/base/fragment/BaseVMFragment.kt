@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.base.viewmodel.ErrorState
 import com.fmt.github.base.viewmodel.LoadState
@@ -67,13 +66,13 @@ abstract class BaseVMFragment : Fragment() {
     //监听页面的三种状态：加载中、加载成功、加载失败
     private fun initViewModelAction() {
         this.getViewModel().let { baseViewModel ->
-            baseViewModel.mStateLiveData.observe(this, Observer { stateActionState ->
+            baseViewModel.mStateLiveData.observe(this, { stateActionState ->
                 when (stateActionState) {
                     LoadState -> showLoading()
                     SuccessState -> dismissLoading()
-                    is ErrorState -> {
+                    else -> {
                         dismissLoading()
-                        stateActionState.message?.apply {
+                        (stateActionState as ErrorState).message?.apply {
                             errorToast(this)
                             handleError()
                         }

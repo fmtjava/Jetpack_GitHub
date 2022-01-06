@@ -10,7 +10,6 @@ import com.fmt.github.ext.*
 import com.fmt.github.home.model.SearchModel
 import com.fmt.github.repos.fragment.ReposFragment
 import com.fmt.github.user.fragment.UserFragment
-import kotlinx.android.synthetic.main.activity_common_search.*
 
 class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>() {
 
@@ -37,22 +36,22 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
         mIsSearchRepos = intent.getBooleanExtra(FROM_SEARCH_REPOS, true).apply {
             this.yes {
                 setContentFragment(mReposFragment)
-                mSearchEt.hint = getString(R.string.search_repos)
+                mDataBind.mSearchEt.hint = getString(R.string.search_repos)
             }.otherwise {
                 setContentFragment(mUsersFragment)
-                mSearchEt.hint = getString(R.string.search_users)
+                mDataBind.mSearchEt.hint = getString(R.string.search_users)
             }
         }
 
-        iv_back.setOnClickListener {
+        mDataBind.ivBack.setOnClickListener {
             finish()
         }
 
-        mSortTv.setOnClickListener {
+        mDataBind.mSortTv.setOnClickListener {
             showPopupView()
         }
 
-        mSearchEt.setOnEditorActionListener { _, actionId, _ ->
+        mDataBind.mSearchEt.setOnEditorActionListener { _, actionId, _ ->
             return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 currentFocus?.let { hideKeyboard(it) }
                 mSort = ""
@@ -97,7 +96,7 @@ class CommonSearchActivity : BaseDataBindActivity<ActivityCommonSearchBinding>()
     private fun searchReposOrUsers() {
         mSearchReposModel.searchKey.get()?.apply {
             this.isEmpty().no {
-                mSortTv.visibility = View.VISIBLE
+                mDataBind.mSortTv.visibility = View.VISIBLE
                 mIsSearchRepos.yes {
                     mReposFragment.searchReposByKey(this, mSort, mOrder)
                 }.otherwise {

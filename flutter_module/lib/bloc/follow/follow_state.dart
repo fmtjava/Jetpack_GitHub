@@ -5,21 +5,27 @@ import 'package:flutter_module/model/follow_model.dart';
 class FollowersState extends Equatable {
   final PageStatus pageStatus;
   final List<FollowModel> followList;
+  final Object error;
   final String errorMsg;
 
   const FollowersState(
       {this.pageStatus = PageStatus.LOADING,
       this.followList = const [],
+      this.error,
       this.errorMsg = ''});
 
   FollowersState copyWith(
-      {PageStatus pageStatus, List<FollowModel> followList, String errorMsg}) {
+      {PageStatus pageStatus,
+      List<FollowModel> followList,
+      Object error,
+      String errorMsg}) {
     return FollowersState(
         pageStatus: pageStatus ?? this.pageStatus,
         followList: followList ?? this.followList,
+        error: error ?? this.error,
         errorMsg: errorMsg ?? this.errorMsg);
   }
 
   @override
-  List<Object> get props => [pageStatus, followList, errorMsg];
+  List<Object> get props => [pageStatus, followList,error, errorMsg];
 }

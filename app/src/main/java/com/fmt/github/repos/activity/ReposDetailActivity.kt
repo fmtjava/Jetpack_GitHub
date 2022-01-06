@@ -41,9 +41,9 @@ class ReposDetailActivity : BaseVMActivity() {
     }
 
     override fun initView() {
-        mOwner = intent.getStringExtra(OWNER)
-        mRepos = intent.getStringExtra(REPO)
-        mWebUrl = intent.getStringExtra(WEB_URL)
+        mOwner = intent.getStringExtra(OWNER)!!
+        mRepos = intent.getStringExtra(REPO)!!
+        mWebUrl = intent.getStringExtra(WEB_URL)!!
         mWebDelegate = WebDelegate.create(AgentWebContainer(), this, mRootView, mWebUrl)
         lifecycle.addObserver(mWebDelegate)
         setSupportActionBar(mToolbar)
