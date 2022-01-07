@@ -7,25 +7,29 @@ class FollowersState extends Equatable {
   final List<FollowModel> followList;
   final Object error;
   final String errorMsg;
+  final bool hasMore;
 
   const FollowersState(
       {this.pageStatus = PageStatus.LOADING,
       this.followList = const [],
       this.error,
-      this.errorMsg = ''});
+      this.errorMsg = '',
+      this.hasMore = true});
 
   FollowersState copyWith(
       {PageStatus pageStatus,
       List<FollowModel> followList,
       Object error,
-      String errorMsg}) {
+      String errorMsg,
+      bool hasMore}) {
     return FollowersState(
         pageStatus: pageStatus ?? this.pageStatus,
         followList: followList ?? this.followList,
         error: error ?? this.error,
-        errorMsg: errorMsg ?? this.errorMsg);
+        errorMsg: errorMsg ?? this.errorMsg,
+        hasMore: hasMore ?? this.hasMore);
   }
 
   @override
-  List<Object> get props => [pageStatus, followList,error, errorMsg];
+  List<Object> get props => [pageStatus, followList, error, errorMsg, hasMore];
 }

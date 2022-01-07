@@ -15,14 +15,17 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class FollowPage extends StatelessWidget {
   final String userName;
   final String type;
+  final String authorization;
 
-  const FollowPage(this.userName, this.type, {Key key}) : super(key: key);
+  const FollowPage(this.userName, this.type, this.authorization, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<FollowBloc>(
-      create: (c) => FollowBloc()..add(GetFollowersEvent(userName, type, 1)),
-      child: FollowListPage(userName, type),
+      create: (c) => FollowBloc()
+        ..add(GetFollowersEvent(userName, type, authorization, 1)),
+      child: FollowListPage(userName, type, authorization),
     );
   }
 }
@@ -33,8 +36,10 @@ class FollowListPage extends StatelessWidget {
 
   final String userName;
   final String type;
+  final String authorization;
 
-  FollowListPage(this.userName, this.type, {Key key}) : super(key: key);
+  FollowListPage(this.userName, this.type, this.authorization, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +60,7 @@ class FollowListPage extends StatelessWidget {
           }
           if (state.pageStatus == PageStatus.SUCCESS) {
             _loadComplete();
-            if (state.followList.isEmpty) {
+            if (!state.hasMore) {
               _refreshController.loadNoData();
             } else {
               _refreshController.footerMode.value = LoadStatus.canLoading;
@@ -78,13 +83,11 @@ class FollowListPage extends StatelessWidget {
       enablePullDown: true,
       enablePullUp: true,
       controller: _refreshController,
-      onRefresh: () => context
-          .read<FollowBloc>()
-          .add(GetFollowersEvent(userName, type, 1, isRefresh: true)),
+      onRefresh: () => context.read<FollowBloc>().add(
+          GetFollowersEvent(userName, type, authorization, 1, isRefresh: true)),
       onLoading: () {
-        print("onLoading,page=${context.read<FollowBloc>().page}");
-        context.read<FollowBloc>().add(GetFollowersEvent(
-            userName, type, context.read<FollowBloc>().page + 1));
+        context.read<FollowBloc>().add(GetFollowersEvent(userName, type,
+            authorization, context.read<FollowBloc>().page + 1));
       },
       child: ListView.builder(
         itemBuilder: (context, index) => FollowPageItem(followList[index]),
@@ -98,7 +101,7 @@ class FollowListPage extends StatelessWidget {
       child: OutlinedButton(
         onPressed: () => context
             .read<FollowBloc>()
-            .add(GetFollowersEvent(userName, type, 1)),
+            .add(GetFollowersEvent(userName, type, authorization, 1)),
         child: Text(DString.LOAD_AGAINT),
       ),
     );

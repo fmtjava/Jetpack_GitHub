@@ -3,6 +3,7 @@ package com.fmt.github.user.fragment
 import com.fmt.github.R
 import com.fmt.github.base.fragment.BaseDataBindVMFragment
 import com.fmt.github.base.viewmodel.BaseViewModel
+import com.fmt.github.config.Settings
 import com.fmt.github.databinding.FragmentUserInfoBinding
 import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.viewmodel.UserViewModel
@@ -16,6 +17,8 @@ class UserInfoFragment : BaseDataBindVMFragment<FragmentUserInfoBinding>() {
     private val FOLLOWING_TYPE = "following"
     private val USERNAME_KEY = "userName"
     private val TYPE_KEY = "type"
+    private val AUTHORIZATION_KEY = "authorization"
+    private val TOKEN_KEY = "Token"
 
     private val mViewModel: UserViewModel by viewModel()
 
@@ -39,7 +42,14 @@ class UserInfoFragment : BaseDataBindVMFragment<FragmentUserInfoBinding>() {
     }
 
     private fun go2FollowFlutterPage(type: String) {
-        NavigationUtil.go(FOLLOW_PAGE,mapOf(USERNAME_KEY to mUser, TYPE_KEY to type))
+        NavigationUtil.go(
+            FOLLOW_PAGE,
+            mapOf(
+                USERNAME_KEY to mUser,
+                TYPE_KEY to type,
+                AUTHORIZATION_KEY to "$TOKEN_KEY ${Settings.Account.token}"
+            )
+        )
     }
 
     override fun showLoading() {

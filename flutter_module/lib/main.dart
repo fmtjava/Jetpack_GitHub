@@ -37,12 +37,14 @@ class MyApp extends StatelessWidget {
           pageBuilder: (_, __, ___) {
             String userName = '';
             String type = '';
+            String authorization = '';
             if (settings.arguments != null) {
               Map<String, Object> arguments = settings.arguments;
               userName = arguments['userName'];
               type = arguments['type'];
+              authorization = arguments['authorization'];
             }
-            return FollowPage(userName, type);
+            return FollowPage(userName, type,authorization);
           });
     }
   };
