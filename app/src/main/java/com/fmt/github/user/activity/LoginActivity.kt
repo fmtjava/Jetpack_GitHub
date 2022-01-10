@@ -2,7 +2,6 @@ package com.fmt.github.user.activity
 
 import android.content.Intent
 import android.view.View
-import androidx.lifecycle.Observer
 import com.fmt.github.R
 import com.fmt.github.base.activity.BaseDataBindVMActivity
 import com.fmt.github.base.viewmodel.BaseViewModel
@@ -13,7 +12,6 @@ import com.fmt.github.ext.otherwise
 import com.fmt.github.ext.startActivity
 import com.fmt.github.ext.yes
 import com.fmt.github.home.activity.HomeActivity
-import com.fmt.github.user.model.AuthorizationRespModel
 import com.fmt.github.user.model.UserLoginModel
 import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.model.db.User
@@ -90,29 +88,29 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
     }
 
     private fun createOrGetAuthorization() {
-        mViewModel.createOrGetAuthorization().observe(this, Observer<AuthorizationRespModel> {
+        mViewModel.createOrGetAuthorization().observeKt {
             //保存授权后的Token和ID
             Settings.Account.token = it.token
             //获取用户信息
             getUserInfo()
-        })
+        }
     }
 
     private fun getToken(code: String?, state: String?) {
         if (code != null && state != null) {
             mDataBind.mOAuthProgress.visibility = View.VISIBLE
             mDataBind.mOAuthLoginIv.visibility = View.GONE
-            mViewModel.getAccessToken(code, state).observe(this, Observer {
+            mViewModel.getAccessToken(code, state).observeKt {
                 Settings.Account.token = it.access_token
                 getUserInfo()
-            })
+            }
         }
     }
 
     private fun getUserInfo() {
-        mViewModel.getUser().observe(this, Observer<UserModel> {
+        mViewModel.getUser().observeKt {
             saveUserInfo(it)
-        })
+        }
     }
 
     private fun saveUserInfo(userModel: UserModel) {

@@ -23,7 +23,6 @@ import com.fmt.github.user.activity.AboutActivity
 import com.fmt.github.user.activity.LoginActivity
 import com.fmt.github.user.activity.UserInfoActivity
 import com.fmt.github.user.dao.UserDao
-import com.fmt.github.user.model.UserModel
 import com.fmt.github.user.model.db.User
 import com.fmt.github.utils.NavigationUtil
 import com.fmt.github.utils.TREND_PAGE
@@ -134,11 +133,11 @@ class HomeActivity : BaseVMActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     private fun checkVersionUpdate() {
-        mViewModel.getReleases().observe(this, {
+        mViewModel.getReleases().observeKt {
             (it.tag_name != getVersionName()).yes {
                 showVersionUpdatePopup(it.assets[0].browser_download_url)
             }
-        })
+        }
     }
 
     private fun showVersionUpdatePopup(downLoadUrl: String) {

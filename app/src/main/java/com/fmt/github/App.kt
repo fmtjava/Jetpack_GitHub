@@ -2,7 +2,6 @@ package com.fmt.github
 
 import android.app.Application
 import android.content.ContextWrapper
-import android.os.Debug
 import com.fmt.github.tasks.*
 import com.rousetime.android_startup.StartupManager
 

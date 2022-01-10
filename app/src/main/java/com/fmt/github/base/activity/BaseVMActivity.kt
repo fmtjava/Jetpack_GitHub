@@ -2,6 +2,7 @@ package com.fmt.github.base.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
 import com.fmt.github.base.viewmodel.BaseViewModel
 import com.fmt.github.base.viewmodel.ErrorState
 import com.fmt.github.base.viewmodel.LoadState
@@ -60,5 +61,11 @@ abstract class BaseVMActivity : AppCompatActivity() {
 
     open fun handleError() {
 
+    }
+
+    protected fun <T : Any> LiveData<T>.observeKt(block: (T) -> Unit) {
+        this.observe(this@BaseVMActivity) {
+            block(it)
+        }
     }
 }

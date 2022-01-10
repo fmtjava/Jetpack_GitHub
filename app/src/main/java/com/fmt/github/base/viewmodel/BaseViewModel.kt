@@ -16,7 +16,7 @@ open class BaseViewModel : ViewModel() {
 
     fun launch(cancel: Cancel? = null, block: LaunchBlock) {//使用协程封装统一的网络请求处理
         viewModelScope.launch {
-            //ViewModel自带的viewModelScope.launch,会在页面销毁的时候自动取消请求,有效封装内存泄露
+            //ViewModel自带的viewModelScope.launch,会在页面销毁的时候自动取消请求,有效防止了内存泄露(具体可参考)
             try {
                 mStateLiveData.value = LoadState
                 block()

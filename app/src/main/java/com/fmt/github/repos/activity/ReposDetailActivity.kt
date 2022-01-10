@@ -94,28 +94,28 @@ class ReposDetailActivity : BaseVMActivity() {
 
     private fun checkRepoStarred() {
         mViewModel.checkRepoStarred(mOwner, mRepos)
-            .observe(this, {
+            .observeKt {
                 fl_favor.visibility = View.VISIBLE
                 mFavorIb.isLiked = it
-            })
+            }
     }
 
     private fun starRepo() {
         mViewModel.starRepo(mOwner, mRepos)
-            .observe(this@ReposDetailActivity, {
+            .observeKt {
                 successToast(getString(R.string.stared))
                 LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY)
                     .setData(ReposStarEvent(mIsFromFavor))
-            })
+            }
     }
 
     private fun unStarRepo() {
         mViewModel.unStarRepo(mOwner, mRepos)
-            .observe(this@ReposDetailActivity, {
+            .observeKt{
                 successToast(getString(R.string.un_stared))
                 LiveDataBus.with<ReposStarEvent>(Constant.STAR_EVENT_KEY)
                     .setData(ReposStarEvent(mIsFromFavor))
-            })
+            }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean =
