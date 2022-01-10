@@ -29,6 +29,7 @@ abstract class BasePagingVMFragment<M : Any, VM : BaseLPagingViewModel<M>, VH : 
             mAdapter.refresh()
         }
         mRecyclerView.layoutManager = LinearLayoutManager(mActivity)
+        //RecyclerView列表加载图片优化
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
