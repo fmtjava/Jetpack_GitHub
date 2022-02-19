@@ -1,7 +1,10 @@
 include ':common'
-include ':app', ':simplebehavior',':flutter_module'
+include ':app', ':simplebehavior'
 setBinding(new Binding([gradle: this]))
 evaluate(new File(
         settingsDir.absolutePath,
         'flutter_module/.android/include_flutter.groovy'
 ))
+//AS在Project目录下，方便查看以及编写flutter_module工程下的代码
+include ':flutter_module'
+project(":flutter_module").projectDir = new File("./flutter_module")
